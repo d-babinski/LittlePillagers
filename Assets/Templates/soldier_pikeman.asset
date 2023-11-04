@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd2d9eade320e93498f445d0c54807de, type: 3}
+  m_Name: soldier_pikeman
+  m_EditorClassIdentifier: 
+  SoldierId: 0
+  BaseCost:
+    Wood: 4
+    Wheat: 4
+    Metal: 2
+    Gold: 6
+  Maintenance:
+    Wood: 1
+    Wheat: 1
+    Metal: 0
+    Gold: 1
+  Attack: 3
+  Capacity: 10
+  Portrait: {fileID: 1015603934407788664, guid: 8566fd31f52f23e4a9e7cf1d0f7dc1e2, type: 3}
+  InGameSprite: {fileID: 3390922906441872390, guid: d1a3a469e68594c4982ff128853b385a, type: 3}
+  SoldierName: Pikeman
+  Animator: {fileID: 9100000, guid: 27e101850b1f0734badfbca0a28d8caa, type: 2}
