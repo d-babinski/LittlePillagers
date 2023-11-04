@@ -18,7 +18,7 @@ public class SoldierManagementWindow : MonoBehaviour
 
     private void Start()
     {
-        setStatBlock(currentlyChosenId);
+        updateHoveredUnitStatblock(currentlyChosenId);
 
         int _iterator = 0;
         
@@ -95,11 +95,11 @@ public class SoldierManagementWindow : MonoBehaviour
         if (currentlyChosenId != _currentlySelected)
         {
             currentlyChosenId = _currentlySelected;
-            setStatBlock(_currentlySelected);
+            updateHoveredUnitStatblock(_currentlySelected);
         }
     }
 
-    private void setStatBlock(int _id)
+    private void updateHoveredUnitStatblock(int _id)
     {
         if (_id < 0)
         {
@@ -115,37 +115,7 @@ public class SoldierManagementWindow : MonoBehaviour
         statBlock.SetStatBlock(_cost, _maintenance, _attack, _capacity);
     }
     
-    public void UpdatePanelData(int[] _available, int[] _total)
-    {
-        for (int i = 0; i < _available.Length; i++)
-        {
-            if (i < soldierPanels.Length)
-            {
-                soldierPanels[i].UpdateUnitCount(_available[i], _total[i]);
-            }
-        }
-    }
-    
-    public void UpdateUnitCosts(Resources[] _costs)
-    {
-        unitCosts = _costs;
-    }
-
-    public void UpdateUnitMaintenances(Resources[] _maintenance)
-    {
-        unitMaintenances = _maintenance;
-    }
-
-    public void UpdateAttacks(int[] _attacks)
-    {
-        unitAttacks = _attacks;
-    }
-
-    public void UpdateCapacities(int[] _capacities)
-    {
-        unitCapacities = _capacities;
-    }
-    
+ 
     private Resources getUnitCost(int _id)
     {
         if (_id < 0 || _id >= unitCosts.Length)
@@ -184,5 +154,29 @@ public class SoldierManagementWindow : MonoBehaviour
         }
 
         return unitAttacks[_id];
+    }
+
+    public void UpdateSoldierAvailability(int[] _available, int[] _total)
+    {
+        for (int i = 0; i < soldierPanels.Length; i++)
+        {
+            soldierPanels[i].UpdateUnitCount(_available[i], _total[i]);
+        }
+    }
+    
+    public void UpdateSoldierData(SoldierTemplate[] _template)
+    {
+        unitCosts = new Resources[_template.Length];
+        unitMaintenances = new Resources[_template.Length];
+        unitAttacks = new int[_template.Length];
+        unitCapacities = new int[_template.Length];
+        
+        for (int i = 0; i < _template.Length; i++)
+        {
+            unitCosts[i] = _template[i].BaseCost;
+            unitMaintenances[i] = _template[i].Maintenance;
+            unitAttacks[i] = _template[i].Attack;
+            unitCapacities[i] = _template[i].Capacity;
+        }
     }
 }

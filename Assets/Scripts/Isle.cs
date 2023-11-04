@@ -227,7 +227,7 @@ public class Isle : MonoBehaviour
             return;
         }
 
-        army.AddSoldiers(0, _lackingSoldiers);
+        army.AddSoldiers(template.SoldierId, _lackingSoldiers);
     }
 
     private void BuildBuildings()

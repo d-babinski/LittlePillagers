@@ -867,6 +867,25 @@ PolygonCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -891,6 +910,7 @@ PolygonCollider2D:
       - {x: 0.4376975, y: -0.11565161}
       - {x: 0.6970593, y: -0.12703228}
       - {x: 0.9476071, y: 0.13076645}
+  m_UseDelaunayMesh: 0
 --- !u!1 &6730120752330311611
 GameObject:
   m_ObjectHideFlags: 0
@@ -933,6 +953,25 @@ PolygonCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -956,6 +995,7 @@ PolygonCollider2D:
       - {x: -0.2197548, y: 0.15694255}
       - {x: -0.047996238, y: 0.22674727}
       - {x: 0.058704734, y: 0.29983646}
+  m_UseDelaunayMesh: 0
 --- !u!1 &6730120752525633715
 GameObject:
   m_ObjectHideFlags: 0
@@ -1048,8 +1088,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 327fb2d9afa3fc841b7a8c0c71e7b4e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  soldierTemplates:
-  - {fileID: 11400000, guid: 8dc12ea8478c5754cb349112a437bb5b, type: 2}
 --- !u!1 &6730120753029952238
 GameObject:
   m_ObjectHideFlags: 0
@@ -1092,6 +1130,25 @@ PolygonCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -1118,6 +1175,7 @@ PolygonCollider2D:
       - {x: 0.27137336, y: -0.19580835}
       - {x: 0.49221167, y: -0.117970705}
       - {x: 0.48127514, y: -0.027357578}
+  m_UseDelaunayMesh: 0
 --- !u!1 &6730120753063056417
 GameObject:
   m_ObjectHideFlags: 0
@@ -1325,6 +1383,25 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -1480,6 +1557,25 @@ PolygonCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -1505,6 +1601,7 @@ PolygonCollider2D:
       - {x: 0.0060725063, y: -0.12898201}
       - {x: 0.47833955, y: -0.051522195}
       - {x: 0.6340117, y: 0.048803985}
+  m_UseDelaunayMesh: 0
 --- !u!1 &6730120753741006238
 GameObject:
   m_ObjectHideFlags: 0
@@ -1788,6 +1885,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 6730120753331429078}
     m_Modifications:
     - target: {fileID: 2921522124957945514, guid: 55530dc50b4af8649af64eaa585ee7b4, type: 3}
@@ -1839,6 +1937,9 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 55530dc50b4af8649af64eaa585ee7b4, type: 3}
 --- !u!114 &55586112297549296 stripped
 MonoBehaviour:

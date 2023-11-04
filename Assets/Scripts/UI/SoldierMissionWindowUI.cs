@@ -2,12 +2,13 @@ using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Serialization;
+using UnityEngine.UI;
 
 public class SoldierMissionWindowUI : MonoBehaviour
 {
     public event Action OnSoldiersChosen = null;
     public int UnitsQuantity => unitSelectionPanel.UnitPanelCount;
-    
+
     [SerializeField] private UnitsSelectionPanelUI unitSelectionPanel = null;
     [SerializeField] private TextMeshProUGUI totalResourceCapacityCountText = null;
     [SerializeField] private UnitCountText selectedUnitsCount = null;
@@ -21,8 +22,10 @@ public class SoldierMissionWindowUI : MonoBehaviour
     {
         confirmButton.OnButtonClicked += confirmSoldiers;
         unitSelectionPanel.OnValueChanged += updateTexts;
+
+        unitCapacityValues = new int[UnitsQuantity];
     }
-    
+
     public void OpenWindow()
     {
         panelController.Open();
@@ -39,31 +42,19 @@ public class SoldierMissionWindowUI : MonoBehaviour
         updateTexts();
     }
 
-    public void SetUnitNames(string[] _names)
+    public void SetUnitNames(int _id, string _name)
     {
-        for (int i = 0; i < _names.Length; i++)
-        {
-            if (i < unitSelectionPanel.UnitPanelCount)
-            {
-                unitSelectionPanel.SetPanelName(i, _names[i]);
-            }
-        }
+        unitSelectionPanel.SetPanelName(_id, _name);
     }
 
-    public void SetUnitQuantity(int[] _availability)
+    public void SetUnitQuantity(int _id, int _maxUnits)
     {
-        for (int i = 0; i < _availability.Length; i++)
-        {
-            if (i < unitSelectionPanel.UnitPanelCount)
-            {
-                unitSelectionPanel.SetPanelMaxUnits(i, _availability[i]);
-            }
-        }
+        unitSelectionPanel.SetPanelMaxUnits(_id, _maxUnits);
     }
-    
-    public void SetUnitCapacities(int[] _capacities)
+
+    public void SetUnitCapacities(int _id, int _capacity)
     {
-        unitCapacityValues = _capacities;
+        unitCapacityValues[_id] = _capacity;
         updateTexts();
     }
 
@@ -78,11 +69,11 @@ public class SoldierMissionWindowUI : MonoBehaviour
         selectedUnitsCount.UpdateCount(unitSelectionPanel.TotalSelectedUnits, maxTotalUnits);
         totalResourceCapacityCountText.text = getTotalResourceCapacity().ToString();
     }
-    
+
     private int getTotalResourceCapacity()
     {
         int _totalCapacity = 0;
-        
+
         for (int i = 0; i < unitSelectionPanel.UnitPanelCount; i++)
         {
             _totalCapacity += unitSelectionPanel.GetSelectedUnitsInPanel(i)*getUnitCapacity(i);
@@ -90,7 +81,7 @@ public class SoldierMissionWindowUI : MonoBehaviour
 
         return _totalCapacity;
     }
-    
+
     private int getUnitCapacity(int _id)
     {
         if (_id < 0 || _id >= unitCapacityValues.Length)
@@ -107,7 +98,7 @@ public class SoldierMissionWindowUI : MonoBehaviour
         {
             return;
         }
-        
+
         OnSoldiersChosen?.Invoke();
     }
 
@@ -115,9 +106,9 @@ public class SoldierMissionWindowUI : MonoBehaviour
     {
         int _selectedUnits = unitSelectionPanel.TotalSelectedUnits;
 
-         return _selectedUnits > 0 && _selectedUnits <= maxTotalUnits;
+        return _selectedUnits > 0 && _selectedUnits <= maxTotalUnits;
     }
-    
+
     public void SetClosed()
     {
         panelController.CloseInstantly();

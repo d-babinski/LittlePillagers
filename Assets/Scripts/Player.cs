@@ -1,11 +1,14 @@
 using System;
 using System.Collections.Generic;
+using System.Data.SqlTypes;
 using UnityEngine;
 
 public class Player : MonoBehaviour
 {
     public event Action OnDataChanged = null;
-    
+
+    public SoldierDatabase SoldierDatabase => availableSoldiers;
+
     [SerializeField] private ResourceSilo playerSilo = null;
     [SerializeField] private Army playerArmy = null;
     [SerializeField] private Fleet playerFleet = null;
@@ -13,16 +16,16 @@ public class Player : MonoBehaviour
     [SerializeField] private ShipBuilder shipBuilder = null;
     [SerializeField] private SoldierBuilder soldierBuilder = null;
     [SerializeField] private PointSet spawnPoints = null;
+    [SerializeField] private SoldierDatabase availableSoldiers = null;
+    
+    public int TotalSoldiersCount => playerArmy.GetTotalSoldierCount();
+    public int AvailableSoldiersCount =>  playerArmy.GetTotalAvailableSoldierCount();
     
     public void UpdateCycle()
     {
         AddResources(Income);
         playerPillage.UpdateCycle();
     }
-    
-    public int TotalSoldiersCount => playerArmy.GetTotalSoldierCount();
-    public int AvailableSoldiersCount =>  playerArmy.GetTotalAvailableSoldierCount();
-
 
     public void SendSoldier(int _id)
     {
@@ -32,7 +35,7 @@ public class Player : MonoBehaviour
     
     public bool BuySoldier(int _id)
     {
-        Resources _soldierCost = playerArmy.GetSoldierBaseCost(_id);
+        Resources _soldierCost = availableSoldiers.AllTemplatesById[_id].BaseCost;
         
        if (playerSilo.CanAfford(_soldierCost) == false)
         {
@@ -64,8 +67,21 @@ public class Player : MonoBehaviour
         OnDataChanged?.Invoke();
     }
 
-    public Resources TotalSoldierMaintenance => playerArmy.GetCurrentMaintenance();
+    public Resources TotalSoldierMaintenance => calculateArmyMaintenance();
 
+    private Resources calculateArmyMaintenance()
+    {
+        Resources _maintenance = new Resources();
+        SoldierTemplate[] _soldierTemplates = availableSoldiers.AllSoldierTemplates;
+        
+        for (int i = 0; i < _soldierTemplates.Length; i++)
+        {
+            _maintenance += _soldierTemplates[i].Maintenance*playerArmy.GetTotalSoldiersOfId(_soldierTemplates[i].SoldierId);
+        }
+
+        return _maintenance;
+    }
+    
     public void BuyShip(int _id)
     {
         Resources _shipCost = playerFleet.GetShipBaseCost(_id);
@@ -86,13 +102,10 @@ public class Player : MonoBehaviour
     public Resources TotalShipMaintenance => playerFleet.GetCurrentMaintenance();
     public int TotalShipCount => playerFleet.GetTotalShipCount();
     public int AvailableShipsCount => playerFleet.GetAvailableShipCount();
-    public string[] GetSoldierNames => playerArmy.GetAllNames();
-    public int[] SoldierCapacities => playerArmy.GetAllCapacities();
     public int[] AvailableSoldiers => playerArmy.GetAllAvailabilities();
     public string[] GetShipNames => playerFleet.GetAllNames();
     public int[] AvailableShips => playerFleet.GetAllAvailabilities();
     public int[] ShipCapacities => playerFleet.GetAllCapacities();
-    public int[] SoldierIds => playerArmy.GetSoldierIds();
     public int[] ShipIds => playerFleet.GetShipIds();
     public Resources Income => Pillage - TotalSoldierMaintenance - TotalShipMaintenance;
     public int[] TotalShips => playerFleet.GetAllShips();
@@ -100,9 +113,6 @@ public class Player : MonoBehaviour
     public Resources[] ShipMaintenances => playerFleet.GetMaintenances();
     public int[] ShipSpeeds => playerFleet.GetSpeeds();
     public int[] TotalSoldiers => playerArmy.GetAllSoldiers();
-    public Resources[] SoldierCosts =>  playerArmy.GetCosts();
-    public Resources[] SoldierMaintenances => playerArmy.GetMaintenances();
-    public int[] SoldierAttacks => playerArmy.GetAttacks();
 
     public void SendMission(Isle _isle, int _missionType, UnitsSent[] _sentShips, UnitsSent[] _sentSoldiers)
     {
@@ -192,7 +202,7 @@ public class Player : MonoBehaviour
 
         while (_soldierIdQueue.Count > 0)
         {
-            _soldiers.Add(soldierBuilder.CreateSoldier(playerArmy.GetSoldierTemplate(_soldierIdQueue.Dequeue())));
+            _soldiers.Add(soldierBuilder.CreateSoldier(availableSoldiers.AllTemplatesById[(_soldierIdQueue.Dequeue())]));
         }
 
         return _soldiers;

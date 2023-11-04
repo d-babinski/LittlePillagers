@@ -33,7 +33,7 @@ public class IsleZoomUI : MonoBehaviour
             return;
         }
 
-        int[] _soldierIds = lastAssignedPlayer.SoldierIds;
+        SoldierTemplate[] _templates = lastAssignedPlayer.SoldierDatabase.AllSoldierTemplates;
         int[] _shipIds = lastAssignedPlayer.ShipIds;
 
         int _missionType = attackMenu.GetMissionType();
@@ -41,7 +41,7 @@ public class IsleZoomUI : MonoBehaviour
         int[] _soldierQuantities = attackMenu.GetSoldiersSent();
 
         UnitsSent[] _sentShips = new UnitsSent[_shipIds.Length];
-        UnitsSent[] _sentSoldiers = new UnitsSent[_soldierIds.Length];
+        UnitsSent[] _sentSoldiers = new UnitsSent[_templates.Length];
 
         for (int i = 0; i < _sentShips.Length; i++)
         {
@@ -50,7 +50,7 @@ public class IsleZoomUI : MonoBehaviour
 
         for (int i = 0; i < _sentSoldiers.Length; i++)
         {
-            _sentSoldiers[i] = new UnitsSent(_soldierIds[i], _soldierQuantities[i]);
+            _sentSoldiers[i] = new UnitsSent(_templates[i].SoldierId, _soldierQuantities[i]);
         }
 
         lastAssignedPlayer.SendMission(lastShownIsle, _missionType, _sentShips, _sentSoldiers);
@@ -95,13 +95,10 @@ public class IsleZoomUI : MonoBehaviour
 
     private void updateSoldierData(Player _player)
     {
-        string[] _unitNames = _player.GetSoldierNames;
         int[] _unitAvailability = _player.AvailableSoldiers;
-        int[] _capacities = _player.SoldierCapacities;
-        
-        attackMenu.UpdateSoldierNames(_unitNames);
-        attackMenu.UpdateSoldierCapacities(_capacities);
-        attackMenu.UpdateSoldierAvailability(_unitAvailability);
+
+        attackMenu.UpdateSoldierData(_player.SoldierDatabase.AllSoldierTemplates);
+        attackMenu.UpdateUnitAvailability(_unitAvailability);
     }
 
     private void updateShipData(Player _player)

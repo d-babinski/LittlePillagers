@@ -1,4 +1,5 @@
 using DG.Tweening;
+using System;
 using UnityEngine;
 
 public class MainUI : MonoBehaviour
@@ -25,9 +26,9 @@ public class MainUI : MonoBehaviour
 
     private void buySoldier(int _id)
     {
-        int[] _soldierIds = assignedPlayer.SoldierIds;
+        int _shipId = assignedPlayer.SoldierDatabase.AllSoldierTemplates[_id].SoldierId;
         
-        assignedPlayer.BuySoldier(_soldierIds[_id]);
+        assignedPlayer.BuySoldier(_shipId);
     }
 
     public Isle GetLastHoveredIsle()
@@ -81,6 +82,8 @@ public class MainUI : MonoBehaviour
     
     public void UpdatePlayerData(Player _player)
     {
+        SoldierDatabase _soldierDatabase = _player.SoldierDatabase;
+        
         assignedPlayer = _player;
         
         Resources _pillage = _player.Pillage;
@@ -111,12 +114,9 @@ public class MainUI : MonoBehaviour
 
         int[] _availableSoldiers = _player.AvailableSoldiers;
         int[] _totalSoldiers = _player.TotalSoldiers;
-        Resources[] _soldierCosts = _player.SoldierCosts;
-        Resources[] _soldierMaintenances = _player.SoldierMaintenances;
-        int[] _soldierAttacks = _player.SoldierAttacks; 
-        int[] _soldierCapacities = _player.SoldierCapacities;
         
-        managementWindow.UpdateSoldiersData(_availableSoldiers, _totalSoldiers,_soldierCosts, _soldierMaintenances, _soldierAttacks, _soldierCapacities);
+        managementWindow.UpdateSoldierData(assignedPlayer.SoldierDatabase.AllSoldierTemplates);
+        managementWindow.UpdateSoldierAvailability(_availableSoldiers, _totalSoldiers);
 
         Resources _currentResources = _player.CurrentResources;
         

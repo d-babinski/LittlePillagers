@@ -96,12 +96,13 @@ public class ManagementWindow : MonoBehaviour
         statsPanel.UpdateSoldiers(_available, _total);
     }
 
-    public void UpdateSoldiersData(int[] _available, int[] _total, Resources[] _costs, Resources[] _maintenances, int[] _attacks, int[] _capacities)
+    public void UpdateSoldierData(SoldierTemplate[] _templates)
     {
-        soldierWindow.UpdatePanelData(_available, _total);
-        soldierWindow.UpdateCapacities(_capacities);
-        soldierWindow.UpdateUnitCosts(_costs);
-        soldierWindow.UpdateUnitMaintenances(_maintenances);
-        soldierWindow.UpdateAttacks(_attacks);
+        soldierWindow.UpdateSoldierData(_templates);
+    }
+    
+    public void UpdateSoldierAvailability(int[] _availableSoldiers, int[] _totalSoldiers)
+    {
+        soldierWindow.UpdateSoldierAvailability(_availableSoldiers, _totalSoldiers);
     }
 }
