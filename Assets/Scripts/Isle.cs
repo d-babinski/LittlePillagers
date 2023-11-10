@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 public class Isle : MonoBehaviour
@@ -8,19 +10,16 @@ public class Isle : MonoBehaviour
     private const int POPULATION_BASE_PRODUCTION = 2;
     public event Action OnMissionResolved = null;
 
-    public string IsleName => isleName;
-    public Resources CurrentResources => silo.CurrentResources;
-    public int ArmyCount => army.GetTotalSoldierCount();
-    public int PopulationCount => populationCount;
+    [HideInInspector] public StringVariable IsleName = null;
+    [HideInInspector] public ResourcesVariable CurrentResources = null;
+    [HideInInspector] public IntVariable ArmyCount = null;
+    [HideInInspector] public IntVariable PopulationCount = null;
 
     [SerializeField] private int maxBuildings = -1;
-    [SerializeField] private string isleName = "Borg";
-    [SerializeField] private ResourceSilo silo = null;
     [SerializeField] private NaturalResources resourceSpawner = null;
-    [SerializeField] private Army army = null;
     [SerializeField] private Builder builder = null;
     [SerializeField] private SoldierBuilder soldierBuilder = null;
-    [SerializeField] private SoldierTemplate template = null;
+    [SerializeField] private UnitTemplate template = null;
     [SerializeField] private PointSet possibleUnitSpawns = null;
     [SerializeField] private PointSet dockingPoints = null;
 
@@ -37,117 +36,64 @@ public class Isle : MonoBehaviour
     private int trees = 0;
 
     private int highestPopulation = 0;
-    private int populationCount = 0;
+
+    private void Awake()
+    {
+        PopulationCount = ScriptableObject.CreateInstance<IntVariable>();
+        ArmyCount = ScriptableObject.CreateInstance<IntVariable>();
+        IsleName = ScriptableObject.CreateInstance<StringVariable>();
+        CurrentResources = ScriptableObject.CreateInstance<ResourcesVariable>();
+    }
 
     public void ProduceResources()
     {
-        float _armyToPopulationRatio = ArmyCount/PopulationCount;
+        float _armyToPopulationRatio = (float)ArmyCount.Value/PopulationCount.Value;
         float _rocksBonus = 0.25f*rocks;
         float _treesBonus = 0.25f*trees;
         float _wheatBonus = 0.25f*wheat;
         float _goldBonus = (_rocksBonus + _treesBonus + _wheatBonus)/3f;
 
-        int _metalProduced = Mathf.FloorToInt(_armyToPopulationRatio*(_rocksBonus + 1f)*PopulationCount*POPULATION_BASE_PRODUCTION);
-        int _woodProduced = Mathf.FloorToInt(_armyToPopulationRatio*(_treesBonus + 1f)*PopulationCount*POPULATION_BASE_PRODUCTION);
-        int _wheatProduced = Mathf.FloorToInt(_armyToPopulationRatio*(_wheatBonus + 1f)*PopulationCount*POPULATION_BASE_PRODUCTION);
-        int _goldProduced = Mathf.FloorToInt(_armyToPopulationRatio*(_goldBonus + 1f)*PopulationCount*POPULATION_BASE_PRODUCTION);
+        int _metalProduced = Mathf.FloorToInt(_armyToPopulationRatio*(_rocksBonus + 1f)*PopulationCount.Value*POPULATION_BASE_PRODUCTION);
+        int _woodProduced = Mathf.FloorToInt(_armyToPopulationRatio*(_treesBonus + 1f)*PopulationCount.Value*POPULATION_BASE_PRODUCTION);
+        int _wheatProduced = Mathf.FloorToInt(_armyToPopulationRatio*(_wheatBonus + 1f)*PopulationCount.Value*POPULATION_BASE_PRODUCTION);
+        int _goldProduced = Mathf.FloorToInt(_armyToPopulationRatio*(_goldBonus + 1f)*PopulationCount.Value*POPULATION_BASE_PRODUCTION);
 
-        silo.AddResources(new Resources(_woodProduced, _wheatProduced, _metalProduced, _goldProduced));
+        CurrentResources.Value += new Resources(_woodProduced, _wheatProduced, _metalProduced, _goldProduced);
     }
 
-    public Battlefield GetAttacked(Mission _missionType)
-    {
-        if (currentBattlefield == true && currentBattlefield.IsResolved == false)
-        {
-            return currentBattlefield;
-        }
-
-        currentBattlefield = (new GameObject()).AddComponent<Battlefield>();
-        currentBattlefield.OnBattlefieldConcluded += applyResults;
-        
-        if (_missionType.Type == MissionType.Beg)
-        {
-            return currentBattlefield;
-        }
-
-        if (_missionType.Type == MissionType.Threaten && Random.Range(0f, 1f) > 0.5f)
-        {
-            return currentBattlefield;
-        }
-
-        int _soldiersToMake = ArmyCount;
-
-        for (int i = 0; i < _soldiersToMake; i++)
-        {
-            Soldier _soldier = soldierBuilder.CreateSoldier(template);
-            army.SendSoldiersOnMission(_soldier.TemplateId, 1);
-            _soldier.OnDeath += killASoldier;
-            _soldier.OnReturn += returnSoldier;
-            Vector3 _spawnPoint = possibleUnitSpawns.GetRandom();
-            _soldier.transform.position = _spawnPoint;
-            _soldier.SetRallyPoint(_spawnPoint);
-            _soldier.GiveOrders(MissionType.Defend);
-            currentBattlefield.AddAIUnit(_soldier);
-        }
-
-        return currentBattlefield;
-    }
     private void returnSoldier(Soldier _soldier)
     {
-        army.ReturnSoldierFromMission(_soldier.TemplateId);
+        ArmyCount.Value++;
+        PopulationCount.Value++;
     }
 
     private void killASoldier(Soldier _soldier)
     {
-        killPop(1);
-        army.KillSoldierOnMission(_soldier.TemplateId);
+        PopulationCount.Value--;
+        ArmyCount.Value--;
     }
     
     private void killPop(int _amount)
     {
-        populationCount = Mathf.Clamp(populationCount-_amount, 0, populationCount);
+        PopulationCount.Value-=_amount;
     }
-
-    private void applyResults(List<Soldier> _soldiersLeft)
-    {
-        _soldiersLeft.ForEach(_soldier =>
-        {
-            switch (_soldier.GivenOrders)
-            {
-                case MissionType.Defend:
-                    break;
-                case MissionType.Pillage:
-                case MissionType.Threaten:
-                    _soldier.PillageResources(generatePillagedResources(_soldier.Capacity));
-                    break;
-                case MissionType.Beg:
-                    _soldier.PillageResources(generatePillagedResources(_soldier.Capacity/3));
-                    break;
-                case MissionType.Destroy:
-                    _soldier.PillageResources(generatePillagedResources(_soldier.Capacity));
-                    killPop(_soldier.AttackLeft);
-                    break;
-            }
-        });
-        
-        OnMissionResolved?.Invoke();
-    }
+    
 
     private Resources generatePillagedResources(int _soldierCapacity)
     {
-        int _totalRes = CurrentResources.Gold + CurrentResources.Metal + CurrentResources.Wheat + CurrentResources.Wood;
+        int _totalRes = Resources.Sum(CurrentResources.Value);
 
         if (_totalRes < _soldierCapacity)
         {
-            Resources _allResources = CurrentResources;
-            silo.RemoveResources(CurrentResources);
+            Resources _allResources = CurrentResources.Value;
+            CurrentResources.Value = new Resources();
             return _allResources;
         }
         
-        float _woodRatio = (float)CurrentResources.Wood/_totalRes;
-        float _wheatRatio = (float)CurrentResources.Wheat/_totalRes;
-        float _metalRatio = (float)CurrentResources.Metal/_totalRes;
-        float _goldRatio = (float)CurrentResources.Gold/_totalRes;
+        float _woodRatio = (float)CurrentResources.Value.Wood/_totalRes;
+        float _wheatRatio = (float)CurrentResources.Value.Wheat/_totalRes;
+        float _metalRatio = (float)CurrentResources.Value.Metal/_totalRes;
+        float _goldRatio = (float)CurrentResources.Value.Gold/_totalRes;
 
         Resources _plundered = new Resources(
             Mathf.FloorToInt(_soldierCapacity*_woodRatio),
@@ -156,27 +102,11 @@ public class Isle : MonoBehaviour
             Mathf.FloorToInt(_soldierCapacity*_goldRatio)
         );
 
-        silo.RemoveResources(_plundered);
+        CurrentResources.Value -= _plundered;
         
         return _plundered;
     }
-
-    public void SetIslandName(string _name)
-    {
-        isleName = _name;
-    }
-
-    public void SetInitialPopulation(int _population)
-    {
-        populationCount = _population;
-        highestPopulation = _population;
-    }
-
-    public void SetInitialResources(Resources _resources)
-    {
-        silo.AddResources(_resources);
-    }
-
+    
     public Vector3 ClosestDockingPoint(Vector3 _position)
     {
         return dockingPoints.GetRandom(); //TODO: implement get closest
@@ -194,7 +124,7 @@ public class Isle : MonoBehaviour
 
     public void UpdateCycle()
     {
-        if (populationCount <= 0)
+        if (PopulationCount.Value <= 0)
         {
             return;
         }
@@ -208,7 +138,7 @@ public class Isle : MonoBehaviour
 
     private void ChangeArmyRatio()
     {
-        if (PopulationCount < highestPopulation)
+        if (PopulationCount.Value < highestPopulation)
         {
             armyRatio = Mathf.MoveTowards(armyRatio, maxArmyRatio, 0.02f);
             return;
@@ -220,14 +150,14 @@ public class Isle : MonoBehaviour
 
     public void RaiseArmy()
     {
-        int _lackingSoldiers = Mathf.FloorToInt(populationCount*armyRatio);
+        int _lackingSoldiers = Mathf.FloorToInt(PopulationCount.Value*armyRatio);
 
         if (_lackingSoldiers <= 0)
         {
             return;
         }
 
-        army.AddSoldiers(template.SoldierId, _lackingSoldiers);
+        ArmyCount.Value += _lackingSoldiers;
     }
 
     private void BuildBuildings()
@@ -237,14 +167,14 @@ public class Isle : MonoBehaviour
             return;
         }
 
-        if (1 + populationCount/10 <= builder.Buildings)
+        if (1 + PopulationCount.Value/10 <= builder.Buildings)
         {
             return;
         }
 
-        builder.BuildWalls(ArmyCount/25);
+        builder.BuildWalls(ArmyCount.Value/25);
 
-        if (PopulationCount/10 < wheat && armyRatio < 0.75f)
+        if (PopulationCount.Value/10 < wheat && armyRatio < 0.75f)
         {
             wheat++;
             resourceSpawner.SetWheat(wheat);
@@ -262,7 +192,7 @@ public class Isle : MonoBehaviour
         {
             builder.BuildMine();
         }
-        else if (builder.Lighthouses < populationCount/50)
+        else if (builder.Lighthouses < PopulationCount.Value/50)
         {
             builder.BuildLighthouse();
         }
@@ -274,12 +204,12 @@ public class Isle : MonoBehaviour
 
     private void RaisePopulation()
     {
-        populationCount += Random.Range(1, 2+PopulationCount/10);
+        PopulationCount.Value += Random.Range(1, 2+PopulationCount.Value/10);
     }
 
     public void BuildInitialBuildings()
     {
-        for (int i = 0; i <= PopulationCount/10; i++)
+        for (int i = 0; i <= PopulationCount.Value/10; i++)
         {
             BuildBuildings();
         }

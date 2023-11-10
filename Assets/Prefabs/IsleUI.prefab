@@ -33,7 +33,7 @@ RectTransform:
   - {fileID: 2480362332738348501}
   - {fileID: 2480362330975679459}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -52,10 +52,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7057f295522236c4ca48e3e6c3ab99b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nameplate: {fileID: 2480362330975679486}
-  stats: {fileID: 2480362332738348496}
   canvasGroup: {fileID: 2480362331426208700}
-  alphaTweenTime: 0.25
+  alphaTweenTime: {fileID: 11400000, guid: 3735e63c77ee3564a8ef0fabe91d72f0, type: 2}
 --- !u!225 &2480362331426208700
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -73,8 +71,13 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 2480362331426208674}
     m_Modifications:
+    - target: {fileID: 8292933279362161228, guid: 1bb9620a834ca2e4b8f367400e0680b6, type: 3}
+      propertyPath: dataSource
+      value: 
+      objectReference: {fileID: 11400000, guid: 87288e3fc00834741927b88e08eea713, type: 2}
     - target: {fileID: 8292933279545874842, guid: 1bb9620a834ca2e4b8f367400e0680b6, type: 3}
       propertyPath: m_Name
       value: IslandStats
@@ -163,20 +166,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8292933280140813163, guid: 1bb9620a834ca2e4b8f367400e0680b6, type: 3}
+      propertyPath: dataSource
+      value: 
+      objectReference: {fileID: 11400000, guid: 61127d0fc3b30be4a9e95251831ed7bc, type: 2}
     m_RemovedComponents:
     - {fileID: 8292933278487362836, guid: 1bb9620a834ca2e4b8f367400e0680b6, type: 3}
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1bb9620a834ca2e4b8f367400e0680b6, type: 3}
---- !u!114 &2480362332738348496 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8292933279545874846, guid: 1bb9620a834ca2e4b8f367400e0680b6, type: 3}
-  m_PrefabInstance: {fileID: 5871126591076580430}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 40e98477ddbf44c4eb8b9f189e6f544d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!224 &2480362332738348501 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8292933279545874843, guid: 1bb9620a834ca2e4b8f367400e0680b6, type: 3}
@@ -187,8 +186,13 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 2480362331426208674}
     m_Modifications:
+    - target: {fileID: 6478402460721239628, guid: c4f901534ef60dd48971fe936d31b19c, type: 3}
+      propertyPath: dataSource
+      value: 
+      objectReference: {fileID: 11400000, guid: f3063db4f9023094e8064d31b6bb4eeb, type: 2}
     - target: {fileID: 6478402460721239632, guid: c4f901534ef60dd48971fe936d31b19c, type: 3}
       propertyPath: m_Name
       value: Nameplate
@@ -278,20 +282,12 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c4f901534ef60dd48971fe936d31b19c, type: 3}
 --- !u!224 &2480362330975679459 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6478402460721239633, guid: c4f901534ef60dd48971fe936d31b19c, type: 3}
   m_PrefabInstance: {fileID: 8902469469803046322}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2480362330975679486 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6478402460721239628, guid: c4f901534ef60dd48971fe936d31b19c, type: 3}
-  m_PrefabInstance: {fileID: 8902469469803046322}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4986ce68f14475849aa028a51c6a687e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

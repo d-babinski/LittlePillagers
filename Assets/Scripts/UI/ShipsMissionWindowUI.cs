@@ -7,6 +7,7 @@ public class ShipsMissionWindowUI : MonoBehaviour
 {
     public event Action OnShipsChosen = null; 
     public int TotalCapacity => getTotalShipCapacity();
+    public int NumberOfPanels => unitSelectionPanel.UnitPanelCount;
     
     [SerializeField] private UnitsSelectionPanelUI unitSelectionPanel = null;
     [SerializeField] private TextMeshProUGUI soldierCapacityText = null;
@@ -14,6 +15,7 @@ public class ShipsMissionWindowUI : MonoBehaviour
     [SerializeField] private SidePanel panelController = null;
 
     private int[] shipCapacities = Array.Empty<int>();
+    private UnitTemplate[] ships = Array.Empty<UnitTemplate>();
 
     private void Awake()
     {
@@ -115,5 +117,22 @@ public class ShipsMissionWindowUI : MonoBehaviour
     public int[] GetChosenQuantities()
     {
         return unitSelectionPanel.GetAllSelectedUnits();
+    }
+    
+    public void SetUnitData(UnitTemplate[] _ships)
+    {
+        ships = _ships;
+        
+        for (int i = 0; i < NumberOfPanels; i++)
+        {
+            if (i >= ships.Length)
+            {
+                return;
+            }
+            
+            unitSelectionPanel.SetPanelName(i,_ships[i].UnitName);
+        }
+        
+        updateSoldierCapacityText();
     }
 }

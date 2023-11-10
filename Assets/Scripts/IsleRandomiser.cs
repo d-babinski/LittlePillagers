@@ -32,10 +32,10 @@ public class IsleRandomiser : MonoBehaviour
 
         foreach (Isle _isle in isles)
         {
-            _isle.SetIslandName($"{namePrefixes[Random.Range(0, namePrefixes.Length)]}{nameSuffix}");
-            _isle.SetInitialPopulation(Random.Range(minPopulation, maxPopulation));
+            _isle.IsleName.Value = ($"{namePrefixes[Random.Range(0, namePrefixes.Length)]}{nameSuffix}");
+            _isle.PopulationCount.Value = (Random.Range(minPopulation, maxPopulation));
+            _isle.CurrentResources.Value = (Resources.RandomBetween(minResources, maxResources));
             _isle.SetNaturalResources(Random.Range(minTrees, maxTrees +1),Random.Range(minRocks, maxRocks +1),Random.Range(minWheat, maxWheat +1));
-            _isle.SetInitialResources(Resources.randomBetween(minResources, maxResources));
             _isle.RaiseArmy();
             _isle.BuildInitialBuildings();
         }

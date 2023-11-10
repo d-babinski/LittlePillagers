@@ -165,16 +165,6 @@ public class AttackMenuUI : MonoBehaviour
         fadeTween = canvasGroup.DOFade(0f, 0.5f).SetUpdate(true);
     }
     
-    public void UpdateShipNames(string[] _unitNames)
-    {
-        shipsWindow.SetUnitNames(_unitNames);
-    }
-    
-    public void UpdateShipCapacities(int[] _capacities)
-    {
-        shipsWindow.SetShipCapacities(_capacities);
-    }
-    
     public void UpdateShipAvailability(int[] _unitAvailability)
     {
         shipsWindow.SetUnitQuantity(_unitAvailability);
@@ -208,19 +198,23 @@ public class AttackMenuUI : MonoBehaviour
         return soldierWindow.GetChosenQuantities();
     }
     
-    public void UpdateSoldierData(SoldierTemplate[] _templates)
+    public void UpdateSoldierData(UnitTemplate[] _templates)
     {
-        for (int i = 0; i < soldierWindow.UnitsQuantity; i++)
-        {
-            soldierWindow.SetUnitNames(i, _templates[i].SoldierName);
-            soldierWindow.SetUnitCapacities(i, _templates[i].Capacity);
-        }
+        soldierWindow.SetUnitData(_templates);
     }
+    
     public void UpdateUnitAvailability(int[] _unitAvailability)
     {
-        for (int i = 0; i < soldierWindow.UnitsQuantity; i++)
+        Debug.Log(_unitAvailability);
+        
+        for (int i = 0; i < soldierWindow.NumberOfPanels; i++)
         {
             soldierWindow.SetUnitQuantity(i, _unitAvailability[i]);
         }
+    }
+    
+    public void SetShipData(UnitTemplate[] _ships)
+    {
+        shipsWindow.SetUnitData(_ships);
     }
 }

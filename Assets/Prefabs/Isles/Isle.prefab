@@ -560,7 +560,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 6730120753349218050}
   - {fileID: 6730120753331429078}
   - {fileID: 6730120752881460336}
   - {fileID: 6730120751866898023}
@@ -570,7 +569,7 @@ Transform:
   - {fileID: 5684849090143261521}
   - {fileID: 5807352236547447694}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6730120751761039702
 MonoBehaviour:
@@ -586,9 +585,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxBuildings: -1
   isleName: Borg
-  silo: {fileID: 6730120753349218077}
+  silo: {fileID: 0}
   resourceSpawner: {fileID: 6730120751949981734}
-  army: {fileID: 6730120752881460339}
+  units: {fileID: 6730120752881460339}
   builder: {fileID: 6730120753331429079}
   soldierBuilder: {fileID: 6049836949807062429}
   template: {fileID: 11400000, guid: 8dc12ea8478c5754cb349112a437bb5b, type: 2}
@@ -1283,50 +1282,6 @@ MonoBehaviour:
   mineSpawner: {fileID: 6730120752002200773}
   lighthouseSpawner: {fileID: 6730120753741006239}
   walls: {fileID: 55586112297549296}
---- !u!1 &6730120753349218076
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 6730120753349218050}
-  - component: {fileID: 6730120753349218077}
-  m_Layer: 0
-  m_Name: Silo
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &6730120753349218050
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6730120753349218076}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.5020003, y: -1.394, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 6730120751761039703}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6730120753349218077
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6730120753349218076}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a2627f88fae2ca4aa785659b864b81e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &6730120753556379003
 GameObject:
   m_ObjectHideFlags: 0

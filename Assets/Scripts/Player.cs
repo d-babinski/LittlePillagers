@@ -1,240 +1,97 @@
 using System;
 using System.Collections.Generic;
-using System.Data.SqlTypes;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class Player : MonoBehaviour
 {
-    public event Action OnDataChanged = null;
-
-    public SoldierDatabase SoldierDatabase => availableSoldiers;
-
-    [SerializeField] private ResourceSilo playerSilo = null;
-    [SerializeField] private Army playerArmy = null;
-    [SerializeField] private Fleet playerFleet = null;
-    [SerializeField] private Pillage playerPillage = null;
-    [SerializeField] private ShipBuilder shipBuilder = null;
-    [SerializeField] private SoldierBuilder soldierBuilder = null;
-    [SerializeField] private PointSet spawnPoints = null;
-    [SerializeField] private SoldierDatabase availableSoldiers = null;
-    
-    public int TotalSoldiersCount => playerArmy.GetTotalSoldierCount();
-    public int AvailableSoldiersCount =>  playerArmy.GetTotalAvailableSoldierCount();
+    [SerializeField] private ResourcesVariable currentResources = null;
+    [SerializeField] private ResourcesVariable pillage = null;
+    [SerializeField] private UnitTemplateDatabase availableUnitTemplates = null; 
+    [SerializeField] private MissionControl missionControl = null;
+    [SerializeField] private UnitDatabase unitDatabase = null;
     
     public void UpdateCycle()
     {
-        AddResources(Income);
-        playerPillage.UpdateCycle();
+        currentResources.Value += Income;
     }
 
-    public void SendSoldier(int _id)
+    public void SendUnits(UnitsSent[] _units)
     {
-        playerArmy.SendSoldiersOnMission(_id, 1);
-        OnDataChanged?.Invoke();
+
+    }
+
+    public void BuyUnit(UnitType _type)
+    {
+        unitDatabase.AddUnits(_type);
+    }
+
+    public void AddUnits(int _id, int _count)
+    {
     }
     
-    public bool BuySoldier(int _id)
+    public Resources TotalSoldierMaintenance => calculateMaintenance(null);//TODO : fix this
+    public Resources TotalShipMaintenance => calculateMaintenance(null);
+
+    private Resources calculateMaintenance(UnitType _type)
     {
-        Resources _soldierCost = availableSoldiers.AllTemplatesById[_id].BaseCost;
-        
-       if (playerSilo.CanAfford(_soldierCost) == false)
-        {
-            return false;
-        }
-
-        playerSilo.RemoveResources(_soldierCost);
-        playerArmy.AddSoldier(_id);
-        OnDataChanged?.Invoke();
-
-        return true;
-    }
-
-    public void AddSoldiers(int _id, int _count)
-    {
-        playerArmy.AddSoldiers(_id, _count);
-        OnDataChanged?.Invoke();
-    }
-
-    public void AddShips(int _id, int _count)
-    {
-        playerFleet.AddShips(_id, _count);
-        OnDataChanged?.Invoke();
+        return new Resources();
     }
     
-    public void AddResources(Resources _resources)
-    {
-        playerSilo.AddResources(_resources);
-        OnDataChanged?.Invoke();
-    }
+    public Resources Income => TotalSoldierMaintenance - TotalShipMaintenance;
 
-    public Resources TotalSoldierMaintenance => calculateArmyMaintenance();
-
-    private Resources calculateArmyMaintenance()
-    {
-        Resources _maintenance = new Resources();
-        SoldierTemplate[] _soldierTemplates = availableSoldiers.AllSoldierTemplates;
-        
-        for (int i = 0; i < _soldierTemplates.Length; i++)
-        {
-            _maintenance += _soldierTemplates[i].Maintenance*playerArmy.GetTotalSoldiersOfId(_soldierTemplates[i].SoldierId);
-        }
-
-        return _maintenance;
-    }
-    
-    public void BuyShip(int _id)
-    {
-        Resources _shipCost = playerFleet.GetShipBaseCost(_id);
-
-        if (playerSilo.CanAfford(_shipCost) == false)
-        {
-            return;
-        }
-
-        playerSilo.RemoveResources(_shipCost);
-        playerFleet.AddShip(_id);
-        
-        OnDataChanged?.Invoke();
-    }
-
-    public Resources CurrentResources => playerSilo.CurrentResources;
-    public Resources Pillage => playerPillage.PillagedThisCycle;
-    public Resources TotalShipMaintenance => playerFleet.GetCurrentMaintenance();
-    public int TotalShipCount => playerFleet.GetTotalShipCount();
-    public int AvailableShipsCount => playerFleet.GetAvailableShipCount();
-    public int[] AvailableSoldiers => playerArmy.GetAllAvailabilities();
-    public string[] GetShipNames => playerFleet.GetAllNames();
-    public int[] AvailableShips => playerFleet.GetAllAvailabilities();
-    public int[] ShipCapacities => playerFleet.GetAllCapacities();
-    public int[] ShipIds => playerFleet.GetShipIds();
-    public Resources Income => Pillage - TotalSoldierMaintenance - TotalShipMaintenance;
-    public int[] TotalShips => playerFleet.GetAllShips();
-    public Resources[] ShipCosts =>  playerFleet.GetCosts();
-    public Resources[] ShipMaintenances => playerFleet.GetMaintenances();
-    public int[] ShipSpeeds => playerFleet.GetSpeeds();
-    public int[] TotalSoldiers => playerArmy.GetAllSoldiers();
-
+    //TODO: move to some kind of missionControl
     public void SendMission(Isle _isle, int _missionType, UnitsSent[] _sentShips, UnitsSent[] _sentSoldiers)
     {
-        Queue<int> _shipIdQueue = convertToQueue(_sentShips);
-        Queue<int> _soldierIdQueue = convertToQueue(_sentSoldiers);
+        int _totalSoldiers = getSum(_sentSoldiers);
+        _sentShips = removeExcessiveShips(_sentShips, _totalSoldiers);
+        
+        missionControl.SendMission(_isle, _missionType, _sentShips, _sentSoldiers);
 
-        List<Ship> _ships = createShipsForSoldiers(_soldierIdQueue.Count, _shipIdQueue);
-        List<Soldier> _soldiers = createSoldiers(_soldierIdQueue);
-
-        assignSoldiersToShips(_soldiers, _ships);
-        
-        _ships.ForEach(_ship =>
-        {
-            Mission _mission = new Mission(_isle, (MissionType)_missionType, _ship.TemplateId, _ship.SoldierCount);
-            _ship.transform.position = spawnPoints.GetRandom();
-            _ship.AssignMission(_mission);
-            _ship.OnMissionFinished += wrapUpMission;
-        });
-        
-        _soldiers.ForEach(_soldier =>
-        {
-            SendSoldier(_soldier.TemplateId);
-        });
-        
-        _ships.ForEach(_ship =>
-        {
-            SendShip(_ship.TemplateId);
-        });
-        
-        OnDataChanged?.Invoke();
+        SendUnits(_sentShips);
+        SendUnits(_sentSoldiers);
     }
     
-    private void wrapUpMission(Ship _ship)
+    private UnitsSent[] removeExcessiveShips(UnitsSent[] _sentShips, int _requiredSeats)
     {
-        _ship.GetSoldiers.ForEach(_soldier =>
-        {
-            if (_soldier.IsDead == true)
-            {
-                playerArmy.KillSoldierOnMission(_soldier.TemplateId);
-            }
-            else
-            {
-                playerPillage.AddPilage(_soldier.Pillaged);
-                playerArmy.ReturnSoldierFromMission(_soldier.TemplateId);
-            }
-        });
-
-        if (_ship.HasSunk)
-        {
-            playerFleet.DestroyShipOnMission(_ship.TemplateId);
-        }
-        else
-        {
-            playerFleet.ReturnShipFromMission(_ship.TemplateId);    
-        }
+        //TODO:
+        // also this is not too readable
         
-        OnDataChanged?.Invoke();
-    }
+        List<UnitsSent> _filteredShips = new();
+        int _currentSeats = 0;
 
-    private void SendShip(int _id)
-    {
-        playerFleet.SendShipsOnMission(_id, 1);
-    }
-
-    private void assignSoldiersToShips(List<Soldier> _soldiers, List<Ship> _ships)
-    {
-        int _currentShip = 0;
-        
-        for (int i = 0; i < _soldiers.Count; i++)
+        for (int i = 0; i < _sentShips.Length; i++)
         {
-            if (_ships[_currentShip].SoldierCapacity <= _ships[_currentShip].SoldierCount)
+            int _quantity = 0;
+            int _shipCapacity = 0;
+            
+            for (int j = 0; j < _sentShips[i].Quantity; j++)
             {
-                _currentShip++;
+                _quantity += 1;
+                _currentSeats += _shipCapacity;
+
+                if (_currentSeats >= _requiredSeats)
+                {
+                    _filteredShips.Add(new UnitsSent(_sentShips[i].Id, _quantity));
+                    return _filteredShips.ToArray();
+                }
             }
             
-            _ships[_currentShip].AddSoldier(_soldiers[i]);
-            
-            _soldiers[i].transform.parent = _ships[_currentShip].transform;
-            _soldiers[i].transform.localPosition = Vector3.zero;
-            _soldiers[i].gameObject.SetActive(false);
+            _filteredShips.Add(new UnitsSent(_sentShips[i].Id, _quantity));
         }
+
+        return _filteredShips.ToArray();
     }
 
-    private List<Soldier> createSoldiers(Queue<int> _soldierIdQueue)
+    private int getSum(UnitsSent[] _sentSoldiers)
     {
-        List<Soldier> _soldiers = new();
+        int _sum = 0;
 
-        while (_soldierIdQueue.Count > 0)
+        for (int i = 0; i < _sentSoldiers.Length; i++)
         {
-            _soldiers.Add(soldierBuilder.CreateSoldier(availableSoldiers.AllTemplatesById[(_soldierIdQueue.Dequeue())]));
+            _sum += _sentSoldiers[i].Quantity;
         }
 
-        return _soldiers;
-    }
-
-    private List<Ship> createShipsForSoldiers(int _soldierCount, Queue<int> _shipIds)
-    {
-        List<Ship> _createdShips = new();
-        int _totalShipCapacity = 0;
-
-        while (_totalShipCapacity < _soldierCount && _shipIds.Count > 0)
-        {
-            int _createdShip = _shipIds.Dequeue();
-            _totalShipCapacity += playerFleet.GetShipMaxSoldierCapacity(_createdShip);
-            _createdShips.Add(shipBuilder.BuildShip(playerFleet.GetShipTemplate(_createdShip)));
-        }
-
-        return _createdShips;
-    }
-
-    private Queue<int> convertToQueue(UnitsSent[] _units)
-    {
-        Queue<int> _queue = new Queue<int>();
-        
-        for (int i = _units.Length-1; i >= 0; i--)
-        {
-            for (int j = _units[i].Quantity; j>0 ; j--)
-            {
-                _queue.Enqueue(_units[i].Id);
-            }
-        }
-
-        return _queue;
+        return _sum;
     }
 }

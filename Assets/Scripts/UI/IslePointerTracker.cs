@@ -1,50 +1,43 @@
-using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class IslePointerTracker : MonoBehaviour
 {
-    public event Action<Isle> OnHoverOverIsle = null;
-    public event Action OnHoverExit = null;
+    [SerializeField] private BoolVariable isCurrentlyHoveringOutput = null;
+    [SerializeField] private Vector3Variable islePositionOutput = null;
+    [SerializeField] private StringVariable isleNameOutput = null;
+    [SerializeField] private ResourcesVariable isleResourcesOutput = null;
+    [SerializeField] private IntVariable islePopulationOutput = null;
 
-    public Isle CurrentlyHoveredIsle => currentlySelectedArea ? currentlySelectedArea.TrackedIsle : null;
-    
-    [SerializeField] private LayerMask isleBoundsMask = 0;
+    [SerializeField] private LayerMaskVariable hoverLayerMask = null;
 
-    private IsleHoverArea currentlySelectedArea = null;
-    private Collider2D currentlySelected = null;
     private Collider2D hitThisFrame = null;
 
     private void Update()
     {
-        hitThisFrame = Physics2D.OverlapPoint(Camera.main.ScreenToWorldPoint(Mouse.current.position.value), isleBoundsMask);
+        hitThisFrame = Physics2D.OverlapPoint(Camera.main.ScreenToWorldPoint(Mouse.current.position.value), hoverLayerMask.Value);
 
-        if (hitThisFrame == currentlySelected)
+        if (isCurrentlyHoveringOutput.Value == true && hitThisFrame == false)
         {
+            isCurrentlyHoveringOutput.Value = false;
             return;
         }
-        
-        currentlySelected = hitThisFrame;
 
-        if (hitThisFrame)
+        if (isCurrentlyHoveringOutput.Value == false && hitThisFrame == true)
         {
-            currentlySelectedArea = hitThisFrame.GetComponent<IsleHoverArea>();
-            onIsleHovered(currentlySelectedArea.TrackedIsle);
-        }
-        else
-        {
-            currentlySelectedArea = null;
-            onIsleExitHover();
+            isCurrentlyHoveringOutput.Value = true;
+            extractIsleInformation(hitThisFrame);
         }
     }
-
-    private void onIsleHovered(Isle _isle)
+    
+    private void extractIsleInformation(Collider2D _hitThisFrame)
     {
-        OnHoverOverIsle?.Invoke(_isle);
+        IsleHoverArea _area = _hitThisFrame.GetComponent<IsleHoverArea>();
+
+        islePositionOutput.Value = _area.TrackedIsle.transform.position;
+        isleNameOutput.Value = _area.TrackedIsle.IsleName.Value;
+        islePopulationOutput.Value = _area.TrackedIsle.PopulationCount.Value;
+        isleResourcesOutput.Value = _area.TrackedIsle.CurrentResources.Value;
     }
 
-    private void onIsleExitHover()
-    {
-        OnHoverExit?.Invoke();
-    }
 }

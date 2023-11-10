@@ -163,7 +163,6 @@ GameObject:
   - component: {fileID: 8292933279545874843}
   - component: {fileID: 8292933279545874841}
   - component: {fileID: 8292933279545874840}
-  - component: {fileID: 8292933279545874846}
   m_Layer: 5
   m_Name: IslandStats
   m_TagString: Untagged
@@ -186,7 +185,7 @@ RectTransform:
   - {fileID: 8292933280140813162}
   - {fileID: 8292933279362161231}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
@@ -231,20 +230,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &8292933279545874846
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8292933279545874842}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 40e98477ddbf44c4eb8b9f189e6f544d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  resources: {fileID: 8292933280140813163}
-  population: {fileID: 8292933279362161228}
 --- !u!1 &8292933280140813157
 GameObject:
   m_ObjectHideFlags: 0
@@ -302,6 +287,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 046c3ddd2383a334dbe5c378cdfe3f24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dataSource: {fileID: 0}
   woodBar: {fileID: 8292933279231225368}
   wheatBar: {fileID: 3322996110498621836}
   ironBar: {fileID: 3322996110361849168}
@@ -463,6 +449,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 8292933280140813162}
     m_Modifications:
     - target: {fileID: 6704678670642922944, guid: 3a7420a5668789b4394db50468f091ee, type: 3}
@@ -554,6 +541,9 @@ PrefabInstance:
       value: WoodResourceBar
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3a7420a5668789b4394db50468f091ee, type: 3}
 --- !u!114 &8292933279231225368 stripped
 MonoBehaviour:
@@ -576,6 +566,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 8292933279545874843}
     m_Modifications:
     - target: {fileID: 1388686837953461576, guid: eafe38d75c93860479722bef65a6ac3e, type: 3}
@@ -666,19 +657,15 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1388686837953461578, guid: eafe38d75c93860479722bef65a6ac3e, type: 3}
+      propertyPath: tweenTime
+      value: 
+      objectReference: {fileID: 11400000, guid: 170dce33762512f4b951128fa272a5bf, type: 2}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eafe38d75c93860479722bef65a6ac3e, type: 3}
---- !u!114 &8292933279362161228 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1388686837953461578, guid: eafe38d75c93860479722bef65a6ac3e, type: 3}
-  m_PrefabInstance: {fileID: 6941157203522643718}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ab78b9d4ad7f77d4ab584e5667e4b9f5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!224 &8292933279362161231 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1388686837953461577, guid: eafe38d75c93860479722bef65a6ac3e, type: 3}
@@ -689,6 +676,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 8292933280140813162}
     m_Modifications:
     - target: {fileID: 6704678670642922944, guid: 3a7420a5668789b4394db50468f091ee, type: 3}
@@ -780,6 +768,9 @@ PrefabInstance:
       value: 'GoldResourceBar '
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3a7420a5668789b4394db50468f091ee, type: 3}
 --- !u!224 &3322996111152574573 stripped
 RectTransform:
@@ -802,6 +793,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 8292933280140813162}
     m_Modifications:
     - target: {fileID: 6704678670642922944, guid: 3a7420a5668789b4394db50468f091ee, type: 3}
@@ -893,6 +885,9 @@ PrefabInstance:
       value: WheatResourceBar
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3a7420a5668789b4394db50468f091ee, type: 3}
 --- !u!114 &3322996110498621836 stripped
 MonoBehaviour:
@@ -915,6 +910,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 8292933280140813162}
     m_Modifications:
     - target: {fileID: 6704678670642922944, guid: 3a7420a5668789b4394db50468f091ee, type: 3}
@@ -1006,6 +1002,9 @@ PrefabInstance:
       value: IronResourceBar
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3a7420a5668789b4394db50468f091ee, type: 3}
 --- !u!114 &3322996110361849168 stripped
 MonoBehaviour:

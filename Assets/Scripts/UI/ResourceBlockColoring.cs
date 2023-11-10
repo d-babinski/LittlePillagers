@@ -1,10 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
+[RequireComponent(typeof(ResourceBlockUI))]
 public class ResourceBlockColoring : MonoBehaviour
 {
+    [SerializeField] private ResourcesVariable dataSource = null;
+    
     [SerializeField] private Color defaultColor = Color.white;
     [SerializeField] private Color negativeValueColor = Color.red;
     
@@ -13,7 +14,13 @@ public class ResourceBlockColoring : MonoBehaviour
     [SerializeField] private TextMeshProUGUI metalCountTextComponent = null;
     [SerializeField] private TextMeshProUGUI goldCountTextComponent = null;
 
-    public void SetColoringBasedOnResources(Resources _resources)
+    private void Update()
+    {
+        
+        setColoringBasedOnResources(dataSource.Value);
+    }
+
+    private void setColoringBasedOnResources(Resources _resources)
     {
         setTextColorByValue(woodCountTextComponent, _resources.Wood);
         setTextColorByValue(wheatCountTextComponent, _resources.Wheat);

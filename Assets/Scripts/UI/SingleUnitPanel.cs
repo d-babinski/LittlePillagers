@@ -8,7 +8,6 @@ public class SingleUnitPanel : MonoBehaviour, IPointerEnterHandler,IPointerExitH
     public event Action<int> OnUnitBought = null;
 
     [SerializeField] private ImageButton buyUnitButton = null;
-    [SerializeField] private UnitCountText countText = null;
     
     public bool IsSelected => isPointerHovering;
 
@@ -24,12 +23,7 @@ public class SingleUnitPanel : MonoBehaviour, IPointerEnterHandler,IPointerExitH
     {
         buyUnitButton.OnButtonClicked -= InvokeUnitBought;
     }
-
-    public void UpdateUnitCount(int _available, int _total)
-    {
-        countText.UpdateCount(_available, _total);
-    }
-
+    
     public void OnPointerEnter(PointerEventData _eventData)
     {
         isPointerHovering = true;

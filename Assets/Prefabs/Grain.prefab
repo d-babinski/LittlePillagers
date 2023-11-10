@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2056744697740919697}
   - component: {fileID: 2622670593124966036}
-  - component: {fileID: -7607837829208918265}
   m_Layer: 0
   m_Name: Grain
   m_TagString: Untagged
@@ -85,24 +84,3 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &-7607837829208918265
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5760672884104213862}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2e5da4ddfe105f44fb631e322be94867, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  IsHouse: 0
-  IsLighthouse: 0
-  IsMinery: 0
-  IsTent: 0
-  BuildCost:
-    Wood: 0
-    Wheat: 0
-    Metal: 0
-    Gold: 0

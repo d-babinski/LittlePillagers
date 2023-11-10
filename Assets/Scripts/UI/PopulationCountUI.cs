@@ -1,11 +1,13 @@
 using DG.Tweening;
+using System;
 using TMPro;
 using UnityEngine;
 
 public class PopulationCountUI : MonoBehaviour
 {
+    [SerializeField] private IntVariable dataSource = null;
     [SerializeField] private TextMeshProUGUI textComponent = null;
-    [SerializeField] private float tweenTime = 1f;
+    [SerializeField] private FloatVariable tweenTime = null;
 
     private int currentValue = 0;
     private Tween valueTween = null;
@@ -15,13 +17,21 @@ public class PopulationCountUI : MonoBehaviour
         textComponent.text = currentValue.ToString();
     }
 
-    public void SetNewPopulation(int _targetValue)
+    private void Update()
+    {
+        if (dataSource.Value != currentValue)
+        {
+            currentValue = dataSource.Value;
+            UpdatePopulation();
+        }
+    }
+
+    public void UpdatePopulation()
     {
         valueTween?.Kill();
 
-        valueTween = DOVirtual.Int(0, _targetValue, tweenTime, _value =>
+        valueTween = DOVirtual.Int(0, currentValue, tweenTime.Value, _value =>
             {
-                currentValue = _value;
                 textComponent.text = _value.ToString();
             })
             .SetUpdate(true);

@@ -6,221 +6,116 @@ using Random = UnityEngine.Random;
 
 public class Battlefield : MonoBehaviour
 {
-    public struct FactionSoldier
-    {
-        public int Team;
-        public Soldier Soldier;
-
-        public FactionSoldier(int _team, Soldier _soldier)
-        {
-            Team = _team;
-            Soldier = _soldier;
-        }
-    }
+    private List<Soldier> idleAttackers = new();
+    private List<Soldier> idleDefenders = new();
 
     public struct Duel
     {
-        public FactionSoldier LeftSide;
-        public FactionSoldier RightSide;
+        public Soldier Attacker;
+        public Soldier Defender;
 
-        public Duel(FactionSoldier _leftSide, FactionSoldier _rightSide)
+        public Duel(Soldier _attacker, Soldier _defender)
         {
-            LeftSide = _leftSide;
-            RightSide = _rightSide;
+            Attacker = _attacker;
+            Defender = _defender;
         }
     }
 
-    private const int PLAYER_TEAM = 0;
-    private const int AI_TEAM = 1;
-
-    public event Action<List<Soldier>> OnBattlefieldConcluded = null;
-    
-    private List<FactionSoldier> soldiersTakingPart = new();
     private List<Duel> ongoingDuels = new();
-    public bool IsResolved => isResolved;
-
-    private bool isResolved = false;
 
     private void Update()
     {
-        if (isResolved == false)
+        if (ongoingDuels.Count > 0)
         {
-            while (createNewDuelIfPossible())
-            {
-                continue;
-            }
-
             progressDuels();
+        }
 
-            if (checkForWin())
-            {
-                isResolved = true;
-                sendBackWinners();
-                OnBattlefieldConcluded?.Invoke(getAliveSoldiers());
-            }
-
+        if (idleAttackers.Count <= 0 || idleDefenders.Count <= 0)
+        {
             return;
         }
-    }
-    
-    private List<Soldier> getAliveSoldiers()
-    {
-        List<Soldier> _soldiersAlive = new();
-        
-        soldiersTakingPart.ForEach(_soldier =>
-        {
-            _soldiersAlive.Add(_soldier.Soldier);
-        });
 
-        return _soldiersAlive;
-    }
-
-    private void sendBackWinners()
-    { 
-        soldiersTakingPart.ForEach(_soldier =>
+        while (createNewDuelIfPossible())
         {
-            _soldier.Soldier.ReturnToRallyPoint();
-        });
-    }
-
-    private bool checkForWin()
-    {
-        if (soldiersTakingPart.Count <= 0)
-        {
-            return true;
+            continue;
         }
-
-        bool _playerAlive = isThereAnySoldierOfTeam(PLAYER_TEAM);
-        bool _aiAlive = isThereAnySoldierOfTeam(AI_TEAM);
-
-        if (_playerAlive && _aiAlive)
-        {
-            return false;
-        }
-
-        return true;
     }
 
-    private bool isThereAnySoldierOfTeam(int _team)
+    private void cleanup()
     {
-        for (int i = 0; i < soldiersTakingPart.Count; i++)
-        {
-            if (soldiersTakingPart[i].Team == _team)
-            {
-                return true;
-            }
-        }
-
-        return false;
+        idleAttackers.Clear();
+        idleDefenders.Clear();
+        ongoingDuels.Clear();
     }
 
     private bool createNewDuelIfPossible()
     {
-        FactionSoldier _leftSide = getFirstFreeSoldierOfTeam(PLAYER_TEAM);
-        FactionSoldier _rightSide = getFirstFreeSoldierOfTeam(AI_TEAM);
-
-        if (_leftSide.Soldier == false || _rightSide.Soldier == false)
+        if (idleAttackers.Count <= 0 || idleDefenders.Count <= 0)
         {
             return false;
         }
 
-        ongoingDuels.Add(new Duel(_leftSide, _rightSide));
-
-        Vector3 _leftSoldierPos = _leftSide.Soldier.transform.position;
-        Vector3 _rightSoldierPos = _rightSide.Soldier.transform.position;
-        Vector3 _vectorFromLeftToRight = (_rightSoldierPos - _leftSoldierPos);
-        
-        Vector3 _meetPosition = _leftSoldierPos + _vectorFromLeftToRight/2f;
-        Vector3 _leftSideOffset =  -_vectorFromLeftToRight.normalized*0.02f;
-        Vector3 _rightSideOffset = _vectorFromLeftToRight.normalized*0.02f;
-
-        _leftSide.Soldier.MoveTo(_meetPosition + _leftSideOffset);
-        _rightSide.Soldier.MoveTo(_meetPosition + _rightSideOffset);
+        ongoingDuels.Add(new Duel(idleAttackers[^1], idleDefenders[^1]));
+        idleAttackers.RemoveAt(idleAttackers.Count - 1);
+        idleDefenders.RemoveAt(idleDefenders.Count - 1);
 
         return true;
-    }
-
-    private FactionSoldier getFirstFreeSoldierOfTeam(int _team)
-    {
-        for (int i = 0; i < soldiersTakingPart.Count; i++)
-        {
-            if (soldiersTakingPart[i].Team == _team && hasDuel(soldiersTakingPart[i]) == false)
-            {
-                return soldiersTakingPart[i];
-            }
-        }
-
-        return new FactionSoldier();
-    }
-
-    private bool hasDuel(FactionSoldier _factionSoldier)
-    {
-        for (int i = 0; i < ongoingDuels.Count; i++)
-        {
-            if (ongoingDuels[i].LeftSide.Soldier == _factionSoldier.Soldier || ongoingDuels[i].RightSide.Soldier == _factionSoldier.Soldier)
-            {
-                return true;
-            }
-        }
-
-        return false;
     }
 
     private void progressDuels()
     {
         ongoingDuels.ForEach(_duel =>
         {
-            if (_duel.LeftSide.Soldier.IsIdle)
+            if (_duel.Attacker.IsIdle)
             {
-                _duel.LeftSide.Soldier.MakeAttack();
-                _duel.RightSide.Soldier.MakeAttack();
+                _duel.Attacker.MakeAttack();
+                _duel.Defender.MakeAttack();
                 DOVirtual.DelayedCall(Random.Range(1f, 3f), () => ResolveDuel(_duel));
             }
         });
     }
 
-    public void AddPlayerUnit(Soldier _soldier)
+    public void AddAttacker(Soldier _soldier)
     {
-        soldiersTakingPart.Add(new FactionSoldier(PLAYER_TEAM, _soldier));
+        idleAttackers.Add(_soldier);
     }
 
-    public void AddAIUnit(Soldier _soldier)
+    public void AddDefenders(Soldier _soldier)
     {
-        soldiersTakingPart.Add(new FactionSoldier(AI_TEAM, _soldier));
+        idleDefenders.Add(_soldier);
     }
 
     public void ResolveDuel(Duel _duel)
     {
-        _duel.LeftSide.Soldier.TakeDamage(_duel.RightSide.Soldier.Attack);
-        _duel.RightSide.Soldier.TakeDamage(_duel.LeftSide.Soldier.Attack);
+        _duel.Attacker.TakeDamage(_duel.Defender.Attack.Value);
+        _duel.Defender.TakeDamage(_duel.Attacker.Attack.Value);
 
-        if (_duel.RightSide.Soldier.AttackLeft <= 0)
+        if (_duel.Defender.AttackLeft <= 0)
         {
-            _duel.RightSide.Soldier.Die();
-            removeFromBattlefield(_duel.RightSide);
+            _duel.Defender.Die();
+            removeFromBattlefield(_duel.Defender);
         }
         else
         {
-            _duel.RightSide.Soldier.Wait();
+            _duel.Defender.Wait();
         }
 
-        if (_duel.LeftSide.Soldier.AttackLeft <= 0)
+        if (_duel.Attacker.AttackLeft <= 0)
         {
-            _duel.LeftSide.Soldier.Die();
-            removeFromBattlefield(_duel.LeftSide);
+            _duel.Attacker.Die();
+            removeFromBattlefield(_duel.Attacker);
         }
         else
         {
-            _duel.LeftSide.Soldier.Wait();
+            _duel.Attacker.Wait();
         }
 
         ongoingDuels.Remove(_duel);
     }
 
-    private void removeFromBattlefield(FactionSoldier _soldier)
+    private void removeFromBattlefield(Soldier _soldier)
     {
-        soldiersTakingPart.Remove(_soldier);
+        idleAttackers.Remove(_soldier);
     }
-
-    //take care of sending soldiers to duel, destroy, sending back to origin, death
 }
+

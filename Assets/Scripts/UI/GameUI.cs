@@ -1,8 +1,9 @@
  using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
+ using UnityEngine.Serialization;
 
-public class GameUI : MonoBehaviour
+ public class GameUI : MonoBehaviour
 {
     private enum State
     {
@@ -14,9 +15,6 @@ public class GameUI : MonoBehaviour
     [SerializeField] private MainUI mainGameUI = null;
     [SerializeField] private IsleZoomUI isleZoomUI = null;
     [SerializeField] private InputManager inputManager = null;
-    [SerializeField] private Player player = null;
-    [SerializeField] private IsleManager isleManager = null;
-    [SerializeField] private TimeCycler timeCycler = null;
 
     private State currentState = State.General;
     
@@ -33,32 +31,8 @@ public class GameUI : MonoBehaviour
         inputManager.AvailableActions.Player.OpenSoldierPanel.performed += openSoldierPanel;
         inputManager.AvailableActions.Player.Select.performed += select;
         inputManager.AvailableActions.Player.CancelBack.performed += back;
-
-        updateCycleData();
-        updatePlayerData();
-        updateIsleData();
-
-        isleManager.OnIsleDataChanged += updateIsleData;
-        timeCycler.OnNewCycle += updateCycleData;
-        player.OnDataChanged += updatePlayerData;
     }
 
-    private void updateIsleData()
-    {
-        isleZoomUI.RefreshIsleData();
-        mainGameUI.RefreshIsleData();
-    }
-
-    private void updateCycleData()
-    {
-        mainGameUI.UpdateMonth(timeCycler.CurrentCycle);
-    }
-
-    private void updatePlayerData()
-    {
-        mainGameUI.UpdatePlayerData(player);
-        isleZoomUI.UpdateData(player);
-    }
 
     private void OnDestroy()
     {
@@ -67,10 +41,6 @@ public class GameUI : MonoBehaviour
         inputManager.AvailableActions.Player.OpenSoldierPanel.performed -= openSoldierPanel;
         inputManager.AvailableActions.Player.Select.performed -= select;
         inputManager.AvailableActions.Player.CancelBack.performed -= back;
-        
-        player.OnDataChanged -= updatePlayerData;
-        isleManager.OnIsleDataChanged += updateIsleData;
-        timeCycler.OnNewCycle += updateCycleData;
     }
 
     private void back(InputAction.CallbackContext _obj)
@@ -111,11 +81,6 @@ public class GameUI : MonoBehaviour
             //else check if ship is hovered, is so lock on to the ship
             return;
         }
-
-        if (mainGameUI.IsIslandCurrentlyHovered())
-        {
-            openZoomUI(mainGameUI.GetLastHoveredIsle());
-        }
     }
     
     private void openSoldierPanel(InputAction.CallbackContext _obj)
@@ -155,10 +120,10 @@ public class GameUI : MonoBehaviour
         currentState = State.General;
     }
 
-    private void openZoomUI(Isle _isle)
+    private void openZoomUI()
     {
         mainGameUI.Hide();
-        isleZoomUI.Show(_isle);
+        isleZoomUI.Show();
         currentState = State.Isle;
     }
 }

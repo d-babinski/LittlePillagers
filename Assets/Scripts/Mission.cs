@@ -1,55 +1,63 @@
 using System;
+using System.Collections.Generic;
+using UnityEngine;
 
-public struct Mission
+public class Mission : MonoBehaviour
 {
-    public event Action OnMissionSuccess;
-    public event Action OnMissionFailure;
+    private enum MissionStage
+    {
+        MovingTo = 0,
+        Executing = 1,
+        Returning = 2,
+        Finished = 3,
+    }
     
-    public int ShipId;
-    public Isle Target;
-    public MissionType Type;
-    public int SoldiersSent;
-    public int SoldierCasualties;
-    public Resources AcquiredResources;
-    public MissionStatus Status;
+    public MissionType Type = MissionType.Pillage;
+    public event Action<Mission> OnMissionFinished = null;
 
-    public Mission(Isle _target, MissionType _type,int _shipId, int _soldiers)
+    public List<Ship> ShipsParticipating = new();
+    public List<Soldier> SoldiersParticipating = new();
+
+    public Isle Target = null;
+    private MissionStage stage = MissionStage.MovingTo;
+
+    public void StartMission()
     {
-        Target = _target;
-        Type = _type;
-        SoldierCasualties = 0;
-        SoldiersSent = _soldiers;
-        ShipId = _shipId;
-        AcquiredResources = new Resources();
-        Status = MissionStatus.InProgress;
-        OnMissionSuccess = null;
-        OnMissionFailure = null;
+        ShipsParticipating.ForEach(_ship => _ship.MoveTo(Target.ClosestDockingPoint(_ship.transform.position)));
+        stage = MissionStage.MovingTo;
     }
 
-    public void ReportDeadSoldier()
+    private bool haveAllShipsArrived()
     {
-        SoldierCasualties += 1;
+        for (int i = 0; i < ShipsParticipating.Count; i++)
+        {
+            if (ShipsParticipating[i].IsMoving)
+            {
+                return false;
+            }
+        }
+
+        return true;
     }
 
-    public void FailMission()
+    public void Update()
     {
-        Status = MissionStatus.Failed;
-        OnMissionFailure?.Invoke();
+        if (stage == MissionStage.MovingTo && haveAllShipsArrived())
+        {
+            executeMission();
+        }
+    }
+    
+    private void executeMission()
+    {
+        stage = MissionStage.Executing;
+        
+        
     }
 
-    public void SucceedMission()
-    {
-        Status = MissionStatus.Succeeded;
-        OnMissionSuccess?.Invoke();
-    }
 }
 
-public enum MissionStatus
-{
-    InProgress = 0,
-    Failed = 1,
-    Succeeded = 2,
-}
+
 
 public enum MissionType
 {

@@ -1,4 +1,5 @@
 using DG.Tweening;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -6,20 +7,28 @@ using UnityEngine;
 
 public class IsleNameplateUI : MonoBehaviour
 {
+    [SerializeField] private StringVariable dataSource = null;
     [SerializeField] private TextMeshProUGUI textComponent = null;
-    [SerializeField] private float tweenTime = 1f;
+    [SerializeField] private FloatVariable tweenTime = null;
     
     private Tween nameplateTween = null;
     private string currentName = "Borg";
-    
-    public void SetNameplate(string _newName)
+
+    private void Update()
+    {
+        if (dataSource.Value != currentName)
+        {
+            currentName = dataSource.Value;
+            updateNameplate();
+        }
+    }
+
+    private void updateNameplate()
     {
         nameplateTween?.Kill();
-        currentName = _newName;
-
         int _stringLength = currentName.Length;
 
-        nameplateTween = DOVirtual.Int(0, _stringLength, tweenTime, _value =>
+        nameplateTween = DOVirtual.Int(0, _stringLength, tweenTime.Value, _value =>
         {
             textComponent.text = currentName.Substring(0, _value);
         }).SetUpdate(true);

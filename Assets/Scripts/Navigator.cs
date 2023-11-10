@@ -9,6 +9,8 @@ public class Navigator : MonoBehaviour
         Moving = 1
     }
 
+    public bool HasReachedDestination => currentState == State.Reached;
+    public FloatVariable Speed = null;
     private const float SPEED_SCALING = 0.05f;
     
     public event Action OnPointReached = null;
@@ -17,13 +19,11 @@ public class Navigator : MonoBehaviour
     private State currentState = State.Reached;
     private Vector3 target = Vector3.zero;
     private Vector3 nextPos = Vector3.zero;
-    private float speed = 0f;
     
-    public void MoveTo(Vector3 _target, float _speed)
+    public void MoveTo(Vector3 _target)
     {
         currentState = State.Moving;
         target = _target;
-        speed = _speed;
         nextPos = calculateNextPos();
     }
 
@@ -44,6 +44,6 @@ public class Navigator : MonoBehaviour
 
     private Vector3 calculateNextPos()
     {
-        return Vector3.MoveTowards(transform.position, target, speed * SPEED_SCALING * Time.deltaTime);
+        return Vector3.MoveTowards(transform.position, target, Speed.Value * SPEED_SCALING * Time.deltaTime);
     }
 }

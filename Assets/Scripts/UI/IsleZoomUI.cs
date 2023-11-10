@@ -8,58 +8,15 @@ public class IsleZoomUI : MonoBehaviour
     public bool AllWindowsClosed => attackMenu.IsClosed;
 
     [SerializeField] private AttackMenuUI attackMenu = null;
-    [SerializeField] private IsleInfoUI isleInfo = null;
+    [SerializeField] private VisibilityTween isleInfo = null;
     [SerializeField] private IsleZoomCamera zoomCam = null;
     [SerializeField] private CanvasGroup canvasGroup = null;
 
-    private Player lastAssignedPlayer = null;
-    private Isle lastShownIsle = null;
     private Tween isleInfoVisibilityTween = null;
 
-    private void Start()
+    public void Show()
     {
-        attackMenu.OnMissionSent += sendMission;
-    }
-
-    private void OnDestroy()
-    {
-        attackMenu.OnMissionSent -= sendMission;
-    }
-
-    private void sendMission()
-    {
-        if (lastAssignedPlayer == false)
-        {
-            return;
-        }
-
-        SoldierTemplate[] _templates = lastAssignedPlayer.SoldierDatabase.AllSoldierTemplates;
-        int[] _shipIds = lastAssignedPlayer.ShipIds;
-
-        int _missionType = attackMenu.GetMissionType();
-        int[] _shipQuantities = attackMenu.GetShipsSent();
-        int[] _soldierQuantities = attackMenu.GetSoldiersSent();
-
-        UnitsSent[] _sentShips = new UnitsSent[_shipIds.Length];
-        UnitsSent[] _sentSoldiers = new UnitsSent[_templates.Length];
-
-        for (int i = 0; i < _sentShips.Length; i++)
-        {
-            _sentShips[i] = new UnitsSent(_shipIds[i], _shipQuantities[i]);
-        }
-
-        for (int i = 0; i < _sentSoldiers.Length; i++)
-        {
-            _sentSoldiers[i] = new UnitsSent(_templates[i].SoldierId, _soldierQuantities[i]);
-        }
-
-        lastAssignedPlayer.SendMission(lastShownIsle, _missionType, _sentShips, _sentSoldiers);
-    }
-
-    public void Show(Isle _isle)
-    {
-        lastShownIsle = _isle;
-        zoomCam.ShowForIsle(_isle);
+        zoomCam.Show();
         attackMenu.Enable();
 
         isleInfoVisibilityTween = DOVirtual.DelayedCall(DELAY_BEFORE_SHOWING_ISLE_STATS, _showIsleInfo).SetUpdate(true);
@@ -67,7 +24,6 @@ public class IsleZoomUI : MonoBehaviour
         void _showIsleInfo()
         {
             isleInfo.Show();
-            isleInfo.SetIsleInfo(_isle.IsleName, _isle.CurrentResources, _isle.PopulationCount);
             canvasGroup.blocksRaycasts = true;
         }
     }
@@ -86,44 +42,8 @@ public class IsleZoomUI : MonoBehaviour
         attackMenu.Back();
     }
     
-    public void UpdateData(Player _player)
-    {
-        lastAssignedPlayer = _player;
-        updateSoldierData(_player);
-        updateShipData(_player);
-    }
-
-    private void updateSoldierData(Player _player)
-    {
-        int[] _unitAvailability = _player.AvailableSoldiers;
-
-        attackMenu.UpdateSoldierData(_player.SoldierDatabase.AllSoldierTemplates);
-        attackMenu.UpdateUnitAvailability(_unitAvailability);
-    }
-
-    private void updateShipData(Player _player)
-    {
-        string[] _unitNames = _player.GetShipNames;
-        int[] _unitAvailability = _player.AvailableShips;
-        int[] _capacities = _player.ShipCapacities;
-        
-        attackMenu.UpdateShipNames(_unitNames);
-        attackMenu.UpdateShipCapacities(_capacities);
-        attackMenu.UpdateShipAvailability(_unitAvailability);
-    }
-    
     public void OpenAttackPanel()
     {
         attackMenu.OpenAttackPanel();
-    }
-    
-    public void RefreshIsleData()
-    {
-        if (lastShownIsle == false)
-        {
-            return;
-        }
-        
-        isleInfo.RefreshIsleData(lastShownIsle.CurrentResources, lastShownIsle.PopulationCount);
     }
 }

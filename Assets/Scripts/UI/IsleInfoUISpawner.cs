@@ -1,18 +1,18 @@
 using System;
 using UnityEngine;
 
-public class IsleInfoUISpawner : MonoBehaviour
+public class VisibilityTweenPool : MonoBehaviour
 {
-    [SerializeField] private IsleInfoUI[] isleUIPool = Array.Empty<IsleInfoUI>();
+    [SerializeField] private VisibilityTween[] isleUIPool = Array.Empty<VisibilityTween>();
 
     private int lastShownId = 0;
 
-    public void HideUI()
+    public void Hide()
     {
         isleUIPool[lastShownId].Hide();
     }
 
-    public void ShowUI(Vector3 _pos, string _name, Resources _res, int _population)
+    public void Show()
     {
         lastShownId++;
 
@@ -20,13 +20,7 @@ public class IsleInfoUISpawner : MonoBehaviour
         {
             lastShownId = 0;
         }
-        
-        isleUIPool[lastShownId].ShowAt(_pos);
-        isleUIPool[lastShownId].SetIsleInfo(_name, _res, _population);
-    }
-    
-    public void RefreshLastSpawned(Resources _currentResources, int _populationCount)
-    {
-        isleUIPool[lastShownId].RefreshIsleData(_currentResources, _populationCount);
+
+        isleUIPool[lastShownId].Show();
     }
 }

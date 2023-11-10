@@ -3,7 +3,7 @@ public class ShipBuilder : MonoBehaviour
 {
     [SerializeField] private Ship shipPrefab = null;
     
-    public Ship BuildShip(ShipTemplate _template)
+    public Ship BuildShip(UnitTemplate _template)
     {
         Ship _builtShip = Instantiate(shipPrefab);
 
@@ -11,8 +11,7 @@ public class ShipBuilder : MonoBehaviour
         _builtShip.Animator.runtimeAnimatorController = _template.Animator;
         _builtShip.SetSpeed(_template.Speed);
         _builtShip.SetSoldierCapacity(_template.MaxSoldiers);
-        _builtShip.SetShipName(_template.ShipName);
-        _builtShip.SetId(_template.ShipId);
+        _builtShip.SetShipName(_template.UnitName);
 
         return _builtShip;
     }
