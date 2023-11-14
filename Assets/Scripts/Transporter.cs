@@ -1,10 +1,8 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Transporter : MonoBehaviour
 {
-    public IntVariable Seats = null;
     private List<GameObject> transportedObjects = new();
 
     public void PutIntoTransporter(GameObject _object)

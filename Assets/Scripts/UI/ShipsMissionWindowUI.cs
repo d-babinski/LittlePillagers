@@ -11,17 +11,11 @@ public class ShipsMissionWindowUI : MonoBehaviour
     
     [SerializeField] private UnitsSelectionPanelUI unitSelectionPanel = null;
     [SerializeField] private TextMeshProUGUI soldierCapacityText = null;
-    [SerializeField] private ImageButton sendButton = null;
-    [SerializeField] private SidePanel panelController = null;
+    [SerializeField] private Window panelController = null;
 
     private int[] shipCapacities = Array.Empty<int>();
     private UnitTemplate[] ships = Array.Empty<UnitTemplate>();
 
-    private void Awake()
-    {
-        sendButton.OnButtonClicked += tryConfirmingShips;
-        unitSelectionPanel.OnValueChanged += updateSoldierCapacityText;
-    }
     
     public void OpenWindow()
     {

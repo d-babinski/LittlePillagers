@@ -9,18 +9,10 @@ public class SoldierMissionWindowUI : MonoBehaviour
 
     [SerializeField] private UnitsSelectionPanelUI unitSelectionPanel = null;
     [SerializeField] private TextMeshProUGUI totalResourceCapacityCountText = null;
-    [SerializeField] private ImageButton confirmButton = null;
-    [SerializeField] private SidePanel panelController = null;
+    [SerializeField] private Window panelController = null;
 
     private int maxTotalUnits = 0;
     private UnitTemplate[] soldiers = Array.Empty<UnitTemplate>();
-
-    private void Awake()
-    {
-        confirmButton.OnButtonClicked += confirmSoldiers;
-        unitSelectionPanel.OnValueChanged += updateTexts;
-
-    }
 
     public void OpenWindow()
     {
@@ -96,23 +88,6 @@ public class SoldierMissionWindowUI : MonoBehaviour
         }
 
         return soldiers[_id].Capacity;
-    }
-
-    private void confirmSoldiers()
-    {
-        if (isChoiceValid() == false)
-        {
-            return;
-        }
-
-        OnSoldiersChosen?.Invoke();
-    }
-
-    private bool isChoiceValid()
-    {
-        int _selectedUnits = unitSelectionPanel.TotalSelectedUnits;
-
-        return _selectedUnits > 0 && _selectedUnits <= maxTotalUnits;
     }
 
     public void SetClosed()

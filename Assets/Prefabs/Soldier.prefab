@@ -120,8 +120,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8cf66ee5c71443bab0b51f5807767c38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TemplateId: 0
+  UnitType: {fileID: 0}
   SoldierName: 
+  Attack: 0
+  Capacity: 0
+  HeldResources:
+    Wood: 0
+    Wheat: 0
+    Metal: 0
+    Gold: 0
   spriteRenderer: {fileID: 9187563626575076107}
   animator: {fileID: 7236206574889060432}
   navigator: {fileID: 4839612657024850405}
@@ -137,3 +144,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9af5abba0c8a9ec49a64372125e96fbc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Speed: 5

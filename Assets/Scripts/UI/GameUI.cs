@@ -12,7 +12,6 @@ using UnityEngine.InputSystem;
         Pause = 2,
     }
 
-    [SerializeField] private MainUI mainGameUI = null;
     [SerializeField] private IsleZoomUI isleZoomUI = null;
     [SerializeField] private InputManager inputManager = null;
 
@@ -20,7 +19,6 @@ using UnityEngine.InputSystem;
     
     private void Awake()
     {
-        mainGameUI.Show();
         isleZoomUI.Hide();
     }
 
@@ -47,7 +45,6 @@ using UnityEngine.InputSystem;
     {
         if (currentState == State.General)
         {
-            mainGameUI.CloseAllWindows();
             //check for open windows, if exist close them else:
             //openPauseMenu
             return;
@@ -90,7 +87,6 @@ using UnityEngine.InputSystem;
             return;
         }
         
-        mainGameUI.ToggleSoldierWindow();
     }
     
     private void openShipPanel(InputAction.CallbackContext _obj)
@@ -99,8 +95,6 @@ using UnityEngine.InputSystem;
         {
             return;
         }
-        
-        mainGameUI.ToggleShipWindow();
     }
     
     private void openAttackPanel(InputAction.CallbackContext _obj)
@@ -116,13 +110,11 @@ using UnityEngine.InputSystem;
     private void exitZoomUI()
     {
         isleZoomUI.Hide();
-        mainGameUI.Show();
         currentState = State.General;
     }
 
     private void openZoomUI()
     {
-        mainGameUI.Hide();
         isleZoomUI.Show();
         currentState = State.Isle;
     }

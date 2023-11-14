@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
 public class IslePointerTracker : MonoBehaviour
@@ -15,8 +16,14 @@ public class IslePointerTracker : MonoBehaviour
 
     private void Update()
     {
+        if (EventSystem.current.IsPointerOverGameObject())
+        {
+            isCurrentlyHoveringOutput.Value = false;
+            return;
+        }
+        
         hitThisFrame = Physics2D.OverlapPoint(Camera.main.ScreenToWorldPoint(Mouse.current.position.value), hoverLayerMask.Value);
-
+        
         if (isCurrentlyHoveringOutput.Value == true && hitThisFrame == false)
         {
             isCurrentlyHoveringOutput.Value = false;

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8208568401592710227}
   - component: {fileID: 7104747907226954653}
   - component: {fileID: 5698978280031429209}
+  - component: {fileID: 5144420128167948134}
   m_Layer: 0
   m_Name: Ship
   m_TagString: Untagged
@@ -31,8 +32,7 @@ Transform:
   m_LocalPosition: {x: 5.8, y: -1.05, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 5828716760607920778}
+  m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -121,12 +121,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a419ea672fed47b78be5afb238a615e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TemplateId: 0
-  SoldierCapacity: 0
+  UnitType: {fileID: 0}
   ShipName: 
+  Seats: 5
   spriteRenderer: {fileID: 6155399812916330653}
   animator: {fileID: 8208568401592710227}
   navigator: {fileID: 5698978280031429209}
+  transporter: {fileID: 5144420128167948134}
 --- !u!114 &5698978280031429209
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -139,34 +140,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9af5abba0c8a9ec49a64372125e96fbc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &843286246311128636
-GameObject:
+  Speed: 1
+--- !u!114 &5144420128167948134
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 5828716760607920778}
-  m_Layer: 0
-  m_Name: Transporter
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &5828716760607920778
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 843286246311128636}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1123635486020612105}
-  m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_GameObject: {fileID: 722008619070057793}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36c5745fa055b9e41881590a065ad613, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

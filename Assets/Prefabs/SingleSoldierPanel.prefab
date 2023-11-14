@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4990335015208873560}
   - component: {fileID: 4990335015208873575}
-  - component: {fileID: 8577795809625665136}
   - component: {fileID: 3469794168776952454}
   - component: {fileID: 9173990374291884805}
   m_Layer: 5
@@ -36,7 +35,7 @@ RectTransform:
   - {fileID: 4990335015833901415}
   - {fileID: 4990335014843004322}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -51,19 +50,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4990335015208873561}
   m_CullTransparentMesh: 1
---- !u!114 &8577795809625665136
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4990335015208873561}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 39db6f54dfed29d46936618b2fcbb9fa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  buyUnitButton: {fileID: 6425724085549501149}
 --- !u!114 &3469794168776952454
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -500,6 +486,34 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4474520975563270986, guid: 3f0687145a9819649b8c85aa8dac4689, type: 3}
+      propertyPath: OnButtonClicked.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4474520975563270986, guid: 3f0687145a9819649b8c85aa8dac4689, type: 3}
+      propertyPath: OnButtonClicked.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4474520975563270986, guid: 3f0687145a9819649b8c85aa8dac4689, type: 3}
+      propertyPath: OnButtonClicked.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 11400000, guid: 11e23854b8e34a842babf36304c86566, type: 2}
+    - target: {fileID: 4474520975563270986, guid: 3f0687145a9819649b8c85aa8dac4689, type: 3}
+      propertyPath: OnButtonClicked.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4474520975563270986, guid: 3f0687145a9819649b8c85aa8dac4689, type: 3}
+      propertyPath: OnButtonClicked.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Raise
+      objectReference: {fileID: 0}
+    - target: {fileID: 4474520975563270986, guid: 3f0687145a9819649b8c85aa8dac4689, type: 3}
+      propertyPath: OnButtonClicked.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: CHARK.ScriptableEvents.ScriptableEvent`1[[UnitType, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4474520975563270986, guid: 3f0687145a9819649b8c85aa8dac4689, type: 3}
+      propertyPath: OnButtonClicked.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnitType, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 4966362415014841981, guid: 3f0687145a9819649b8c85aa8dac4689, type: 3}
       propertyPath: m_fontStyle
       value: 0
@@ -514,14 +528,3 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 2482970336019813429, guid: 3f0687145a9819649b8c85aa8dac4689, type: 3}
   m_PrefabInstance: {fileID: 7436695449054093719}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &6425724085549501149 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4474520975563270986, guid: 3f0687145a9819649b8c85aa8dac4689, type: 3}
-  m_PrefabInstance: {fileID: 7436695449054093719}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ebe52e4b299376140bf54b728b3fbdd5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -19,6 +16,7 @@ public class ResourceBlockUI : MonoBehaviour
         if (dataSource == null)
         {
             setResources(new Resources());
+            return;
         }
         
         setResources(dataSource.Value);

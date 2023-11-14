@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class MissionUnitUI : MonoBehaviour
 {
-    public event Action OnValueChanged = null; 
     public int CurrentlyChosen => currentlyChosen;
     
     [SerializeField] private ImageButton plusButton = null;
@@ -24,24 +23,16 @@ public class MissionUnitUI : MonoBehaviour
         maxUnitsAvailableText.text = maxUnits.ToString();
     }
 
-    private void Start()
-    {
-        plusButton.OnButtonClicked += onPlusButtonClicked;
-        minusButton.OnButtonClicked += onMinusButtonClicked;
-    }
-    
     private void onPlusButtonClicked()
     {
         currentlyChosen = Mathf.Clamp(currentlyChosen + 1, 0, maxUnits);
         currentlyChosenUnitsText.text = currentlyChosen.ToString();
-        OnValueChanged?.Invoke();
     }
     
     private void onMinusButtonClicked()
     {
         currentlyChosen = Mathf.Clamp(currentlyChosen - 1, 0, maxUnits);
         currentlyChosenUnitsText.text = currentlyChosen.ToString();
-        OnValueChanged?.Invoke();
     }
 
     public void ResetCounter()

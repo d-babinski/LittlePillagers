@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 433a7a309de24c9a8909720dd2d7fa1b, type: 3}
   m_Name: ship_big
   m_EditorClassIdentifier: 
-  UnitId: 102
   TypeOfUnit: {fileID: 11400000, guid: 726b1e84826ee2947a8adbf157834f05, type: 2}
   PreviewIcon: {fileID: -3352868958805856340, guid: d375d187e1b32824bb0da7c3e3f080fc, type: 3}
   InGameSprite: {fileID: -4032481707582436298, guid: 339d6bfcfbd662f4d84112afb82768ea, type: 3}
   Animator: {fileID: 9100000, guid: bfa295366a99cf046b662642d4a6ba2c, type: 2}
+  InstanceBuilder: {fileID: 11400000, guid: bbb9c9776b5c3534bb3e6e6e5f19cd62, type: 2}
   UnitName: 
   BaseCost:
     Wood: 100

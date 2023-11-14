@@ -1,8 +1,7 @@
 using DG.Tweening;
-using System;
 using UnityEngine;
 
-public class SidePanel : MonoBehaviour
+public class Window : MonoBehaviour
 {
     private enum PanelState
     {
@@ -27,6 +26,17 @@ public class SidePanel : MonoBehaviour
     {
         disablePanel();
         rectTransform.anchoredPosition = new Vector2(closedPosAnchoredX, rectTransform.anchoredPosition.y);
+    }
+
+    public void ToggleOpen()
+    {
+        if (IsOpen())
+        {
+            Close();
+            return;
+        }
+        
+        Open();
     }
 
     public bool IsOpen()

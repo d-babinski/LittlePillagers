@@ -1,19 +1,22 @@
 ﻿using UnityEngine;
+using UnityEngine.Serialization;
 
-public class SoldierBuilder : MonoBehaviour
+[CreateAssetMenu]
+public class SoldierBuilder : UnitBuilder
 {
-    [SerializeField] private Soldier shipPrefab = null;
+    [FormerlySerializedAs("shipPrefab")][SerializeField] private Soldier soldierPrefab = null;
     
-    public Soldier CreateSoldier(UnitTemplate _template)
+    public override GameObject Build(UnitTemplate _template)
     {
-        Soldier _createdSoldier = Instantiate(shipPrefab);
+        Soldier _createdSoldier = Instantiate(soldierPrefab);
 
         _createdSoldier.SpriteRenderer.sprite = _template.InGameSprite;
+        _createdSoldier.UnitType = _template.TypeOfUnit;
         _createdSoldier.Animator.runtimeAnimatorController = _template.Animator;
-        _createdSoldier.SetAttack(_template.Attack);
-        _createdSoldier.SetSoldierName(_template.UnitName);
-        _createdSoldier.SetCapacity(_template.Capacity);
+        _createdSoldier.Attack = _template.Attack;
+        _createdSoldier.SoldierName = (_template.UnitName);
+        _createdSoldier.Capacity = (_template.Capacity);
 
-        return _createdSoldier;
+        return _createdSoldier.gameObject;
     }
 }

@@ -92,4 +92,60 @@ public struct Resources
     {
         return !(_leftSide == _rightSide);
     }
+
+    public static Resources GenerateProportionalPillage(int _resourceCountToGrab, Resources _maxResources)
+    {
+        int _sumOfResources = Sum(_maxResources);
+
+        if (_sumOfResources <= _resourceCountToGrab)
+        {
+            return _maxResources;
+        }
+
+        float _woodRatio = (float)_maxResources.Wood/_sumOfResources;
+        float _wheatRatio = (float)_maxResources.Wheat/_sumOfResources;
+        float _metalRatio = (float)_maxResources.Metal/_sumOfResources;
+        float _goldRatio = (float)_maxResources.Gold/_sumOfResources;
+
+        Resources _plundered = new Resources(
+            Mathf.FloorToInt(_resourceCountToGrab*_woodRatio),
+            Mathf.FloorToInt(_resourceCountToGrab*_wheatRatio),
+            Mathf.FloorToInt(_resourceCountToGrab*_metalRatio),
+            Mathf.FloorToInt(_resourceCountToGrab*_goldRatio)
+        );
+
+        int _plunderedCount = Sum(_plundered);
+
+        if (_plunderedCount < _resourceCountToGrab)
+        {
+            _plundered += GetHighestResource(_resourceCountToGrab - _plunderedCount, _maxResources);
+        }
+
+        return _plundered;
+    }
+
+    public static Resources GetHighestResource(int _count, Resources _resources)
+    {
+        if (_resources.Wood >= _resources.Gold && _resources.Wood >= _resources.Metal && _resources.Wood >= _resources.Wheat)
+        {
+            return new Resources(_count, 0, 0, 0);
+        }
+
+        if (_resources.Wheat >= _resources.Gold && _resources.Wheat >= _resources.Metal && _resources.Wheat >= _resources.Wood)
+        {
+            return new Resources(0, _count, 0, 0);
+        }
+
+        if (_resources.Metal >= _resources.Gold && _resources.Metal >= _resources.Wood && _resources.Metal >= _resources.Wheat)
+        {
+            return new Resources(0, 0, _count, 0);
+        }
+
+        if (_resources.Gold >= _resources.Wood && _resources.Gold >= _resources.Metal && _resources.Gold >= _resources.Wheat)
+        {
+            return new Resources(0, 0, 0, _count);
+        }
+
+        return new Resources();
+    }
 }

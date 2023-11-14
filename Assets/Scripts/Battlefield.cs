@@ -6,33 +6,29 @@ using Random = UnityEngine.Random;
 
 public class Battlefield : MonoBehaviour
 {
+    public event Action OnBattleConcluded = null;
+    
     private List<Soldier> idleAttackers = new();
     private List<Soldier> idleDefenders = new();
-
-    public struct Duel
-    {
-        public Soldier Attacker;
-        public Soldier Defender;
-
-        public Duel(Soldier _attacker, Soldier _defender)
-        {
-            Attacker = _attacker;
-            Defender = _defender;
-        }
-    }
-
     private List<Duel> ongoingDuels = new();
 
     private void Update()
     {
+        if (idleAttackers.Count <= 0 && idleDefenders.Count <= 0 && ongoingDuels.Count <= 0)
+        {
+            return;
+        }
+        
         if (ongoingDuels.Count > 0)
         {
             progressDuels();
-        }
-
-        if (idleAttackers.Count <= 0 || idleDefenders.Count <= 0)
-        {
-            return;
+            
+            if (ongoingDuels.Count <= 0 && (idleAttackers.Count <= 0 || idleDefenders.Count <= 0))
+            {
+                OnBattleConcluded?.Invoke();
+                cleanup();
+                return;
+            }
         }
 
         while (createNewDuelIfPossible())
@@ -66,11 +62,16 @@ public class Battlefield : MonoBehaviour
     {
         ongoingDuels.ForEach(_duel =>
         {
-            if (_duel.Attacker.IsIdle)
+            if (_duel.HasBegun == false)
             {
-                _duel.Attacker.MakeAttack();
-                _duel.Defender.MakeAttack();
-                DOVirtual.DelayedCall(Random.Range(1f, 3f), () => ResolveDuel(_duel));
+                _duel.MeetInTheMiddle();
+                return;
+            }
+
+            if (_duel.AreSoldiersMoving == true && _duel.HaveReachedPositions() == true)
+            {
+                _duel.PlayAttacks();
+                DOVirtual.DelayedCall(Random.Range(0.75f, 2f), () => ResolveDuel(_duel));
             }
         });
     }
@@ -80,42 +81,26 @@ public class Battlefield : MonoBehaviour
         idleAttackers.Add(_soldier);
     }
 
-    public void AddDefenders(Soldier _soldier)
+    public void AddDefender(Soldier _soldier)
     {
         idleDefenders.Add(_soldier);
     }
 
     public void ResolveDuel(Duel _duel)
     {
-        _duel.Attacker.TakeDamage(_duel.Defender.Attack.Value);
-        _duel.Defender.TakeDamage(_duel.Attacker.Attack.Value);
+        _duel.ResolveDuel();
 
-        if (_duel.Defender.AttackLeft <= 0)
+        if (_duel.Attacker.IsDead == false)
         {
-            _duel.Defender.Die();
-            removeFromBattlefield(_duel.Defender);
-        }
-        else
-        {
-            _duel.Defender.Wait();
+            idleAttackers.Add(_duel.Attacker);
         }
 
-        if (_duel.Attacker.AttackLeft <= 0)
+        if (_duel.Defender.IsDead == false)
         {
-            _duel.Attacker.Die();
-            removeFromBattlefield(_duel.Attacker);
-        }
-        else
-        {
-            _duel.Attacker.Wait();
+            idleDefenders.Add(_duel.Defender);
         }
 
         ongoingDuels.Remove(_duel);
-    }
-
-    private void removeFromBattlefield(Soldier _soldier)
-    {
-        idleAttackers.Remove(_soldier);
     }
 }
 

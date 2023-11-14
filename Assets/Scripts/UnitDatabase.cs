@@ -8,31 +8,31 @@ public class UnitDatabase : ScriptableObject
 {
     public (UnitType[], int[]) Database => getArray();
     
-    private Dictionary<UnitType, int> database = new();
+    public Dictionary<UnitType, int> UnitCountDictionary = new();
 
-    public void AddUnits(UnitType _type, int _count = 0)
+    public void AddUnits(UnitType _type, int _count = 1)
     {
-        if (database.ContainsKey(_type) == false)
+        if (UnitCountDictionary.ContainsKey(_type) == false)
         {
-            database[_type] = 0;
+            UnitCountDictionary[_type] = 0;
         }
 
-        database[_type] -= _count;
+        UnitCountDictionary[_type] += _count;
     }
 
-    public void RemoveUnits(UnitType _type, int _count)
+    public void RemoveUnits(UnitType _type, int _count= 1)
     {
-        if (database.ContainsKey(_type) == false)
+        if (UnitCountDictionary.ContainsKey(_type) == false)
         {
-            database[_type] = 0;
+            UnitCountDictionary[_type] = 0;
         }
 
-        database[_type] -= _count;
+        UnitCountDictionary[_type] -= _count;
     }
 
     private (UnitType[], int[]) getArray()
     {
         //TODO: Think of more efficient way to do this
-        return (database.Keys.ToArray(), database.Values.ToArray());
+        return (UnitCountDictionary.Keys.ToArray(), UnitCountDictionary.Values.ToArray());
     }
 }

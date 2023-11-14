@@ -13,17 +13,19 @@ public class Ship : MonoBehaviour
     }
 
     public UnitType UnitType = null;
-    public StringVariable ShipName = null;
+    public String ShipName = null;
     public SpriteRenderer SpriteRenderer => spriteRenderer;
     public Animator Animator => animator;
     public bool HasSunk => currentState == State.Sunk;
     public bool IsMoving => currentState == State.Moving;
+    public int Seats = 5;
 
     private State currentState = State.Waiting;
 
     [SerializeField] private SpriteRenderer spriteRenderer = null;
     [SerializeField] private Animator animator = null;
     [SerializeField] private Navigator navigator = null;
+    [SerializeField] private Transporter transporter = null;
 
     public void MoveTo(Vector3 _pos)
     {
@@ -48,7 +50,7 @@ public class Ship : MonoBehaviour
     {
         if (currentState is State.Moving)
         {
-            spriteRenderer.flipX = navigator.NextPosition.x > transform.position.x;
+            spriteRenderer.flipX = navigator.NextPosition.x < transform.position.x;
             transform.position = navigator.NextPosition;
 
             if (navigator.HasReachedDestination == true)
@@ -56,5 +58,15 @@ public class Ship : MonoBehaviour
                 Wait();
             }
         }
+    }
+
+    public void Pack(GameObject _transportedObject)
+    {
+        transporter.PutIntoTransporter(_transportedObject);
+    }
+
+    public void UnpackAll()
+    {
+        transporter.ReleaseAll();
     }
 }

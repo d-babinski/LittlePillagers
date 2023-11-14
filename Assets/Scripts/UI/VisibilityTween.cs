@@ -14,6 +14,12 @@ public class VisibilityTween : MonoBehaviour
         alphaTween = canvasGroup.DOFade(1f, alphaTweenTime.Value).SetUpdate(true);
     }
 
+    public void ShowDelayed(float _delay)
+    {
+        alphaTween?.Kill();
+        alphaTween = DOVirtual.DelayedCall(_delay, Show);
+    }
+    
     public void Hide()
     {
         alphaTween?.Kill();

@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 433a7a309de24c9a8909720dd2d7fa1b, type: 3}
   m_Name: soldier_swordman
   m_EditorClassIdentifier: 
-  UnitId: 0
   TypeOfUnit: {fileID: 11400000, guid: d5d8b6f7d32df884a8a0e5a46a5ab256, type: 2}
   PreviewIcon: {fileID: 0}
   InGameSprite: {fileID: 3390922906441872390, guid: d1a3a469e68594c4982ff128853b385a, type: 3}
   Animator: {fileID: 9100000, guid: 27e101850b1f0734badfbca0a28d8caa, type: 2}
+  InstanceBuilder: {fileID: 11400000, guid: e2d9008c9695aa444b28533376f5e232, type: 2}
   UnitName: 
   BaseCost:
     Wood: 10

@@ -1,3 +1,4 @@
+using Missions;
 using System;
 using System.Collections.Generic;
 using TMPro;
@@ -10,15 +11,16 @@ public class Isle : MonoBehaviour
     private const int POPULATION_BASE_PRODUCTION = 2;
     public event Action OnMissionResolved = null;
 
-    [HideInInspector] public StringVariable IsleName = null;
-    [HideInInspector] public ResourcesVariable CurrentResources = null;
-    [HideInInspector] public IntVariable ArmyCount = null;
-    [HideInInspector] public IntVariable PopulationCount = null;
+    public StringVariable IsleName = null;
+    public ResourcesVariable CurrentResources = null;
+    public IntVariable ArmyCount = null;
+    public IntVariable PopulationCount = null;
+    public Battlefield Battlefield => battlefield;
 
+    [SerializeField] private MissionStage[] defendMissionStages = Array.Empty<MissionStage>();
     [SerializeField] private int maxBuildings = -1;
     [SerializeField] private NaturalResources resourceSpawner = null;
     [SerializeField] private Builder builder = null;
-    [SerializeField] private SoldierBuilder soldierBuilder = null;
     [SerializeField] private UnitTemplate template = null;
     [SerializeField] private PointSet possibleUnitSpawns = null;
     [SerializeField] private PointSet dockingPoints = null;
@@ -36,6 +38,7 @@ public class Isle : MonoBehaviour
     private int trees = 0;
 
     private int highestPopulation = 0;
+    [SerializeField] private Battlefield battlefield = null;
 
     private void Awake()
     {
@@ -72,41 +75,12 @@ public class Isle : MonoBehaviour
         PopulationCount.Value--;
         ArmyCount.Value--;
     }
-    
+
     private void killPop(int _amount)
     {
-        PopulationCount.Value-=_amount;
+        PopulationCount.Value -= _amount;
     }
-    
 
-    private Resources generatePillagedResources(int _soldierCapacity)
-    {
-        int _totalRes = Resources.Sum(CurrentResources.Value);
-
-        if (_totalRes < _soldierCapacity)
-        {
-            Resources _allResources = CurrentResources.Value;
-            CurrentResources.Value = new Resources();
-            return _allResources;
-        }
-        
-        float _woodRatio = (float)CurrentResources.Value.Wood/_totalRes;
-        float _wheatRatio = (float)CurrentResources.Value.Wheat/_totalRes;
-        float _metalRatio = (float)CurrentResources.Value.Metal/_totalRes;
-        float _goldRatio = (float)CurrentResources.Value.Gold/_totalRes;
-
-        Resources _plundered = new Resources(
-            Mathf.FloorToInt(_soldierCapacity*_woodRatio),
-            Mathf.FloorToInt(_soldierCapacity*_wheatRatio),
-            Mathf.FloorToInt(_soldierCapacity*_metalRatio),
-            Mathf.FloorToInt(_soldierCapacity*_goldRatio)
-        );
-
-        CurrentResources.Value -= _plundered;
-        
-        return _plundered;
-    }
-    
     public Vector3 ClosestDockingPoint(Vector3 _position)
     {
         return dockingPoints.GetRandom(); //TODO: implement get closest
@@ -146,7 +120,6 @@ public class Isle : MonoBehaviour
 
         armyRatio = Mathf.MoveTowards(armyRatio, minArmyRatio, 0.005f);
     }
-
 
     public void RaiseArmy()
     {
@@ -204,7 +177,7 @@ public class Isle : MonoBehaviour
 
     private void RaisePopulation()
     {
-        PopulationCount.Value += Random.Range(1, 2+PopulationCount.Value/10);
+        PopulationCount.Value += Random.Range(1, 2 + PopulationCount.Value/10);
     }
 
     public void BuildInitialBuildings()
@@ -213,5 +186,29 @@ public class Isle : MonoBehaviour
         {
             BuildBuildings();
         }
+    }
+    
+    public void GetAttacked()
+    {
+        List<Soldier> _spawnedSoldiers = new();
+        
+        for (int i = 0; i < ArmyCount.Value; i++)
+        {
+            Soldier _spawnedSoldier = template.InstantiateObject().GetComponent<Soldier>();
+            _spawnedSoldier.transform.position = possibleUnitSpawns.GetRandom();
+            _spawnedSoldiers.Add(_spawnedSoldier);
+        }
+
+        ArmyCount.Value = 0;
+        
+        MissionControl.CreateMission(defendMissionStages, this, new List<Ship>(), _spawnedSoldiers);
+    }
+    
+    public Resources GetPillaged(int _capacityValue)
+    {
+        Resources _pillage = Resources.GenerateProportionalPillage(_capacityValue, CurrentResources.Value);
+        CurrentResources.Value -= _pillage;
+
+        return _pillage;
     }
 }

@@ -3,27 +3,10 @@ using UnityEngine;
 
 public class UnitsSelectionPanelUI : MonoBehaviour
 {
-    public event Action OnValueChanged = null;
     public int UnitPanelCount => unitPanels.Length;
     public int TotalSelectedUnits => getTotalSelectedUnits();
 
     [SerializeField] private MissionUnitUI[] unitPanels = Array.Empty<MissionUnitUI>();
-    
-    private void Start()
-    {
-        foreach (MissionUnitUI _missionUnitUI in unitPanels)
-        {
-            _missionUnitUI.OnValueChanged += onAnyValueChanged;
-        }
-    }
-
-    private void OnDestroy()
-    {
-        foreach (MissionUnitUI _missionUnitUI in unitPanels)
-        {
-            _missionUnitUI.OnValueChanged -= onAnyValueChanged;
-        }
-    }
 
     public int[] GetAllSelectedUnits()
     {
@@ -57,11 +40,6 @@ public class UnitsSelectionPanelUI : MonoBehaviour
         }
 
         return _total;
-    }
-
-    private void onAnyValueChanged()
-    {
-        OnValueChanged?.Invoke();
     }
 
     public void ResetValues()

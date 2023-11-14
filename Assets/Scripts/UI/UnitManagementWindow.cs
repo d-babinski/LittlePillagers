@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class UnitManagementWindow : MonoBehaviour
 {
-    [SerializeField] private SidePanel windowControl = null;
+    [SerializeField] private Window windowControl = null;
     
     public void Open()
     {

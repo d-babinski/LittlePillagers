@@ -541,6 +541,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6730120751761039703}
   - component: {fileID: 6730120751761039702}
+  - component: {fileID: 2860759930400983297}
   m_Layer: 0
   m_Name: Isle
   m_TagString: Untagged
@@ -561,15 +562,13 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6730120753331429078}
-  - {fileID: 6730120752881460336}
   - {fileID: 6730120751866898023}
   - {fileID: 6730120751949981729}
   - {fileID: 6730120753556379000}
-  - {fileID: 2158555589280870129}
   - {fileID: 5684849090143261521}
   - {fileID: 5807352236547447694}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6730120751761039702
 MonoBehaviour:
@@ -583,16 +582,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d8b6c7338010b848b9415ceeb2a30c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IsleName: {fileID: 0}
+  CurrentResources: {fileID: 0}
+  ArmyCount: {fileID: 0}
+  PopulationCount: {fileID: 0}
+  defendMissionStages:
+  - {fileID: 11400000, guid: 4044f1f8a7b560c4bb31dbb0a7fc3157, type: 2}
   maxBuildings: -1
-  isleName: Borg
-  silo: {fileID: 0}
   resourceSpawner: {fileID: 6730120751949981734}
-  units: {fileID: 6730120752881460339}
   builder: {fileID: 6730120753331429079}
-  soldierBuilder: {fileID: 6049836949807062429}
   template: {fileID: 11400000, guid: 8dc12ea8478c5754cb349112a437bb5b, type: 2}
   possibleUnitSpawns: {fileID: 2004395231286573113}
   dockingPoints: {fileID: 2419754035532192282}
+  battlefield: {fileID: 2860759930400983297}
+--- !u!114 &2860759930400983297
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6730120751761039697}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 149060f0fa3ab114db8dd280da3491cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6730120751821315382
 GameObject:
   m_ObjectHideFlags: 0
@@ -1043,50 +1057,6 @@ MonoBehaviour:
   resourcePrefabVariants:
   - {fileID: 5760672884104213862, guid: 9e167b4a6028d534988e7c4094c41c32, type: 3}
   spawnArea: {fileID: 6730120753029952236}
---- !u!1 &6730120752881460338
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 6730120752881460336}
-  - component: {fileID: 6730120752881460339}
-  m_Layer: 0
-  m_Name: Army
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &6730120752881460336
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6730120752881460338}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 6730120751761039703}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6730120752881460339
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6730120752881460338}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 327fb2d9afa3fc841b7a8c0c71e7b4e9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &6730120753029952238
 GameObject:
   m_ObjectHideFlags: 0
@@ -1697,51 +1667,6 @@ Transform:
   m_Father: {fileID: 5807352236547447694}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &8089180561863708989
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2158555589280870129}
-  - component: {fileID: 6049836949807062429}
-  m_Layer: 0
-  m_Name: SoldierBuilder
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2158555589280870129
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8089180561863708989}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 6730120751761039703}
-  m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6049836949807062429
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8089180561863708989}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d22d9e8b72c145e79f2cd6aabb9342e7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  shipPrefab: {fileID: 1269951511792484511, guid: 9418f9977f9a81a4e8d3ee24cfa2956b, type: 3}
 --- !u!1 &8653853501295691297
 GameObject:
   m_ObjectHideFlags: 0

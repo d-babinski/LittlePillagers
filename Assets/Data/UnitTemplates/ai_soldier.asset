@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 433a7a309de24c9a8909720dd2d7fa1b, type: 3}
   m_Name: ai_soldier
   m_EditorClassIdentifier: 
-  UnitId: 0
   TypeOfUnit: {fileID: 11400000, guid: eb5a365725ee66243ad2b00bfc7f3922, type: 2}
   PreviewIcon: {fileID: 0}
   InGameSprite: {fileID: -725042787948123181, guid: 6db8d325511775646b794eb6efe82902, type: 3}
   Animator: {fileID: 9100000, guid: dc3d00bab9a1add48be7e397423e444f, type: 2}
+  InstanceBuilder: {fileID: 11400000, guid: e2d9008c9695aa444b28533376f5e232, type: 2}
   UnitName: 
   BaseCost:
     Wood: 0
