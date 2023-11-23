@@ -13,5 +13,5 @@ public class Stage : ScriptableObject
     
     public Units[] UnitsInStage = Array.Empty<Units>();
     public Resources Rewards = new Resources();
-    public bool IsBoss = false;
+    public GameObject IngameIcon = null;
 }

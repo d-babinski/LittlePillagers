@@ -3,7 +3,7 @@ using UnityEngine.Events;
 
 public class ClickableResource : MonoBehaviour
 {
-    [SerializeField] private MoveOverTrajectory movingFunction = null;
+    [SerializeField] private MovingProjectile movingFunction = null;
     [SerializeField] private UnityEvent<Resources> onResourcesGathered = null;
     [SerializeField] private Resources heldResources = new Resources();
 

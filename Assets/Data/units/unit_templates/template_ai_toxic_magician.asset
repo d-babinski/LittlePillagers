@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 433a7a309de24c9a8909720dd2d7fa1b, type: 3}
+  m_Name: template_ai_toxic_magician
+  m_EditorClassIdentifier: 
+  PreviewIcon: {fileID: 0}
+  InGameSprite: {fileID: -8694381617879824482, guid: bd17818672b1c4a49995a2be22aeca00, type: 3}
+  Animator: {fileID: 22100000, guid: 695737c8bc1cbe848b46bf71fd29e742, type: 2}
+  InstanceBuilder: {fileID: 11400000, guid: 473e161c72e397744b5e6f8b0adc81e2, type: 2}
+  UnitName: 
+  TypeOfUnit: {fileID: 11400000, guid: 214449ee709c3a1449d6e7a92505741e, type: 2}
+  BaseCost:
+    Wood: 0
+    Wheat: 0
+    Metal: 0
+    Gold: 0
+  Speed: 3
+  MaxHp: 8
+  MeleeAttack: {fileID: 0}
+  MeleeDamage: 3
+  RangedAttack: {fileID: 11400000, guid: ce7a9532ddf8bfa4d90ed41002c008d4, type: 2}
+  RangedDamage: 2
+  SpecialAttack: {fileID: 0}
+  SpecialDamage: 3
+  SpecialAttCooldown: 10

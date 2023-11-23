@@ -9,11 +9,15 @@ public class Island : MonoBehaviour
     public SplineContainer ReturnSpline = null;
     public BoxCollider2D PlayerSpawnArea = null;
     public BoxCollider2D AISpawnArea = null;
+    
     [SerializeField] private Stage[] stages = Array.Empty<Stage>();
+    
+    [Header("Events")]
     public UnityEvent<Stage[]> StagesInitializedActions = null;
     public UnityEvent<Resources> ResourcesLooted = null;
     public UnityEvent<int> StageBeatenActions = null;
-
+    public UnityEvent OnAllStagesBeatenActions = null;
+    
     private int beatenStages = 0;
 
     private void Start()
@@ -37,11 +41,21 @@ public class Island : MonoBehaviour
         StageBeatenActions?.Invoke(beatenStages);
         ResourcesLooted?.Invoke(stages[beatenStages].Rewards);
         beatenStages++;
+
+        if (beatenStages >= stages.Length)
+        {
+            OnAllStagesBeatenActions?.Invoke();
+        }
     }
     
     public Stage GetCurrentStage()
     {
-        return stages[beatenStages];
+        return  beatenStages >= stages.Length ? null : stages[beatenStages];
+    }
+    
+    public bool AreAllStagesBeaten()
+    {
+        return beatenStages >= stages.Length;
     }
 }
 

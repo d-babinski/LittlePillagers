@@ -10,7 +10,14 @@ public class Pillage : Skill
     {
         availableIslands.Items.ForEach(_island =>
         {
-            _island.DropResources(_island.GetCurrentStage().Rewards * effectiveness);
+            Stage _currentStage = _island.GetCurrentStage();
+
+            if (_currentStage == false)
+            {
+                return;
+            }
+
+            _island.DropResources(_currentStage.Rewards * effectiveness);
         });
     }
 }

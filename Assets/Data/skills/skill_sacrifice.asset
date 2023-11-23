@@ -15,10 +15,9 @@ MonoBehaviour:
   UsableDuringPrepare: 0
   UsableDuringFight: 1
   Skillshot: 1
-  SkillName: Sacrifice
-  Description: Summon a blade from the sky, killing only your units. Deal damage
-    to all enemies equal to killed friendlies and boost attack of your units by the
-    same amount.
+  SkillName: Pain motivation
+  Description: Summon a blade from the sky, dealing 2 damage to all allies hit. All
+    your units get damage bonus equal to allies hit.
   GoldCost: 25
   AreaSize: {x: 0.35, y: 0.2}
   prefabToSpawn: {fileID: 4863086336798131784, guid: 830fb445a9e8e6c4bafae26b2135a988, type: 3}

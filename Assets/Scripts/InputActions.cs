@@ -62,6 +62,33 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""FirstSkill"",
+                    ""type"": ""Button"",
+                    ""id"": ""bd138602-1a0e-4c04-b6bd-8471bb1129db"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SecondSkill"",
+                    ""type"": ""Button"",
+                    ""id"": ""9202c8eb-5bde-43b4-8b5d-9fc7e3d309cc"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ThirdSkill"",
+                    ""type"": ""Button"",
+                    ""id"": ""3e5fe499-42ef-424b-a4a7-21026a0622ae"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -117,6 +144,39 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""CancelSkill"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5b4463a7-5734-4856-bcba-e9664955f205"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""FirstSkill"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""24893bc4-3b92-449e-9b70-5a2c53ae54e2"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SecondSkill"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""cc7f777d-e8a0-49d8-ba88-1cee81ab871f"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ThirdSkill"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -708,6 +768,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         m_Player_Select = m_Player.FindAction("Select", throwIfNotFound: true);
         m_Player_CancelBack = m_Player.FindAction("Cancel/Back", throwIfNotFound: true);
         m_Player_CancelSkill = m_Player.FindAction("CancelSkill", throwIfNotFound: true);
+        m_Player_FirstSkill = m_Player.FindAction("FirstSkill", throwIfNotFound: true);
+        m_Player_SecondSkill = m_Player.FindAction("SecondSkill", throwIfNotFound: true);
+        m_Player_ThirdSkill = m_Player.FindAction("ThirdSkill", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -785,6 +848,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Select;
     private readonly InputAction m_Player_CancelBack;
     private readonly InputAction m_Player_CancelSkill;
+    private readonly InputAction m_Player_FirstSkill;
+    private readonly InputAction m_Player_SecondSkill;
+    private readonly InputAction m_Player_ThirdSkill;
     public struct PlayerActions
     {
         private @InputActions m_Wrapper;
@@ -793,6 +859,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         public InputAction @Select => m_Wrapper.m_Player_Select;
         public InputAction @CancelBack => m_Wrapper.m_Player_CancelBack;
         public InputAction @CancelSkill => m_Wrapper.m_Player_CancelSkill;
+        public InputAction @FirstSkill => m_Wrapper.m_Player_FirstSkill;
+        public InputAction @SecondSkill => m_Wrapper.m_Player_SecondSkill;
+        public InputAction @ThirdSkill => m_Wrapper.m_Player_ThirdSkill;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -814,6 +883,15 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @CancelSkill.started += instance.OnCancelSkill;
             @CancelSkill.performed += instance.OnCancelSkill;
             @CancelSkill.canceled += instance.OnCancelSkill;
+            @FirstSkill.started += instance.OnFirstSkill;
+            @FirstSkill.performed += instance.OnFirstSkill;
+            @FirstSkill.canceled += instance.OnFirstSkill;
+            @SecondSkill.started += instance.OnSecondSkill;
+            @SecondSkill.performed += instance.OnSecondSkill;
+            @SecondSkill.canceled += instance.OnSecondSkill;
+            @ThirdSkill.started += instance.OnThirdSkill;
+            @ThirdSkill.performed += instance.OnThirdSkill;
+            @ThirdSkill.canceled += instance.OnThirdSkill;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -830,6 +908,15 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @CancelSkill.started -= instance.OnCancelSkill;
             @CancelSkill.performed -= instance.OnCancelSkill;
             @CancelSkill.canceled -= instance.OnCancelSkill;
+            @FirstSkill.started -= instance.OnFirstSkill;
+            @FirstSkill.performed -= instance.OnFirstSkill;
+            @FirstSkill.canceled -= instance.OnFirstSkill;
+            @SecondSkill.started -= instance.OnSecondSkill;
+            @SecondSkill.performed -= instance.OnSecondSkill;
+            @SecondSkill.canceled -= instance.OnSecondSkill;
+            @ThirdSkill.started -= instance.OnThirdSkill;
+            @ThirdSkill.performed -= instance.OnThirdSkill;
+            @ThirdSkill.canceled -= instance.OnThirdSkill;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -1016,6 +1103,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         void OnSelect(InputAction.CallbackContext context);
         void OnCancelBack(InputAction.CallbackContext context);
         void OnCancelSkill(InputAction.CallbackContext context);
+        void OnFirstSkill(InputAction.CallbackContext context);
+        void OnSecondSkill(InputAction.CallbackContext context);
+        void OnThirdSkill(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

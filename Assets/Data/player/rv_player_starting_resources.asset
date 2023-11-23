@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: rv_player_starting_resources
   m_EditorClassIdentifier: 
   value:
-    Wood: 150
-    Wheat: 150
-    Metal: 150
-    Gold: 150
+    Wood: 100
+    Wheat: 100
+    Metal: 75
+    Gold: 125

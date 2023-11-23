@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PreviewIcon: {fileID: 0}
   InGameSprite: {fileID: -725042787948123181, guid: 6db8d325511775646b794eb6efe82902, type: 3}
-  Animator: {fileID: 9100000, guid: dc3d00bab9a1add48be7e397423e444f, type: 2}
+  Animator: {fileID: 22100000, guid: 534885ecece110f44a817121a2b47ed2, type: 2}
   InstanceBuilder: {fileID: 11400000, guid: 473e161c72e397744b5e6f8b0adc81e2, type: 2}
   UnitName: 
   TypeOfUnit: {fileID: 11400000, guid: eb5a365725ee66243ad2b00bfc7f3922, type: 2}
@@ -24,9 +24,9 @@ MonoBehaviour:
     Metal: 0
     Gold: 0
   Speed: 3
-  MaxHp: 25
+  MaxHp: 30
   MeleeAttack: {fileID: 11400000, guid: c6c87968d6ee8c247ae762d7a5fee818, type: 2}
-  MeleeDamage: 3
+  MeleeDamage: 1
   RangedAttack: {fileID: 0}
   RangedDamage: 3
   SpecialAttack: {fileID: 0}

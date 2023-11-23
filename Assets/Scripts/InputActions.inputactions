@@ -40,6 +40,33 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "FirstSkill",
+                    "type": "Button",
+                    "id": "bd138602-1a0e-4c04-b6bd-8471bb1129db",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "SecondSkill",
+                    "type": "Button",
+                    "id": "9202c8eb-5bde-43b4-8b5d-9fc7e3d309cc",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ThirdSkill",
+                    "type": "Button",
+                    "id": "3e5fe499-42ef-424b-a4a7-21026a0622ae",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -95,6 +122,39 @@
                     "processors": "",
                     "groups": "",
                     "action": "CancelSkill",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5b4463a7-5734-4856-bcba-e9664955f205",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "FirstSkill",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "24893bc4-3b92-449e-9b70-5a2c53ae54e2",
+                    "path": "<Keyboard>/w",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SecondSkill",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "cc7f777d-e8a0-49d8-ba88-1cee81ab871f",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ThirdSkill",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

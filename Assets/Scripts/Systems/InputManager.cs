@@ -11,7 +11,11 @@ public class InputManager : MonoBehaviour
     public UnityEvent OnCancelSkillClicked = null;
     public UnityEvent OnPauseClicked = null;
     public UnityEvent OnSelectClicked = null;
-
+    public UnityEvent OnFirstSkillPressed = null;
+    public UnityEvent OnSecondSkillPressed = null;
+    public UnityEvent OnThirdSkillPressed = null;
+    
+    
     private void Awake()
     {
         availableActions = new InputActions();
@@ -32,6 +36,21 @@ public class InputManager : MonoBehaviour
         if (availableActions.Player.CancelSkill.triggered)
         {
             OnCancelSkillClicked?.Invoke();
+        }
+
+        if (availableActions.Player.FirstSkill.triggered)
+        {
+            OnFirstSkillPressed?.Invoke();
+        }
+        
+        if (availableActions.Player.SecondSkill.triggered)
+        {
+            OnSecondSkillPressed?.Invoke();
+        }
+        
+        if (availableActions.Player.ThirdSkill.triggered)
+        {
+            OnThirdSkillPressed?.Invoke();
         }
     }
 

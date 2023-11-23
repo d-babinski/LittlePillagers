@@ -5,13 +5,27 @@ public class SkillUI : MonoBehaviour
 {
     [SerializeField] private UnityEvent<Skill> skillUsedActions = null;
     [SerializeField] private SkillVariable assignedSkill = null;
+    [SerializeField] private ResourcesVariable playerResources = null;
     [SerializeField] private CanvasGroup buttonCanvasGroup = null;
 
     private bool interactable = true;
+    private bool fitsCurrentStage = true;
 
     private void Start()
     {
         UpdateButtonForPreparationStage();
+    }
+
+    private void Update()
+    {
+        bool _canAfford = playerResources.Value.Gold >= assignedSkill.Value.GoldCost;
+        bool _shouldBeInteractable = _canAfford && fitsCurrentStage;
+
+        if (_shouldBeInteractable != interactable)
+        {
+            interactable = _shouldBeInteractable;
+            applyVisuals(_shouldBeInteractable);
+        }
     }
 
     public void UseSkill()
@@ -26,22 +40,16 @@ public class SkillUI : MonoBehaviour
 
     public void UpdateButtonForPreparationStage()
     {
-        changeInteraction(assignedSkill.Value.UsableDuringPrepare);
+        fitsCurrentStage = assignedSkill.Value.UsableDuringPrepare;
     }
 
     public void UpdateButtonForCombatStage()
     {
-        changeInteraction(assignedSkill.Value.UsableDuringFight);
+       fitsCurrentStage = assignedSkill.Value.UsableDuringFight;
     }
 
-    private void changeInteraction(bool _isInteractable)
+    private void applyVisuals(bool _isInteractable)
     {
-        if (interactable == _isInteractable)
-        {
-            return;
-        }
-        
-        interactable = _isInteractable;
         buttonCanvasGroup.alpha = _isInteractable ? 1f : 0.5f;
         buttonCanvasGroup.blocksRaycasts = _isInteractable;
     }

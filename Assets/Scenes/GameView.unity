@@ -232,6 +232,8 @@ GameObject:
   - component: {fileID: 1450897286}
   - component: {fileID: 1450897287}
   - component: {fileID: 1450897289}
+  - component: {fileID: 1450897290}
+  - component: {fileID: 1450897291}
   m_Layer: 0
   m_Name: game
   m_TagString: Untagged
@@ -304,6 +306,65 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &1450897290
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1450897285}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42a661ef15278764599bfc5fce769d98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  islands: {fileID: 11400000, guid: 0ce93c0f89a12e440a1e2fda6fb16e0e, type: 2}
+  gameWonActions:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: 62d8f2b5310e13b42855d5b80e3bb459, type: 2}
+        m_TargetAssemblyTypeName: CHARK.ScriptableEvents.Events.SimpleScriptableEvent,
+          CHARK.ScriptableEvents
+        m_MethodName: Raise
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1450897291
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1450897285}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2300d56ac22446e59de6de2fb87235d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scriptableEvent: {fileID: 0}
+  scriptableEvents:
+  - {fileID: 11400000, guid: 6bda54a286cae764794eebb649ecfeea, type: 2}
+  onRaised:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1450897290}
+        m_TargetAssemblyTypeName: CheckForWinCondition, Assembly-CSharp
+        m_MethodName: CheckWinCondition
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1699782686 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4671241395755605713, guid: 319da60f6e704cf44a37e1a7bdc3e726, type: 3}
@@ -364,8 +425,8 @@ MonoBehaviour:
   playerDatabase: {fileID: 11400000, guid: 3c639a55ef76dd6408deba32718a496a, type: 2}
   initialUnits:
   - Type: {fileID: 11400000, guid: 624bb0f54858fe549997014426e1fe9e, type: 2}
-    Count: 3
-  - Type: {fileID: 11400000, guid: a3ec89ff3d620184696e71c313074988, type: 2}
+    Count: 1
+  - Type: {fileID: 11400000, guid: 444ceadc02c4ccd409866ef9a7c7da83, type: 2}
     Count: 1
   - Type: {fileID: 11400000, guid: d5d8b6f7d32df884a8a0e5a46a5ab256, type: 2}
     Count: 1
@@ -705,14 +766,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1450897286}
     m_Modifications:
-    - target: {fileID: 157761159062609609, guid: 78495928da243884d84549c930483987, type: 3}
-      propertyPath: onRaised.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 157761159062609609, guid: 78495928da243884d84549c930483987, type: 3}
-      propertyPath: onRaised.m_PersistentCalls.m_Calls.Array.data[1].m_Target
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 1729634712519186669, guid: 78495928da243884d84549c930483987, type: 3}
       propertyPath: m_Name
       value: game_ui

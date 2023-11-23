@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: simple_melee_swordsman
   m_EditorClassIdentifier: 
   MinRange: 0
-  MaxRange: 0.0625
+  MaxRange: 0.125
   duration: 2
-  attackRadius: 0.125
-  attackDistance: 0
+  attackRadius: 0.09375
+  attackDistance: 0.0625
   attackNormalizedTime: 0.5

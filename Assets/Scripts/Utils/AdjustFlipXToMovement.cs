@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class AdjustFlipXToMovement : MonoBehaviour
@@ -6,6 +7,11 @@ public class AdjustFlipXToMovement : MonoBehaviour
     [SerializeField] private SpriteRenderer spriteRenderer = null;
 
     private Vector3 lastPos = Vector3.zero;
+
+    private void Start()
+    {
+        lastPos = transform.position;
+    }
 
     private void Update()
     {

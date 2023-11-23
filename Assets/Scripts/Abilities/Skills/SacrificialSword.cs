@@ -2,11 +2,12 @@ using UnityEngine;
 
 public class SacrificialSword : MonoBehaviour
 {
-    public UnitRuntimeSet Enemies = null;
     public UnitRuntimeSet Allies = null;
     
     public Vector2 Range = Vector2.one;
     public LayerMaskVariable HitMask = null;
+
+    [SerializeField] private int selfDamage = 2;
 
     public float DamageDelay = 0f;
 
@@ -22,14 +23,7 @@ public class SacrificialSword : MonoBehaviour
 
         if (timeExisting >= DamageDelay)
         {
-            int _bonus = killAllies();
-
-            for (int i = Enemies.Items.Count -1; i >= 0; i--)
-            {
-                Unit _enemy = Enemies.Items[i];
-                _enemy.GetDamaged(_bonus);
-            }
-            
+            int _bonus = damageAllies();
             Allies.Items.ForEach(_ally => _ally.GetAttackBonus(_bonus));
             hasDealtDamage = true;
         }
@@ -37,7 +31,7 @@ public class SacrificialSword : MonoBehaviour
         timeExisting += Time.deltaTime;
     }
 
-    private int killAllies()
+    private int damageAllies()
     {
         Collider2D[] _hits = Physics2D.OverlapBoxAll(transform.position, Range, 0f, HitMask.Value);
         int _hitCount = 0;
@@ -47,7 +41,7 @@ public class SacrificialSword : MonoBehaviour
             if (_hit.TryGetComponent(out Damageable _damageable))
             {
                 _hitCount++;
-                _damageable.GetDamaged(99999);
+                _damageable.GetDamaged(selfDamage);
             }
         }
 

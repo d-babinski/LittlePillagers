@@ -20,4 +20,4 @@ MonoBehaviour:
     Wheat: 100
     Metal: 100
     Gold: 100
-  IsBoss: 1
+  IngameIcon: {fileID: 1300507240070679895, guid: fdc758fc98baff14081550b8fcbf84c7, type: 3}

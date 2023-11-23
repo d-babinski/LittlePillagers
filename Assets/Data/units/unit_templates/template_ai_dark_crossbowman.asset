@@ -24,11 +24,11 @@ MonoBehaviour:
     Metal: 0
     Gold: 0
   Speed: 3
-  MaxHp: 25
+  MaxHp: 8
   MeleeAttack: {fileID: 0}
   MeleeDamage: 3
-  RangedAttack: {fileID: 11400000, guid: c6c87968d6ee8c247ae762d7a5fee818, type: 2}
-  RangedDamage: 3
+  RangedAttack: {fileID: 11400000, guid: 21da40dd34741e545a7b85a183981672, type: 2}
+  RangedDamage: 1
   SpecialAttack: {fileID: 0}
   SpecialDamage: 3
   SpecialAttCooldown: 10

@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: simple_melee_pikeman
   m_EditorClassIdentifier: 
   MinRange: 0
-  MaxRange: 0.15625
+  MaxRange: 0.0625
   duration: 1
-  attackRadius: 0.0625
+  attackRadius: 0.03125
   attackDistance: 0.125
   attackNormalizedTime: 0.2
