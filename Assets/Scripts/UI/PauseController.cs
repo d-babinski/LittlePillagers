@@ -1,77 +1,22 @@
-using System;
-using TMPro;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class PauseController : MonoBehaviour
 {
-    [SerializeField] private InputAction pauseAction;
-    
-    [SerializeField] private PauseButton pauseButton = null;
-    [SerializeField] private PauseButton playButton = null;
-    [SerializeField] private TextMeshProUGUI pauseText = null;
-
-    private bool isPaused = false;
+    [SerializeField] private BoolVariable isPaused = null;
 
     private void Start()
     {
-        pauseButton.OnButtonClicked += togglePause;
-        playButton.OnButtonClicked += togglePause;
         setPaused(true);
     }
 
-    private void OnDestroy()
+    public void TogglePause()
     {
-        pauseButton.OnButtonClicked -= togglePause;
-        playButton.OnButtonClicked -= togglePause;
-    }
-
-    private void OnEnable()
-    {
-        pauseAction.Enable();
-    }
-
-    private void OnDisable()
-    {
-        pauseAction.Disable();
-    }
-
-    private void Update()
-    {
-        if (pauseAction.triggered)
-        {
-            togglePause();
-        }
-    }
-
-    private void togglePause()
-    {
-        setPaused(!isPaused);
+        setPaused(!isPaused.Value);
     }
 
     private void setPaused(bool _pauseStatus)
     {
-        isPaused = _pauseStatus;
-        pauseText.gameObject.SetActive(isPaused);
-        setButtonVisuals(isPaused);
-        setTimeScale(isPaused);
-    }
-    
-    private void setTimeScale(bool _isPaused)
-    {
-        Time.timeScale = _isPaused ? 0f : 1f;
-    }
-
-    private void setButtonVisuals(bool _pauseState)
-    {
-        if (_pauseState)
-        {
-            pauseButton.SetActiveColor();
-            playButton.SetInactiveColor();
-            return;
-        }
-        
-        pauseButton.SetInactiveColor();
-        playButton.SetActiveColor();
+        isPaused.Value = _pauseStatus;
+        Time.timeScale = _pauseStatus ? 0f : 1f;
     }
 }

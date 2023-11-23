@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 433a7a309de24c9a8909720dd2d7fa1b, type: 3}
+  m_Name: template_ai_axeman
+  m_EditorClassIdentifier: 
+  PreviewIcon: {fileID: 0}
+  InGameSprite: {fileID: -8213803555321894735, guid: a6c99118a4af69040adb6cafb9e5f8ef, type: 3}
+  Animator: {fileID: 22100000, guid: 0325d8d3829f2424fa05ed7bfced2db2, type: 2}
+  InstanceBuilder: {fileID: 11400000, guid: 473e161c72e397744b5e6f8b0adc81e2, type: 2}
+  UnitName: 
+  TypeOfUnit: {fileID: 11400000, guid: dd931e96c64b81e498dbf2d0a146c3d5, type: 2}
+  BaseCost:
+    Wood: 0
+    Wheat: 0
+    Metal: 7
+    Gold: 0
+  Speed: 3
+  MaxHp: 20
+  MeleeAttack: {fileID: 11400000, guid: 76a5c65ce67595f43b338f696a7fe00f, type: 2}
+  MeleeDamage: 1
+  RangedAttack: {fileID: 0}
+  RangedDamage: 3
+  SpecialAttack: {fileID: 0}
+  SpecialDamage: 3
+  SpecialAttCooldown: 10

@@ -15,36 +15,9 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "OpenSoldierPanel",
-                    "type": "Button",
-                    "id": "08175642-d7fe-4d0f-9ece-b3961f8e55d1",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "OpenShipPanel",
-                    "type": "Button",
-                    "id": "5a626672-5a97-4153-88a1-0ae46c5527ec",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "Select",
                     "type": "Button",
                     "id": "776092a5-ee53-4c9c-b302-00bcb5b17104",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "OpenAttackPanel",
-                    "type": "Button",
-                    "id": "478dd532-aebb-48ef-a236-818758169aea",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -60,9 +33,36 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Restart",
+                    "name": "CancelSkill",
                     "type": "Button",
-                    "id": "e22f3c0f-6b5d-4dca-8e11-e31dd0030057",
+                    "id": "4ef65a09-e29d-4e4f-b596-f4f9369709b6",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "FirstSkill",
+                    "type": "Button",
+                    "id": "bd138602-1a0e-4c04-b6bd-8471bb1129db",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "SecondSkill",
+                    "type": "Button",
+                    "id": "9202c8eb-5bde-43b4-8b5d-9fc7e3d309cc",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ThirdSkill",
+                    "type": "Button",
+                    "id": "3e5fe499-42ef-424b-a4a7-21026a0622ae",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -78,28 +78,6 @@
                     "processors": "",
                     "groups": "Keyboard&Mouse",
                     "action": "Pause",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "28ac1682-dd24-49cf-9e45-82cd193e5ba5",
-                    "path": "<Keyboard>/q",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard&Mouse",
-                    "action": "OpenSoldierPanel",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "361f844e-b75a-4bbb-8599-9d20e083a083",
-                    "path": "<Keyboard>/w",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard&Mouse",
-                    "action": "OpenShipPanel",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -127,17 +105,6 @@
                 },
                 {
                     "name": "",
-                    "id": "29d32c91-8eda-43a9-8fc8-fa8ca040b84f",
-                    "path": "<Keyboard>/a",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard&Mouse",
-                    "action": "OpenAttackPanel",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "51c03282-1b42-44bb-b1f5-b7cc68c290e4",
                     "path": "<Keyboard>/escape",
                     "interactions": "",
@@ -149,12 +116,45 @@
                 },
                 {
                     "name": "",
-                    "id": "efed7d30-f095-48f7-82cf-ed490a7d3e9f",
-                    "path": "<Keyboard>/r",
+                    "id": "bf83eab0-249d-4891-829c-1edb6399dc9a",
+                    "path": "<Mouse>/rightButton",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Keyboard&Mouse",
-                    "action": "Restart",
+                    "groups": "",
+                    "action": "CancelSkill",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5b4463a7-5734-4856-bcba-e9664955f205",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "FirstSkill",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "24893bc4-3b92-449e-9b70-5a2c53ae54e2",
+                    "path": "<Keyboard>/w",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SecondSkill",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "cc7f777d-e8a0-49d8-ba88-1cee81ab871f",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ThirdSkill",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

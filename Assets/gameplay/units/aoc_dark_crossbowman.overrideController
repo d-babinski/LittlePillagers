@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: aoc_dark_crossbowman
+  m_Controller: {fileID: 9100000, guid: 27e101850b1f0734badfbca0a28d8caa, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 02703d3efeef7e1428658ed65b4e2230, type: 2}
+    m_OverrideClip: {fileID: 2237677267867714157, guid: 525ff100a39a7a14a826dbf1c9808e16, type: 3}
+  - m_OriginalClip: {fileID: -4986958480193616432, guid: d1a3a469e68594c4982ff128853b385a, type: 3}
+    m_OverrideClip: {fileID: -1514972952464650875, guid: 525ff100a39a7a14a826dbf1c9808e16, type: 3}
+  - m_OriginalClip: {fileID: -6496188830321227, guid: d1a3a469e68594c4982ff128853b385a, type: 3}
+    m_OverrideClip: {fileID: 7517993217204608053, guid: 525ff100a39a7a14a826dbf1c9808e16, type: 3}
+  - m_OriginalClip: {fileID: -551017566392233136, guid: d1a3a469e68594c4982ff128853b385a, type: 3}
+    m_OverrideClip: {fileID: 5940344170493406364, guid: 525ff100a39a7a14a826dbf1c9808e16, type: 3}
+  - m_OriginalClip: {fileID: 4060801288315299368, guid: d1a3a469e68594c4982ff128853b385a, type: 3}
+    m_OverrideClip: {fileID: 2223780735420147335, guid: 525ff100a39a7a14a826dbf1c9808e16, type: 3}

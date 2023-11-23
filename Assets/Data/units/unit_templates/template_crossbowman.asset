@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 433a7a309de24c9a8909720dd2d7fa1b, type: 3}
+  m_Name: template_crossbowman
+  m_EditorClassIdentifier: 
+  PreviewIcon: {fileID: 0}
+  InGameSprite: {fileID: 8180000995478924834, guid: b8c289ff9ae4c4042a46f1337c119627, type: 3}
+  Animator: {fileID: 22100000, guid: 78882e542a33bfd4b94ed7bc0e4b3828, type: 2}
+  InstanceBuilder: {fileID: 11400000, guid: e2d9008c9695aa444b28533376f5e232, type: 2}
+  UnitName: Crossbowman
+  TypeOfUnit: {fileID: 11400000, guid: 444ceadc02c4ccd409866ef9a7c7da83, type: 2}
+  BaseCost:
+    Wood: 45
+    Wheat: 45
+    Metal: 35
+    Gold: 0
+  Speed: 10
+  MaxHp: 15
+  MeleeAttack: {fileID: 0}
+  MeleeDamage: 3
+  RangedAttack: {fileID: 11400000, guid: 4fdbc52ba562ec649bdef407e5695476, type: 2}
+  RangedDamage: 1
+  SpecialAttack: {fileID: 0}
+  SpecialDamage: 3
+  SpecialAttCooldown: 10
