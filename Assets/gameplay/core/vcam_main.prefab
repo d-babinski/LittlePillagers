@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8451199596862978007}
   - component: {fileID: 4848106114655174698}
   m_Layer: 0
-  m_Name: vcam_main
+  m_Name: Vcam_Main
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

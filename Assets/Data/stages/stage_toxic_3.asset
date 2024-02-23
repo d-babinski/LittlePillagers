@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 76ac0ab58d4547e9b41a414e26cb7d10, type: 3}
-  m_Name: stage_toxic_3
+  m_Name: Stage_Toxic_3
   m_EditorClassIdentifier: 
   UnitsInStage:
   - UnitType: {fileID: 11400000, guid: 4c60c41a1af5ddd4bb717292cb2154fd, type: 2}

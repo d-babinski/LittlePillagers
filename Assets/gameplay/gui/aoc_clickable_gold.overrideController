@@ -6,7 +6,7 @@ AnimatorOverrideController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: aoc_clickable_gold
+  m_Name: AOC_Clickable_Gold
   m_Controller: {fileID: 9100000, guid: 636033233fca39842a42f730aad45147, type: 2}
   m_Clips:
   - m_OriginalClip: {fileID: -1726735736949516794, guid: fdd5071837140f4418ae660508c5feca, type: 3}

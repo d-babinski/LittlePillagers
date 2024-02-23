@@ -61,7 +61,7 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: ac_clickable_wheat
+  m_Name: AC_Clickable_Wheat
   serializedVersion: 5
   m_AnimatorParameters:
   - m_Name: Land

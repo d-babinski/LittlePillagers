@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2690816682231012240}
   - component: {fileID: 3072804641762548487}
   m_Layer: 0
-  m_Name: vcam_zoom
+  m_Name: Vcam_Zoom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

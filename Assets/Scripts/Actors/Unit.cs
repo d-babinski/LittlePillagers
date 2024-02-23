@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Serialization;
 
 public class Unit : MonoBehaviour
 {
@@ -12,7 +13,7 @@ public class Unit : MonoBehaviour
     [SerializeField] private UnitRuntimeSet aliveEnemies = null;
     [SerializeField] private SpriteRenderer spriteRenderer = null;
     [SerializeField] private Animator animator = null;
-    [SerializeField] private Navigator navigator = null;
+    [FormerlySerializedAs("navigator")][SerializeField] private UnitMove unitMove = null;
     [SerializeField] private TargetingSystem targetingSystem = null;
 
     private int damageBonus = 0;
@@ -130,7 +131,7 @@ public class Unit : MonoBehaviour
     
     public void MoveTo(Vector3 _targetPos)
     {
-        transform.position = navigator.MoveTo(_targetPos, UnitTemplate.Speed);
+        transform.position = unitMove.MoveTowards(_targetPos, UnitTemplate.Speed);
     }
     
     public void GetAttackBonus(int _bonus)
