@@ -17,11 +17,11 @@ public class ImageButton : MonoBehaviour,IPointerClickHandler, IPointerEnterHand
     {
         OnButtonClicked?.Invoke();
     }
-    public void OnPointerEnter(PointerEventData eventData)
+    public void OnPointerEnter(PointerEventData _eventData)
     {
         OnHover?.Invoke();
     }
-    public void OnPointerExit(PointerEventData eventData)
+    public void OnPointerExit(PointerEventData _eventData)
     {
         OnHoverExit?.Invoke();
     }

@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e35a135ea57a01449820491f5a50f11e, type: 3}
+  m_Name: Island_toxic
+  m_EditorClassIdentifier: 
+  IslandName: Toxiborg
+  IslandSprite: {fileID: 7411695100171036017, guid: 2ceb93a0601610a488d07657173195a0, type: 3}
+  Stages:
+  - {fileID: 11400000, guid: a815e1eea4adc61428a8e9cc2d7427fb, type: 2}
+  - {fileID: 11400000, guid: 0f47de929c0ed574b95a44ed066d6fb5, type: 2}
+  - {fileID: 11400000, guid: 91e69a34c415d7f4da1cb097d910d6f8, type: 2}
+  - {fileID: 11400000, guid: 4f3ec2022d89dcc4c939893d8fe24ef7, type: 2}

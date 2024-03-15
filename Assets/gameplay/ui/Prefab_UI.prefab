@@ -369,6 +369,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ui_top_mid_description
       objectReference: {fileID: 0}
+    - target: {fileID: 3953275277979477715, guid: ea6454cd57bc69843b051a86b4a1711d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4903476181414092359, guid: ea6454cd57bc69843b051a86b4a1711d, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -557,7 +561,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8513787766887807898, guid: 41d6e530c8038694383247f0ece707d4, type: 3}
       propertyPath: m_Name
-      value: ui_soldier_buy_panel
+      value: Prefab_UI_Panel_BuySoldiers
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

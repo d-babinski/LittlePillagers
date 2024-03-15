@@ -105,6 +105,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0877c6d9800989b4f92c7c54f1397263, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerStateVariable: {fileID: 11400000, guid: 7ba7d5f2c832ecb46b9a57906b5c571b, type: 2}
+  skillCaster: {fileID: 11400000, guid: 3ac254ea8fa3dd54aaec2a5a441b2b5c, type: 2}
   skillUsedActions:
     m_PersistentCalls:
       m_Calls:

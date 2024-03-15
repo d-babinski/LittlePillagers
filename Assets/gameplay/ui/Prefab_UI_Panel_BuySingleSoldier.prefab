@@ -92,8 +92,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3317d29c929c9fb4ba25c2731c190dfd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dataOutput: {fileID: 0}
-  unitTypeSet: {fileID: 0}
+  dataOutput: {fileID: 11400000, guid: 3315c0848f678074088237436dc2a186, type: 2}
+  unitTypeToSet: {fileID: 0}
 --- !u!1 &4990335015833901400
 GameObject:
   m_ObjectHideFlags: 0
@@ -182,6 +182,7 @@ GameObject:
   - component: {fileID: 4990335016313577330}
   - component: {fileID: 4990335016313577328}
   - component: {fileID: 4990335016313577329}
+  - component: {fileID: 4208601435492125253}
   m_Layer: 5
   m_Name: WarriorImage
   m_TagString: Untagged
@@ -247,6 +248,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &4208601435492125253
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4990335016313577331}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dacc91048fc4ea04498a9044a0780e05, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  imageToSet: {fileID: 4990335016313577329}
+  unitToGrabImageFrom: {fileID: 0}
 --- !u!1001 &4990335016591956365
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -415,6 +430,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4990335015208873560}
     m_Modifications:
+    - target: {fileID: 1278026093928503683, guid: 3f0687145a9819649b8c85aa8dac4689, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -6675695590065753547, guid: ae396c10333f6164ab32d26cd9713082, type: 3}
     - target: {fileID: 2482970336019813428, guid: 3f0687145a9819649b8c85aa8dac4689, type: 3}
       propertyPath: m_Name
       value: AddButton
@@ -501,31 +520,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4474520975563270986, guid: 3f0687145a9819649b8c85aa8dac4689, type: 3}
       propertyPath: OnButtonClicked.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4474520975563270986, guid: 3f0687145a9819649b8c85aa8dac4689, type: 3}
       propertyPath: OnButtonClicked.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 11400000, guid: 11e23854b8e34a842babf36304c86566, type: 2}
+      objectReference: {fileID: 5384804796515469336}
     - target: {fileID: 4474520975563270986, guid: 3f0687145a9819649b8c85aa8dac4689, type: 3}
       propertyPath: OnButtonClicked.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4474520975563270986, guid: 3f0687145a9819649b8c85aa8dac4689, type: 3}
       propertyPath: OnButtonClicked.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Raise
+      value: RaiseEvent
       objectReference: {fileID: 0}
     - target: {fileID: 4474520975563270986, guid: 3f0687145a9819649b8c85aa8dac4689, type: 3}
       propertyPath: OnButtonClicked.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: CHARK.ScriptableEvents.ScriptableEvent`1[[UnitType, Assembly-CSharp
+      value: UnitTypeEventFromVariable, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 4474520975563270986, guid: 3f0687145a9819649b8c85aa8dac4689, type: 3}
       propertyPath: OnButtonClicked.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
       value: 
-      objectReference: {fileID: 11400000, guid: 444ceadc02c4ccd409866ef9a7c7da83, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 4474520975563270986, guid: 3f0687145a9819649b8c85aa8dac4689, type: 3}
       propertyPath: OnButtonClicked.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnitType, Assembly-CSharp
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 4966362415014841981, guid: 3f0687145a9819649b8c85aa8dac4689, type: 3}
       propertyPath: m_fontStyle
@@ -534,10 +553,32 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2482970336019813428, guid: 3f0687145a9819649b8c85aa8dac4689, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5384804796515469336}
   m_SourcePrefab: {fileID: 100100000, guid: 3f0687145a9819649b8c85aa8dac4689, type: 3}
 --- !u!224 &4990335014843004322 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2482970336019813429, guid: 3f0687145a9819649b8c85aa8dac4689, type: 3}
   m_PrefabInstance: {fileID: 7436695449054093719}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &4990335014843004323 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2482970336019813428, guid: 3f0687145a9819649b8c85aa8dac4689, type: 3}
+  m_PrefabInstance: {fileID: 7436695449054093719}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5384804796515469336
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4990335014843004323}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd9e9f4cf7357cb49bffb5ae52aad4c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  variableToGrabTypeFrom: {fileID: 0}
+  eventToRaise: {fileID: 11400000, guid: 11e23854b8e34a842babf36304c86566, type: 2}

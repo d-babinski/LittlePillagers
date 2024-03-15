@@ -12,9 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c025cd4c14f1e7b418d507bedd6c67d7, type: 3}
   m_Name: Skill_Sacrifice
   m_EditorClassIdentifier: 
-  UsableDuringPrepare: 0
-  UsableDuringFight: 1
-  Skillshot: 1
+  SkillAvailabilityDuringGameplayPhases: 4
+  IsSkillshot: 1
   SkillName: Pain motivation
   Description: Summon a blade from the sky, dealing 2 damage to all allies hit. All
     your units get damage bonus equal to allies hit.

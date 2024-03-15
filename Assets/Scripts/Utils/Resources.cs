@@ -10,6 +10,19 @@ public struct Resources
     public int Metal;
     public int Gold;
 
+    public override bool Equals(object _obj) 
+    {
+        if (!(_obj is Resources))
+            return false;
+
+        return this == (Resources)_obj;
+    }
+    
+    public override int GetHashCode()
+    {
+        return ((Wood + Gold)*(Metal + Wheat)).GetHashCode();
+    }
+
     public Resources(int _wood = 0, int _wheat = 0, int _metal = 0, int _gold = 0)
     {
         Wood = _wood;

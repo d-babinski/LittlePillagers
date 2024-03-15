@@ -4,7 +4,7 @@ using UnityEngine;
 public class SetCountFromUnitDatabase : MonoBehaviour
 {
     [SerializeField] private UnitTypeVariable unitType = null;
-    [SerializeField] private UnitDatabase database = null;
+    [SerializeField] private Army database = null;
     [SerializeField] private TextMeshProUGUI textComponent = null;
 
     private int lastValue = -1;

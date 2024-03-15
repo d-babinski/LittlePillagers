@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76ac0ab58d4547e9b41a414e26cb7d10, type: 3}
   m_Name: Stage_Dark_Boss
   m_EditorClassIdentifier: 
+  IsBeaten: 0
   UnitsInStage:
   - UnitType: {fileID: 11400000, guid: 0abf53cf7ea3afc428965a7791ec1d7e, type: 2}
     Count: 2
@@ -20,4 +21,5 @@ MonoBehaviour:
     Wheat: 100
     Metal: 100
     Gold: 100
-  IngameIcon: {fileID: 1300507240070679895, guid: fdc758fc98baff14081550b8fcbf84c7, type: 3}
+  StageIcon: {fileID: -3043307653133637580, guid: e42d6a1f72442274ca0b6b0a6c0da164, type: 3}
+  StageIconAnimator: {fileID: 22100000, guid: 041ba671320c1ee43975b4d032f8b7c1, type: 2}

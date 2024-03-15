@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e35a135ea57a01449820491f5a50f11e, type: 3}
+  m_Name: Island_green
+  m_EditorClassIdentifier: 
+  IslandName: Groenborg
+  IslandSprite: {fileID: 1111647080563944228, guid: 55f3bc9a5fc9d5b45bb5ff983278e646, type: 3}
+  Stages:
+  - {fileID: 11400000, guid: 7d4306585a4696843827676dc25c7582, type: 2}
+  - {fileID: 11400000, guid: 5c11203a27a1cbe47943f3c73cce82b0, type: 2}
+  - {fileID: 11400000, guid: 2c27256261b51b24c81252b2c932a5b3, type: 2}

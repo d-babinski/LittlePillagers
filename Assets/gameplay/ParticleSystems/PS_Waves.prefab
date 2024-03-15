@@ -1487,12 +1487,12 @@ ParticleSystem:
     uvChannelMask: -1
     rowMode: 1
     sprites:
-    - sprite: {fileID: -55218093883684948, guid: 952e8aa3c339e894dbce3b3506a9dbb7, type: 3}
-    - sprite: {fileID: -55218093883684948, guid: 952e8aa3c339e894dbce3b3506a9dbb7, type: 3}
-    - sprite: {fileID: -4314940944959161634, guid: 952e8aa3c339e894dbce3b3506a9dbb7, type: 3}
-    - sprite: {fileID: -1539459383507885378, guid: 952e8aa3c339e894dbce3b3506a9dbb7, type: 3}
-    - sprite: {fileID: -5456971143380735701, guid: 952e8aa3c339e894dbce3b3506a9dbb7, type: 3}
-    - sprite: {fileID: 1706625646432695291, guid: 952e8aa3c339e894dbce3b3506a9dbb7, type: 3}
+    - sprite: {fileID: 8094853698158510427, guid: 952e8aa3c339e894dbce3b3506a9dbb7, type: 3}
+    - sprite: {fileID: 5769145844709185836, guid: 952e8aa3c339e894dbce3b3506a9dbb7, type: 3}
+    - sprite: {fileID: 1166002884276312469, guid: 952e8aa3c339e894dbce3b3506a9dbb7, type: 3}
+    - sprite: {fileID: 8438463827331982435, guid: 952e8aa3c339e894dbce3b3506a9dbb7, type: 3}
+    - sprite: {fileID: 4418498033515498527, guid: 952e8aa3c339e894dbce3b3506a9dbb7, type: 3}
+    - sprite: {fileID: 6057096819981243449, guid: 952e8aa3c339e894dbce3b3506a9dbb7, type: 3}
     flipU: 0
     flipV: 0
   VelocityModule:

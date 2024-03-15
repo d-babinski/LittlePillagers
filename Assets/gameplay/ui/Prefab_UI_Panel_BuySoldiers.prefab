@@ -29,7 +29,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8513787766887807898}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -58,7 +58,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unitTypeVariable: {fileID: 11400000, guid: 3315c0848f678074088237436dc2a186, type: 2}
-  database: {fileID: 11400000, guid: 6d92df5f79183754ab43c4f3d74a5069, type: 2}
   unitCost: {fileID: 11400000, guid: 38fc860105561ce468da6440d8bfdfcc, type: 2}
   unitAttack: {fileID: 11400000, guid: d364f9a9782db6d45b49f056a603395a, type: 2}
   unitSpeed: {fileID: 11400000, guid: 9f855f0ce33ccfc488441cca949188eb, type: 2}
@@ -204,6 +203,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5303297033702445365}
     m_Modifications:
+    - target: {fileID: 4208601435492125253, guid: 59b0aa5625635b54793282625f720434, type: 3}
+      propertyPath: unitToGrabImageFrom
+      value: 
+      objectReference: {fileID: 11400000, guid: f9c4525d6e29ff342ba6705a8a2ef3c5, type: 2}
     - target: {fileID: 4370807443293596223, guid: 59b0aa5625635b54793282625f720434, type: 3}
       propertyPath: dataSource
       value: 
@@ -294,8 +297,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4990335015208873561, guid: 59b0aa5625635b54793282625f720434, type: 3}
       propertyPath: m_Name
-      value: SingleSoldierPanel
+      value: Prefab_UI_Panel_BuySingleSoldier
       objectReference: {fileID: 0}
+    - target: {fileID: 4990335016313577329, guid: 59b0aa5625635b54793282625f720434, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -4621868545372977378, guid: 8566fd31f52f23e4a9e7cf1d0f7dc1e2, type: 3}
+    - target: {fileID: 5384804796515469336, guid: 59b0aa5625635b54793282625f720434, type: 3}
+      propertyPath: variableToGrabTypeFrom
+      value: 
+      objectReference: {fileID: 11400000, guid: f9c4525d6e29ff342ba6705a8a2ef3c5, type: 2}
     - target: {fileID: 6425724085549501149, guid: 59b0aa5625635b54793282625f720434, type: 3}
       propertyPath: OnButtonClicked.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
       value: 
@@ -307,7 +318,11 @@ PrefabInstance:
     - target: {fileID: 9173990374291884805, guid: 59b0aa5625635b54793282625f720434, type: 3}
       propertyPath: unitTypeSet
       value: 
-      objectReference: {fileID: 11400000, guid: 624bb0f54858fe549997014426e1fe9e, type: 2}
+      objectReference: {fileID: 11400000, guid: 2b97ef2cc8f0e674d8315895dc3cd231, type: 2}
+    - target: {fileID: 9173990374291884805, guid: 59b0aa5625635b54793282625f720434, type: 3}
+      propertyPath: unitTypeToSet
+      value: 
+      objectReference: {fileID: 11400000, guid: f9c4525d6e29ff342ba6705a8a2ef3c5, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -326,6 +341,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5303297033702445365}
     m_Modifications:
+    - target: {fileID: 4208601435492125253, guid: 59b0aa5625635b54793282625f720434, type: 3}
+      propertyPath: unitToGrabImageFrom
+      value: 
+      objectReference: {fileID: 11400000, guid: e57b83f33ec3fc442b275b943588f18e, type: 2}
     - target: {fileID: 4370807443293596223, guid: 59b0aa5625635b54793282625f720434, type: 3}
       propertyPath: dataSource
       value: 
@@ -416,12 +435,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4990335015208873561, guid: 59b0aa5625635b54793282625f720434, type: 3}
       propertyPath: m_Name
-      value: SingleSoldierPanel
+      value: Prefab_UI_Panel_BuySingleSoldier
       objectReference: {fileID: 0}
     - target: {fileID: 4990335016313577329, guid: 59b0aa5625635b54793282625f720434, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 9041116355483252201, guid: 8566fd31f52f23e4a9e7cf1d0f7dc1e2, type: 3}
+      objectReference: {fileID: 8746291535485927661, guid: 8566fd31f52f23e4a9e7cf1d0f7dc1e2, type: 3}
     - target: {fileID: 4990335016591956362, guid: 59b0aa5625635b54793282625f720434, type: 3}
       propertyPath: totalUnits
       value: 
@@ -430,6 +449,10 @@ PrefabInstance:
       propertyPath: availableUnits
       value: 
       objectReference: {fileID: 11400000, guid: 4a52682b8528d9b4c8c4693b4b8b3ac0, type: 2}
+    - target: {fileID: 5384804796515469336, guid: 59b0aa5625635b54793282625f720434, type: 3}
+      propertyPath: variableToGrabTypeFrom
+      value: 
+      objectReference: {fileID: 11400000, guid: e57b83f33ec3fc442b275b943588f18e, type: 2}
     - target: {fileID: 6425724085549501149, guid: 59b0aa5625635b54793282625f720434, type: 3}
       propertyPath: OnButtonClicked.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
       value: 
@@ -449,7 +472,11 @@ PrefabInstance:
     - target: {fileID: 9173990374291884805, guid: 59b0aa5625635b54793282625f720434, type: 3}
       propertyPath: unitTypeSet
       value: 
-      objectReference: {fileID: 11400000, guid: 444ceadc02c4ccd409866ef9a7c7da83, type: 2}
+      objectReference: {fileID: 11400000, guid: 9cdb9c66c1b7c85499bade3b35333a94, type: 2}
+    - target: {fileID: 9173990374291884805, guid: 59b0aa5625635b54793282625f720434, type: 3}
+      propertyPath: unitTypeToSet
+      value: 
+      objectReference: {fileID: 11400000, guid: e57b83f33ec3fc442b275b943588f18e, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -468,6 +495,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5303297033702445365}
     m_Modifications:
+    - target: {fileID: 4208601435492125253, guid: 59b0aa5625635b54793282625f720434, type: 3}
+      propertyPath: unitToGrabImageFrom
+      value: 
+      objectReference: {fileID: 11400000, guid: 42e1aa7b01005b44ea70e4684edef24f, type: 2}
     - target: {fileID: 4370807443293596223, guid: 59b0aa5625635b54793282625f720434, type: 3}
       propertyPath: dataSource
       value: 
@@ -558,12 +589,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4990335015208873561, guid: 59b0aa5625635b54793282625f720434, type: 3}
       propertyPath: m_Name
-      value: SingleSoldierPanel
+      value: Prefab_UI_Panel_BuySingleSoldier
       objectReference: {fileID: 0}
     - target: {fileID: 4990335016313577329, guid: 59b0aa5625635b54793282625f720434, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -6159718114124458434, guid: 8566fd31f52f23e4a9e7cf1d0f7dc1e2, type: 3}
+      objectReference: {fileID: 7593276573760461799, guid: 8566fd31f52f23e4a9e7cf1d0f7dc1e2, type: 3}
     - target: {fileID: 4990335016591956362, guid: 59b0aa5625635b54793282625f720434, type: 3}
       propertyPath: totalUnits
       value: 
@@ -572,6 +603,10 @@ PrefabInstance:
       propertyPath: availableUnits
       value: 
       objectReference: {fileID: 11400000, guid: 4a52682b8528d9b4c8c4693b4b8b3ac0, type: 2}
+    - target: {fileID: 5384804796515469336, guid: 59b0aa5625635b54793282625f720434, type: 3}
+      propertyPath: variableToGrabTypeFrom
+      value: 
+      objectReference: {fileID: 11400000, guid: 42e1aa7b01005b44ea70e4684edef24f, type: 2}
     - target: {fileID: 6425724085549501149, guid: 59b0aa5625635b54793282625f720434, type: 3}
       propertyPath: OnButtonClicked.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
       value: 
@@ -591,7 +626,11 @@ PrefabInstance:
     - target: {fileID: 9173990374291884805, guid: 59b0aa5625635b54793282625f720434, type: 3}
       propertyPath: unitTypeSet
       value: 
-      objectReference: {fileID: 11400000, guid: d5d8b6f7d32df884a8a0e5a46a5ab256, type: 2}
+      objectReference: {fileID: 11400000, guid: fbef3ba5db236de43bfa395876895be4, type: 2}
+    - target: {fileID: 9173990374291884805, guid: 59b0aa5625635b54793282625f720434, type: 3}
+      propertyPath: unitTypeToSet
+      value: 
+      objectReference: {fileID: 11400000, guid: 42e1aa7b01005b44ea70e4684edef24f, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

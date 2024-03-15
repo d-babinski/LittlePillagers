@@ -12,7 +12,7 @@ public class LevelStartPlayerResources : MonoBehaviour
     
     [SerializeField] private ResourcesVariable resourcesBeingSet = null;
     [SerializeField] private ResourcesVariable startingResources = null;
-    [SerializeField] private UnitDatabase playerDatabase = null;
+    [SerializeField] private Army playerDatabase = null;
     
     [SerializeField] private List<InitialUnits> initialUnits = new();
 

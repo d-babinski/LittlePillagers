@@ -1,3 +1,13 @@
-﻿fileFormatVersion: 2
+fileFormatVersion: 2
 guid: 76ac0ab58d4547e9b41a414e26cb7d10
-timeCreated: 1700145730
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - StageIcon: {fileID: 9085254225131611698, guid: 1a67157002006df4485267ab1f15075a, type: 3}
+  - StageIconAnimator: {fileID: 9100000, guid: f84aeca2430c4184383d42032f44322e, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -9,9 +9,9 @@ AnimatorOverrideController:
   m_Name: AOC_BossIcon
   m_Controller: {fileID: 9100000, guid: f84aeca2430c4184383d42032f44322e, type: 2}
   m_Clips:
-  - m_OriginalClip: {fileID: -8628769076024160366, guid: 1a67157002006df4485267ab1f15075a, type: 3}
-    m_OverrideClip: {fileID: -3730144932242596633, guid: e42d6a1f72442274ca0b6b0a6c0da164, type: 3}
-  - m_OriginalClip: {fileID: 3721029325331485033, guid: 1a67157002006df4485267ab1f15075a, type: 3}
-    m_OverrideClip: {fileID: -7774115554685629441, guid: e42d6a1f72442274ca0b6b0a6c0da164, type: 3}
-  - m_OriginalClip: {fileID: 829774509997552703, guid: 1a67157002006df4485267ab1f15075a, type: 3}
-    m_OverrideClip: {fileID: 5291156374827832083, guid: e42d6a1f72442274ca0b6b0a6c0da164, type: 3}
+  - m_OriginalClip: {fileID: 3994385956137873436, guid: 1a67157002006df4485267ab1f15075a, type: 3}
+    m_OverrideClip: {fileID: 6960606051423571919, guid: e42d6a1f72442274ca0b6b0a6c0da164, type: 3}
+  - m_OriginalClip: {fileID: -791984906402235047, guid: 1a67157002006df4485267ab1f15075a, type: 3}
+    m_OverrideClip: {fileID: -1162979606528197968, guid: e42d6a1f72442274ca0b6b0a6c0da164, type: 3}
+  - m_OriginalClip: {fileID: -7259768121712775869, guid: 1a67157002006df4485267ab1f15075a, type: 3}
+    m_OverrideClip: {fileID: 3481892848241463449, guid: e42d6a1f72442274ca0b6b0a6c0da164, type: 3}

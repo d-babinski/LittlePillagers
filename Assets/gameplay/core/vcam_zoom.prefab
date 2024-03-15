@@ -12,8 +12,9 @@ GameObject:
   - component: {fileID: 4432342327323157836}
   - component: {fileID: 6194090281012782064}
   - component: {fileID: 2845827578489330564}
-  - component: {fileID: 2690816682231012240}
+  - component: {fileID: 9203037368156606137}
   - component: {fileID: 3072804641762548487}
+  - component: {fileID: 1235248897997315523}
   m_Layer: 0
   m_Name: Vcam_Zoom
   m_TagString: Untagged
@@ -28,14 +29,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6671191682613267688}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.7399998, y: -2.65, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3201553114026288052}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4432342327323157836
 MonoBehaviour:
@@ -100,7 +101,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c78768546c0a3964ea480fd54113fda0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &2690816682231012240
+--- !u!114 &9203037368156606137
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -109,22 +110,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 6671191682613267688}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2300d56ac22446e59de6de2fb87235d1, type: 3}
+  m_Script: {fileID: 11500000, guid: 2792087f1580db44bace202bb754dfb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   scriptableEvent: {fileID: 0}
   scriptableEvents:
-  - {fileID: 11400000, guid: 6e5fb3ad85a834842b7636d64a29d94f, type: 2}
+  - {fileID: 11400000, guid: 0ec682b9918ce1045afbfc4258e1deae, type: 2}
   onRaised:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2845827578489330564}
         m_TargetAssemblyTypeName: SetPositionFromVariable, Assembly-CSharp
-        m_MethodName: Set2DPositionFromVariable
-        m_Mode: 2
+        m_MethodName: SetPositionToIsland
+        m_Mode: 0
         m_Arguments:
-          m_ObjectArgument: {fileID: 11400000, guid: 0a7f52a976479aa4f869475bb70894fa, type: 2}
-          m_ObjectArgumentAssemblyTypeName: Vector3Variable, Assembly-CSharp
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -172,6 +173,21 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &1235248897997315523
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6671191682613267688}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44d70cc20219cd84593f67d248eafe36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Offset: {x: 1.5, y: 0.5, z: 0}
+  m_ApplyAfter: 1
+  m_PreserveComposition: 0
 --- !u!1 &7942367748903083988
 GameObject:
   m_ObjectHideFlags: 0

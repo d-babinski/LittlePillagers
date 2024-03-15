@@ -1,0 +1,12 @@
+fileFormatVersion: 2
+guid: fd2f02483256458eaa8bf928fcbafce2
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - ContextButtonPrefab: {fileID: 4542844705477165489, guid: 8384d062a678bc0459982227dbfff4cb, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

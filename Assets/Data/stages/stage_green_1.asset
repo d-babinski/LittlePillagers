@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76ac0ab58d4547e9b41a414e26cb7d10, type: 3}
   m_Name: Stage_Green_1
   m_EditorClassIdentifier: 
+  IsBeaten: 0
   UnitsInStage:
   - UnitType: {fileID: 11400000, guid: eb5a365725ee66243ad2b00bfc7f3922, type: 2}
     Count: 3
@@ -22,4 +23,5 @@ MonoBehaviour:
     Wheat: 35
     Metal: 25
     Gold: 5
-  IngameIcon: {fileID: 1300507240070679895, guid: 6f99613775aabde4888c6b759563a7e8, type: 3}
+  StageIcon: {fileID: 9085254225131611698, guid: 1a67157002006df4485267ab1f15075a, type: 3}
+  StageIconAnimator: {fileID: 9100000, guid: f84aeca2430c4184383d42032f44322e, type: 2}

@@ -1,34 +1,38 @@
 using System;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.Splines;
 
 public class Island : MonoBehaviour
 {
-    public SplineContainer SplineToReach = null;
-    public SplineContainer ReturnSpline = null;
     public BoxCollider2D PlayerSpawnArea = null;
     public BoxCollider2D AISpawnArea = null;
+
+
+    public string IslandName = "";
+    public SpriteRenderer IslandVisuals = null;
     
     [SerializeField] private Stage[] stages = Array.Empty<Stage>();
     
     [Header("Events")]
-    public UnityEvent<Stage[]> StagesInitializedActions = null;
     public UnityEvent<Resources> ResourcesLooted = null;
     public UnityEvent<int> StageBeatenActions = null;
     public UnityEvent OnAllStagesBeatenActions = null;
-    
-    private int beatenStages = 0;
 
-    private void Start()
+    private int currentStage = 0;
+
+    public void SetIslandVisuals(Sprite _sprite)
     {
-        StagesInitializedActions?.Invoke(stages);
+        IslandVisuals.sprite = _sprite;
     }
-
-    public void SetStages(Stage[] _stages)
+    
+    public void SetStages(Stage[] _newStages)
     {
-        stages = _stages;
-        StagesInitializedActions?.Invoke(stages);
+        stages = new Stage[_newStages.Length];
+        
+        for (int i = 0; i < _newStages.Length; i++)
+        {
+            stages[i] = Instantiate(_newStages[i]);
+        }
     }
 
     public void DropResources(Resources _resourcesToDrop)
@@ -38,11 +42,12 @@ public class Island : MonoBehaviour
     
     public void BeatCurrentStage()
     {
-        StageBeatenActions?.Invoke(beatenStages);
-        ResourcesLooted?.Invoke(stages[beatenStages].Rewards);
-        beatenStages++;
+        stages[currentStage].IsBeaten = true;
+        StageBeatenActions?.Invoke(currentStage);
+        ResourcesLooted?.Invoke(stages[currentStage].Rewards);
+        currentStage++;
 
-        if (beatenStages >= stages.Length)
+        if (currentStage >= stages.Length)
         {
             OnAllStagesBeatenActions?.Invoke();
         }
@@ -50,12 +55,12 @@ public class Island : MonoBehaviour
     
     public Stage GetCurrentStage()
     {
-        return  beatenStages >= stages.Length ? null : stages[beatenStages];
+        return currentStage >= stages.Length ? null : stages[currentStage];
     }
     
     public bool AreAllStagesBeaten()
     {
-        return beatenStages >= stages.Length;
+        return currentStage >= stages.Length;
     }
 }
 

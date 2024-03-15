@@ -24,4 +24,5 @@ MonoBehaviour:
     Wheat: 45
     Metal: 100
     Gold: 15
-  IngameIcon: {fileID: 1300507240070679895, guid: 6f99613775aabde4888c6b759563a7e8, type: 3}
+  StageIcon: {fileID: 9085254225131611698, guid: 1a67157002006df4485267ab1f15075a, type: 3}
+  StageIconAnimator: {fileID: 9100000, guid: f84aeca2430c4184383d42032f44322e, type: 2}

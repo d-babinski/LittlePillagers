@@ -3,5 +3,5 @@ using UnityEngine;
 
 public abstract class TargetingSystem : ScriptableObject
 {
-    public abstract Unit ChooseTarget(Vector3 _callerPosition, List<Unit> _unitsToChooseFrom);
+    public abstract Unit ChooseTarget(Unit _callingUnit, UnitRuntimeSet _allUnits);
 }

@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 433a7a309de24c9a8909720dd2d7fa1b, type: 3}
+  m_Name: TMPL_Crossbowman
+  m_EditorClassIdentifier: 
+  PreviewIcon: {fileID: 8746291535485927661, guid: 8566fd31f52f23e4a9e7cf1d0f7dc1e2, type: 3}
+  InGameSprite: {fileID: 8180000995478924834, guid: b8c289ff9ae4c4042a46f1337c119627, type: 3}
+  Animator: {fileID: 22100000, guid: 78882e542a33bfd4b94ed7bc0e4b3828, type: 2}
+  UnitName: Crossbowman
+  BaseCost:
+    Wood: 45
+    Wheat: 45
+    Metal: 35
+    Gold: 0
+  Speed: 10
+  MaxHp: 15
+  Attacks: []

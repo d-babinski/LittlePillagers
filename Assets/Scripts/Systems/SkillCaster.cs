@@ -22,7 +22,7 @@ public class SkillCaster : MonoBehaviour
             return;
         }
 
-        if (_skillToUse.Skillshot)
+        if (_skillToUse.IsSkillshot)
         {
             skillAwaitingConfirmation = _skillToUse;
             OnPrepareSkillshot?.Invoke(_skillToUse.AreaSize);

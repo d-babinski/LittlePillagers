@@ -4,29 +4,35 @@ using UnityEngine.Serialization;
 
 public class Unit : MonoBehaviour
 {
-    public UnitTemplate UnitTemplate = null;
+    public int Team = 0;
+    public bool IsAlive = true;
+    public bool IsInCombat = true;
+    
+    public Vector2 MovementTarget = Vector2.zero;
+    public Vector2 ClosestEnemy = Vector2.zero;
+    
+    public Attack[] Attacks = null;
+    
+    [FormerlySerializedAs("UnitTemplate")] public UnitType UnitType = null;
     public Unit Target = null;
-    public LayerMaskVariable EnemyMask = null;
     public UnityEvent DeathActions = null;
     public UnityEvent<UnitType> DeathUnitTypeActions = null;
 
-    [SerializeField] private UnitRuntimeSet aliveEnemies = null;
     [SerializeField] private SpriteRenderer spriteRenderer = null;
     [SerializeField] private Animator animator = null;
     [FormerlySerializedAs("navigator")][SerializeField] private UnitMove unitMove = null;
     [SerializeField] private TargetingSystem targetingSystem = null;
-
-    private int damageBonus = 0;
+    
+    public int DamageBonus = 0;
     private int currentHp = 0;
-    private float lastSpecialAttackTime =-99f;
     private Attack currentAttack = null;
     private float currentAttackNormalizedT = 0f;
 
     private void Start()
     {
-        currentHp = UnitTemplate.MaxHp;
-        spriteRenderer.sprite = UnitTemplate.InGameSprite;
-        animator.runtimeAnimatorController = UnitTemplate.Animator;
+        currentHp = UnitType.MaxHp;
+        spriteRenderer.sprite = UnitType.InGameSprite;
+        animator.runtimeAnimatorController = UnitType.Animator;
     }
 
     private void Update()
@@ -36,31 +42,36 @@ public class Unit : MonoBehaviour
             return;
         }
 
-        if (Target == false || Target.currentHp <= 0)
-        {
-            Target = targetingSystem.ChooseTarget(transform.position, aliveEnemies.Items);
-            return;
-        }
-        
-        if (currentAttack == false && trySelectingNewAttack() == false)
+        if (currentAttack == false && selectNewAttack() == false)
         {
             MoveTo(Target.transform.position);
             return;
         }
 
         progressAttack(currentAttack);
-    } 
+    }
+
+    public void SetAttacks(Attack[] _attacks)
+    {
+        Attacks = new Attack[_attacks.Length];
+
+        for (int i = 0; i < _attacks.Length; i++)
+        {
+            Attacks[i] = (Attack)ScriptableObject.CreateInstance(_attacks[i].GetType());
+        }
+    }
 
     private void progressAttack(Attack _attackToProgress)
     {
         Vector3 _targetPos = Target.transform.position;
         Vector3 _myPos = transform.position;
-        int _damage = UnitTemplate.MeleeDamage + damageBonus;
         
-        currentAttackNormalizedT = _attackToProgress.MakeAttack(currentAttackNormalizedT, EnemyMask.Value, _myPos, _targetPos, _damage);
+        //TODO : Think of a way to establish enemy mask, probably some scriptable describing relations via flags? Maybe custom editor?
+        currentAttackNormalizedT = _attackToProgress.MakeAttack(currentAttackNormalizedT, 512, _myPos, _targetPos, DamageBonus);
 
         if (currentAttackNormalizedT >= 1f)
         {
+            currentAttack.LastUsed = Time.time;
             currentAttackNormalizedT = 0f;
             currentAttack = null;
             Target = null;
@@ -68,38 +79,31 @@ public class Unit : MonoBehaviour
         }
     }
 
-    private bool trySelectingNewAttack()
+    private bool selectNewAttack()
     {
-        if (UnitTemplate.SpecialAttack && IsSpecialAttackOffCooldown() && IsInRange(UnitTemplate.SpecialAttack))
+        if (Attacks.Length <= 0)
         {
-            lastSpecialAttackTime = Time.time;
-            currentAttack = UnitTemplate.SpecialAttack;
-            animator.SetTrigger("Special");
-            return true;
+            return false;
+        }
+        
+        int _selectedAttackId = Random.Range(0, Attacks.Length);
+        Attack _selectedAttack = Attacks[_selectedAttackId];
+
+        if (_selectedAttack.IsOffCooldown() == false)
+        {
+            return false;
         }
 
-        if (UnitTemplate.MeleeAttack && IsInRange(UnitTemplate.MeleeAttack))
+        if (IsInRange(_selectedAttack) == false)
         {
-            currentAttack = UnitTemplate.MeleeAttack;
-            animator.SetTrigger("Melee");
-            return true;
+            return false;
         }
 
-        if (UnitTemplate.RangedAttack && IsInRange(UnitTemplate.RangedAttack))
-        {
-            animator.SetTrigger("Ranged");
-            currentAttack = UnitTemplate.RangedAttack;
-            return true;
-        }
-
-        return false;
+        currentAttack = _selectedAttack;
+        animator.SetTrigger(_selectedAttack.AnimationName);
+        return true;
     }
 
-    public bool IsSpecialAttackOffCooldown()
-    {
-        return Time.time > lastSpecialAttackTime + UnitTemplate.SpecialAttCooldown;
-    }
-    
     public bool IsInRange(Attack _attack)
     {
         if (Target == false)
@@ -124,19 +128,19 @@ public class Unit : MonoBehaviour
         if (currentHp <= 0)
         {
             DeathActions?.Invoke();
-            DeathUnitTypeActions?.Invoke(UnitTemplate.TypeOfUnit);
+            DeathUnitTypeActions?.Invoke(UnitType);
             animator.SetTrigger("Death");
         }
     }
     
     public void MoveTo(Vector3 _targetPos)
     {
-        transform.position = unitMove.MoveTowards(_targetPos, UnitTemplate.Speed);
+        transform.position = unitMove.MoveTowards(_targetPos, UnitType.Speed);
     }
     
     public void GetAttackBonus(int _bonus)
     {
-        damageBonus += _bonus;
+        DamageBonus += _bonus;
     }
     
     public void Heal(int _healthRestored)
@@ -146,6 +150,6 @@ public class Unit : MonoBehaviour
             return;
         }
         
-        currentHp = Mathf.Clamp(currentHp + _healthRestored, 0, UnitTemplate.MaxHp);
+        currentHp = Mathf.Clamp(currentHp + _healthRestored, 0, UnitType.MaxHp);
     }
 }

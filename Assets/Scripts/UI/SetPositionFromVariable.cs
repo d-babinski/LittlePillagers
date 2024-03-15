@@ -11,5 +11,16 @@ public class SetPositionFromVariable : MonoBehaviour
 
         transform.position = _currentPos;
     }
+
+    public void SetPositionToIsland(Island _target)
+    {
+        Vector3 _currentPos = transform.position;
+
+        _currentPos.x = _target.transform.position.x;
+        _currentPos.y = _target.transform.position.y;
+
+        transform.position = _currentPos;
+        
+    }
 }
  

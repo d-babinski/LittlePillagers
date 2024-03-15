@@ -1,11 +1,20 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
-
 
 public class Game : MonoBehaviour
 {
-    public void StartNewGame()
+    [SerializeField] private LevelSettings levelSetup = null;
+    [SerializeField] private Level levelPrefab = null;
+
+    private Level currentLevel = null;
+
+    private void Start()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        StartLevel();
+    }
+
+    public void StartLevel()
+    {
+        currentLevel = Instantiate(levelPrefab);
+        currentLevel.LoadLevel(levelSetup);
     }
 }

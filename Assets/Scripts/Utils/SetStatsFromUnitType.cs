@@ -3,14 +3,13 @@ using UnityEngine;
 public class SetStatsFromUnitType : MonoBehaviour
 {
     [SerializeField] private UnitTypeVariable unitTypeVariable = null;
-    [SerializeField] private UnitTemplateDatabase database = null;
-
+    
     [SerializeField] private ResourcesVariable unitCost = null;
     [SerializeField] private IntVariable unitAttack = null;
     [SerializeField] private IntVariable unitSpeed = null;
 
     private UnitType lastUnitType = null;
-
+    
     private void Update()
     {
         if (lastUnitType == unitTypeVariable.Value)
@@ -29,10 +28,9 @@ public class SetStatsFromUnitType : MonoBehaviour
             return;
         }
 
-        UnitTemplate _template = database.GetTemplate(unitTypeVariable.Value);
+        UnitType _type = unitTypeVariable.Value;
 
-        unitAttack.Value = _template.MeleeDamage;
-        unitSpeed.Value = _template.Speed;
-        unitCost.Value = _template.BaseCost;
+        unitSpeed.Value = _type.Speed;
+        unitCost.Value = _type.BaseCost;
     }
 }

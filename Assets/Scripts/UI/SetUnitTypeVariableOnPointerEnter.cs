@@ -3,11 +3,11 @@ using UnityEngine.EventSystems;
 
 public class SetUnitTypeVariableOnPointerEnter : MonoBehaviour, IPointerEnterHandler
 {
-    [SerializeField] private UnitTypeVariable dataOutput;
-    [SerializeField] private UnitType unitTypeSet;
+    [SerializeField] private UnitTypeVariable dataOutput = null;
+    [SerializeField] private UnitTypeVariable unitTypeToSet = null;
 
     public void OnPointerEnter(PointerEventData _eventData)
     {
-        dataOutput.Value = unitTypeSet;
+        dataOutput.Value = unitTypeToSet.Value;
     }
 }
