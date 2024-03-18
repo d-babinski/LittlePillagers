@@ -4,7 +4,7 @@ using UnityEngine.Serialization;
 public abstract class Skill : ScriptableObject
 {
     [Header("Gameplay settings")]
-    public PlayerState SkillAvailabilityDuringGameplayPhases = PlayerState.Preparation;
+    public PlayerCombatState SkillAvailabilityDuringGameplayPhases = PlayerCombatState.Preparation;
     [FormerlySerializedAs("Skillshot")] public bool IsSkillshot = false;
 
     [Header("Info")]
@@ -19,8 +19,8 @@ public abstract class Skill : ScriptableObject
 
     public abstract void UseSkill(Vector2 _target);
 
-    public bool IsUsableDuringPhase(PlayerState _state)
+    public bool IsUsableDuringPhase(PlayerCombatState _combatState)
     {
-        return SkillAvailabilityDuringGameplayPhases.HasFlag(_state);
+        return SkillAvailabilityDuringGameplayPhases.HasFlag(_combatState);
     }
 }

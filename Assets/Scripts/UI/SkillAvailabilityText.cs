@@ -23,13 +23,13 @@ public class SkillAvailabilityText : MonoBehaviour
     {
         switch (_skill.SkillAvailabilityDuringGameplayPhases)
         {
-            case PlayerState.Preparation | PlayerState.Combat:
+            case PlayerCombatState.Preparation | PlayerCombatState.Combat:
                 _text.text = "Anytime";
                 break;
-            case PlayerState.Preparation:
+            case PlayerCombatState.Preparation:
                 _text.text = "Preparation stage only";
                 break;
-            case PlayerState.Combat:
+            case PlayerCombatState.Combat:
                 _text.text = "Combat only";
                 break;
             case 0:

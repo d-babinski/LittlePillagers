@@ -15,7 +15,7 @@ public class SkillUI : MonoBehaviour
     private void Update()
     {
         bool _canAfford = playerResources.Value.Gold >= assignedSkill.Value.GoldCost;
-        bool _shouldBeInteractable = _canAfford && assignedSkill.Value.IsUsableDuringPhase(playerStateVariable.CurrentState);
+        bool _shouldBeInteractable = _canAfford && assignedSkill.Value.IsUsableDuringPhase(playerStateVariable.CombatState);
 
         if (_shouldBeInteractable != interactable)
         {

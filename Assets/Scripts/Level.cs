@@ -13,23 +13,14 @@ public class Level : MonoBehaviour
         BeatAllStages = 0,
     }
 
-    
-    public enum ZoomState
-    {
-        Unzoomed = 0,
-        Zooomed = 1,
-    }
-    
-
-    
     public WinCondition VictoryCondition = WinCondition.BeatAllStages;
 
     [SerializeField] private IslandScriptableEvent zoomToIslandEvent = null;
     [SerializeField] private SimpleScriptableEvent unzoomFromIslandEvent = null;
     
     [SerializeField] private Transform[] spawnPoints = null;
+    [SerializeField] private ZoomStateVariable zoomStateVariable = null;
 
-    private ZoomState currentZoomState = ZoomState.Unzoomed;
     
     [Header("Islands")]
     public IslandRuntimeSet IslandRuntimeSet = null;
@@ -56,23 +47,23 @@ public class Level : MonoBehaviour
 
     public void TryZoomingToisland(Island _target)
     {
-        if (currentZoomState != ZoomState.Unzoomed)
+        if (zoomStateVariable.IsZoomed == true)
         {
             return;
         }
 
-        currentZoomState = ZoomState.Zooomed;
+        zoomStateVariable.ChangeStateToZoomIn(_target.transform.position);
         zoomToIslandEvent.Raise(_target);
     }
 
     public void TryUnzooming()
     {
-        if (currentZoomState != ZoomState.Zooomed)
+        if (zoomStateVariable.IsZoomed == false)
         {
             return;
         }
 
-        currentZoomState = ZoomState.Unzoomed;
+        zoomStateVariable.ChangeStateToUnzoom();
         unzoomFromIslandEvent.Raise();
     }
     

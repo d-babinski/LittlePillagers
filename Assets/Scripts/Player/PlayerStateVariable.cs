@@ -6,13 +6,24 @@ public class PlayerStateVariable : ScriptableObject
 {
     public Action StateChanged = null;
 
-    public PlayerState CurrentState => currentState;
+    public PlayerCombatState CombatState => combatState;
+    public PlayerTargetState TargetState => CurrentTarget == null ? PlayerTargetState.NotChosen : PlayerTargetState.Chosen;
     
-    private PlayerState currentState = PlayerState.Preparation;
+    public Island CurrentTarget => currentTarget;
 
-    public void ChangeState(PlayerState _newState)
+    [NonSerialized] private PlayerCombatState combatState = PlayerCombatState.Preparation;
+    [NonSerialized] private Island currentTarget = null;
+
+    public void ChangeCombatState(PlayerCombatState _newCombatState)
     {
+        combatState = _newCombatState;
         StateChanged?.Invoke();
-        currentState = _newState;
+    }
+
+    public void ChangeTarget(Island _newTarget)
+    {
+        currentTarget = _newTarget;
+        StateChanged?.Invoke();
     }
 }
+

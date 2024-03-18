@@ -10,13 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 8022367197195754922}
   - component: {fileID: 6650083545807347669}
-  - component: {fileID: 8893935278661539986}
-  - component: {fileID: 489183162017866239}
-  - component: {fileID: 516156773002540108}
-  - component: {fileID: 5157015218112290764}
-  - component: {fileID: 514622937637575242}
+  - component: {fileID: 3954160999623342621}
   m_Layer: 0
-  m_Name: GUI
+  m_Name: Prefab_GUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -53,10 +49,12 @@ MonoBehaviour:
   CancelTargetButtonClicked: {fileID: 11400000, guid: e0e08953fd9b1e94095970735cda50c2, type: 2}
   ZoomToIslandButtonClicked: {fileID: 11400000, guid: 4ca2167ce95d62349a08d0590b4ae746, type: 2}
   UnzoomButtonClicked: {fileID: 11400000, guid: e29d738a2f8e7eb44b873b136104536b, type: 2}
+  playerStateVariable: {fileID: 11400000, guid: 7ba7d5f2c832ecb46b9a57906b5c571b, type: 2}
+  zoomStateVariable: {fileID: 11400000, guid: 5fa32c2527fc1104886030a926ad219d, type: 2}
   IslandNameplateSetup: {fileID: 11400000, guid: fa0cb4b385784fb45a08a4c289ec9445, type: 2}
   ContextButtonSetup: {fileID: 11400000, guid: 687ff6e301f42c44686f81452fb0a682, type: 2}
   IslandRuntimeSet: {fileID: 11400000, guid: 0ce93c0f89a12e440a1e2fda6fb16e0e, type: 2}
---- !u!114 &8893935278661539986
+--- !u!114 &3954160999623342621
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -77,126 +75,6 @@ MonoBehaviour:
       - m_Target: {fileID: 6650083545807347669}
         m_TargetAssemblyTypeName: GUI, Assembly-CSharp
         m_MethodName: SpawnGUI
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &489183162017866239
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2903216599441977420}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2792087f1580db44bace202bb754dfb3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  scriptableEvent: {fileID: 0}
-  scriptableEvents:
-  - {fileID: 11400000, guid: 8cc25200603bc2841ab93eb2bbb65f7b, type: 2}
-  onRaised:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 6650083545807347669}
-        m_TargetAssemblyTypeName: GUI, Assembly-CSharp
-        m_MethodName: OnIslandChosenAsTarget
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &516156773002540108
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2903216599441977420}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2300d56ac22446e59de6de2fb87235d1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  scriptableEvent: {fileID: 0}
-  scriptableEvents:
-  - {fileID: 11400000, guid: c90fc3163ae8d764384c0813c939763d, type: 2}
-  onRaised:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 6650083545807347669}
-        m_TargetAssemblyTypeName: GUI, Assembly-CSharp
-        m_MethodName: OnTargetCanceled
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &5157015218112290764
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2903216599441977420}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2792087f1580db44bace202bb754dfb3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  scriptableEvent: {fileID: 0}
-  scriptableEvents:
-  - {fileID: 11400000, guid: 0ec682b9918ce1045afbfc4258e1deae, type: 2}
-  onRaised:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 6650083545807347669}
-        m_TargetAssemblyTypeName: GUI, Assembly-CSharp
-        m_MethodName: OnIslandZoomed
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &514622937637575242
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2903216599441977420}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2300d56ac22446e59de6de2fb87235d1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  scriptableEvent: {fileID: 0}
-  scriptableEvents:
-  - {fileID: 11400000, guid: 492a3ccf62b049840a6045b486a5b808, type: 2}
-  onRaised:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 6650083545807347669}
-        m_TargetAssemblyTypeName: GUI, Assembly-CSharp
-        m_MethodName: OnIslandUnzoomed
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -385,6 +263,7 @@ MonoBehaviour:
   - {fileID: 2746182904660655845}
   - {fileID: 1647939782406211560}
   - {fileID: 6349608652749814337}
+  zoomStateVariable: {fileID: 11400000, guid: 5fa32c2527fc1104886030a926ad219d, type: 2}
   IslandRuntimeSet: {fileID: 11400000, guid: 0ce93c0f89a12e440a1e2fda6fb16e0e, type: 2}
   IslandPrefab: {fileID: 2477834144564853653, guid: 9d37bd241eabe1c4c9195363e38e962b, type: 3}
   Player: {fileID: 8485389021523399074}

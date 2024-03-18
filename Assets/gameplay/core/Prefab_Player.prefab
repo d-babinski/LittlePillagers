@@ -109,6 +109,7 @@ GameObject:
   - component: {fileID: 7938060898926300424}
   - component: {fileID: 2484150895242573293}
   - component: {fileID: 5498539457790021321}
+  - component: {fileID: 8900410036557154236}
   m_Layer: 0
   m_Name: Prefab_Player
   m_TagString: Untagged
@@ -149,6 +150,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetChosenEvent: {fileID: 11400000, guid: 8cc25200603bc2841ab93eb2bbb65f7b, type: 2}
   targetCanceledEvent: {fileID: 11400000, guid: c90fc3163ae8d764384c0813c939763d, type: 2}
+  onEmbarkEvent: {fileID: 11400000, guid: 355c6b6060477914cb0fa0c0b8a7aef7, type: 2}
   playerStateVariable: {fileID: 11400000, guid: 7ba7d5f2c832ecb46b9a57906b5c571b, type: 2}
   playerResources: {fileID: 11400000, guid: 81d6fbafbe935e34d9c00ce382606d25, type: 2}
   army: {fileID: 11400000, guid: 3c639a55ef76dd6408deba32718a496a, type: 2}
@@ -293,6 +295,36 @@ MonoBehaviour:
       - m_Target: {fileID: 7233342774023361148}
         m_TargetAssemblyTypeName: Player, Assembly-CSharp
         m_MethodName: TryCancelingCurrentTarget
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &8900410036557154236
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4093113484866750873}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2300d56ac22446e59de6de2fb87235d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scriptableEvent: {fileID: 0}
+  scriptableEvents:
+  - {fileID: 11400000, guid: b1fbfeb83195ab040b6466663bd87e45, type: 2}
+  onRaised:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7233342774023361148}
+        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+        m_MethodName: OnEmbarkPressed
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -648,6 +680,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cd48345a9ae80646a463be58ac13520, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  splineFollower: {fileID: 990381306118166286}
 --- !u!212 &5318964030749338675
 SpriteRenderer:
   m_ObjectHideFlags: 0

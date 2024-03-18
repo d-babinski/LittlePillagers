@@ -6,13 +6,12 @@ public class Player : MonoBehaviour
 {
     [SerializeField] private IslandScriptableEvent targetChosenEvent = null;
     [SerializeField] private SimpleScriptableEvent targetCanceledEvent = null;
+    [SerializeField] private SimpleScriptableEvent onEmbarkEvent = null;
     
     [SerializeField] private PlayerStateVariable playerStateVariable = null;
     [SerializeField] private ResourcesVariable playerResources = null;
     [SerializeField] private Army army = null;
 
-    private Island attackTarget = null;
-    
     public void AddResources(Resources _res)
     {
         playerResources.Value += _res;
@@ -38,33 +37,33 @@ public class Player : MonoBehaviour
 
     public void OnEmbarkPressed()
     {
-        if (attackTarget == null || playerStateVariable.CurrentState == PlayerState.Combat)
+        if (playerStateVariable.CurrentTarget == null || playerStateVariable.CombatState == PlayerCombatState.Combat)
         {
             return;
         }
         
-        playerStateVariable.ChangeState(PlayerState.Combat);
+        playerStateVariable.ChangeCombatState(PlayerCombatState.Combat);
     }
     
     public void TryChoosingNewTarget(Island _target)
     {
-        if (attackTarget != null)
+        if (playerStateVariable.CurrentTarget != null)
         {
             return;
         }
 
-        attackTarget = _target;
-        targetChosenEvent.Raise(attackTarget);
+        playerStateVariable.ChangeTarget(_target);
+        targetChosenEvent.Raise(playerStateVariable.CurrentTarget);
     }
 
     public void TryCancelingCurrentTarget()
     {
-        if (attackTarget == null)
+        if (playerStateVariable.CurrentTarget == null)
         {
             return;
         }
 
-        attackTarget = null;
+        playerStateVariable.ChangeTarget(null);
         targetCanceledEvent.Raise();
     }
 }

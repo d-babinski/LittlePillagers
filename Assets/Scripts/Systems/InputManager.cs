@@ -13,11 +13,40 @@ public class InputManager : MonoBehaviour
     public UnityEvent OnFirstSkillPressed = null;
     public UnityEvent OnSecondSkillPressed = null;
     public UnityEvent OnThirdSkillPressed = null;
-    
-    
+
     private void Awake()
     {
         availableActions = new InputActions();
+    }
+
+    public bool PausePressed()
+    {
+        return availableActions.Player.Pause.triggered;
+    }
+
+    public bool SelectPressed()
+    {
+        return availableActions.Player.Select.triggered;
+    }
+
+    public bool CancelSkillPressed()
+    {
+        return availableActions.Player.CancelSkill.triggered;
+    }
+
+    public bool FirstSkillPressed()
+    {
+        return availableActions.Player.FirstSkill.triggered;
+    }
+
+    public bool SecondSkillPressed()
+    {
+        return availableActions.Player.SecondSkill.triggered;
+    }
+
+    public bool ThirdSkillPressed()
+    {
+        return availableActions.Player.ThirdSkill.triggered;
     }
     
     private void Update()

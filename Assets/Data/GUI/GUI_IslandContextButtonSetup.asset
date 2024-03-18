@@ -12,17 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd2f02483256458eaa8bf928fcbafce2, type: 3}
   m_Name: GUI_IslandContextButtonSetup
   m_EditorClassIdentifier: 
-  IslandContextActions:
-  - ActionId: 0
+  IslandContextButtonsData:
+  - IslandContextAction: 0
     ButtonSprite: {fileID: 3048688960054464508, guid: f3a2d291262b6ac4e992018ae493dcd3, type: 3}
     LocalPosition: {x: 0, y: 1.5}
-  - ActionId: 1
+  - IslandContextAction: 1
     ButtonSprite: {fileID: -5213338508360619225, guid: dc85fa6d3675d09418384bea1fedc187, type: 3}
     LocalPosition: {x: 0, y: 1.5}
-  - ActionId: 2
+  - IslandContextAction: 2
     ButtonSprite: {fileID: -5097424476372606053, guid: 2143d7c73b77b5a44b8926fd1d076c69, type: 3}
     LocalPosition: {x: 3, y: 1.5}
-  - ActionId: 3
+  - IslandContextAction: 3
     ButtonSprite: {fileID: -3245206532512402284, guid: b7953c95f6f674e4998e123e8a19380d, type: 3}
     LocalPosition: {x: 3, y: 1.5}
   ContextButtonPrefab: {fileID: 4542844705477165489, guid: 8384d062a678bc0459982227dbfff4cb, type: 3}

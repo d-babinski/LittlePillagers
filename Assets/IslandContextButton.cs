@@ -1,12 +1,13 @@
  using ScriptableEvents.Events;
 using System;
 using UnityEngine;
+ using UnityEngine.Serialization;
 
-[RequireComponent(typeof(PointerEvents))]
+ [RequireComponent(typeof(PointerEvents))]
 public class IslandContextButton : MonoBehaviour
 {
-    public event Action<int, Island> OnActionClicked = null;
-    public int ActionId = -1;
+    public event Action<IslandContextAction, Island> OnActionClicked = null;
+    public IslandContextAction Action = IslandContextAction.None;
     
     [SerializeField] private Island trackedIsland = null;
     
@@ -39,6 +40,6 @@ public class IslandContextButton : MonoBehaviour
     
     private void sendEvent()
     {
-        OnActionClicked?.Invoke(ActionId, trackedIsland);
+        OnActionClicked?.Invoke(Action, trackedIsland);
     }
 }
