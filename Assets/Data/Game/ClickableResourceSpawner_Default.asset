@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f0a879e6aa221543a93312292bb26ea, type: 3}
+  m_Name: ClickableResourceSpawner_Default
+  m_EditorClassIdentifier: 
+  minDistance: 1.85
+  maxDistance: 2.25
+  spawnPositionOffset: {x: 1.5, y: 1.2}
+  woodPrefab: {fileID: 1176714021158140244, guid: 7325957e50cfd3d49bda28db99302940, type: 3}
+  wheatPrefab: {fileID: 4371165482289092497, guid: 18cf7644feca0a04ab6467ccbdccb6fb, type: 3}
+  metalPrefab: {fileID: 1176714021158140244, guid: 06d36dcab55359b43b3abe53364bb122, type: 3}
+  goldPrefab: {fileID: 1176714021158140244, guid: c9316a77c6b90a94894f20d43987543c, type: 3}

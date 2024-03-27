@@ -15,9 +15,8 @@ MonoBehaviour:
   MinRange: 0
   MaxRange: 0.0625
   AnimationName: Melee
-  Damage: 0
+  Power: 2
   Cooldown: 0
-  LastUsed: -9999
   targetingSystem: {fileID: 11400000, guid: 76ce8ff6d6bfefc469f5192c7e5c9488, type: 2}
   duration: 1
   attackRadius: 0.03125

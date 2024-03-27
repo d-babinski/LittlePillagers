@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Island_dark
   m_EditorClassIdentifier: 
   IslandName: Darkborg
-  IslandSprite: {fileID: 2159352701540689538, guid: ac563da1bda3b104390eba611461c6a0, type: 3}
+  IslandSprite: {fileID: 5188007933528004315, guid: 2ceb93a0601610a488d07657173195a0, type: 3}
   Stages:
   - {fileID: 11400000, guid: bd9afa7c465920a4f8c10d5fcb0acea9, type: 2}
   - {fileID: 11400000, guid: 7377d390f350fd049ac95429f333233d, type: 2}

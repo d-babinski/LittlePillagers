@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7262631523925121320}
   - component: {fileID: 7460833891393808607}
   m_Layer: 0
-  m_Name: AISpawnArea
+  m_Name: DefenderSpawnArea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 865635095380651356}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.801, y: 0.28699994, z: 0}
+  m_LocalPosition: {x: 1.484, y: 0.28699994, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -77,56 +77,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.3943211, y: 0.84724367}
   m_EdgeRadius: 0
---- !u!1 &3380474092526948819
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2155372673176964793}
-  - component: {fileID: 1102189133523826458}
-  m_Layer: 0
-  m_Name: ResourceSpawner
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2155372673176964793
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3380474092526948819}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.599, y: 0.742, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 3175389426486117822}
-  m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1102189133523826458
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3380474092526948819}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f0a879e6aa221543a93312292bb26ea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  minDistance: 1.85
-  maxDistance: 2.25
-  woodPrefab: {fileID: 1176714021158140244, guid: 7325957e50cfd3d49bda28db99302940, type: 3}
-  wheatPrefab: {fileID: 4371165482289092497, guid: 18cf7644feca0a04ab6467ccbdccb6fb, type: 3}
-  metalPrefab: {fileID: 1176714021158140244, guid: 06d36dcab55359b43b3abe53364bb122, type: 3}
-  goldPrefab: {fileID: 1176714021158140244, guid: c9316a77c6b90a94894f20d43987543c, type: 3}
 --- !u!1 &3744469982295583945
 GameObject:
   m_ObjectHideFlags: 0
@@ -138,7 +88,7 @@ GameObject:
   - component: {fileID: 1124761323893975952}
   - component: {fileID: 6006661221591206930}
   m_Layer: 0
-  m_Name: PlayerSpawnArea
+  m_Name: AttackerSpawnArea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -152,7 +102,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3744469982295583945}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.073, y: 0.211, z: 0}
+  m_LocalPosition: {x: 0.61, y: 0.211, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -288,37 +238,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &4963196027089869063
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4914780257078775093}
-  m_Layer: 0
-  m_Name: zoom_target
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &4914780257078775093
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4963196027089869063}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.632, y: 0.434, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 3175389426486117822}
-  m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8778665906491650746
 GameObject:
   m_ObjectHideFlags: 0
@@ -329,7 +248,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3175389426486117822}
   - component: {fileID: 2477834144564853653}
-  - component: {fileID: 8359710435508224556}
+  - component: {fileID: 3572361735306650077}
   m_Layer: 0
   m_Name: Prefab_Island
   m_TagString: Untagged
@@ -350,10 +269,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4611154372667569074}
-  - {fileID: 2155372673176964793}
   - {fileID: 7262631523925121320}
   - {fileID: 1124761323893975952}
-  - {fileID: 4914780257078775093}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -369,72 +286,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d8b6c7338010b848b9415ceeb2a30c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerSpawnArea: {fileID: 6006661221591206930}
-  AISpawnArea: {fileID: 7460833891393808607}
-  IslandName: 
-  IslandVisuals: {fileID: 4611154372667569073}
-  stages:
-  - {fileID: 11400000, guid: 7d4306585a4696843827676dc25c7582, type: 2}
-  - {fileID: 11400000, guid: 7d4306585a4696843827676dc25c7582, type: 2}
-  - {fileID: 11400000, guid: 7d4306585a4696843827676dc25c7582, type: 2}
-  ResourcesLooted:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1102189133523826458}
-        m_TargetAssemblyTypeName: ResourceSpawner, Assembly-CSharp
-        m_MethodName: SpawnResources
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  StageBeatenActions:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: StageIcons, Assembly-CSharp
-        m_MethodName: OnStageBeaten
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  OnAllStagesBeatenActions:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &8359710435508224556
+  islandSpriteRenderer: {fileID: 4611154372667569073}
+--- !u!114 &3572361735306650077
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -443,7 +296,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 8778665906491650746}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc10a17de77f4b519b345543a79695ff, type: 3}
+  m_Script: {fileID: 11500000, guid: b1d0e658e153f1a4aa9aa31dd84ea12e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RuntimeSet: {fileID: 11400000, guid: 0ce93c0f89a12e440a1e2fda6fb16e0e, type: 2}
+  attackerSpawnArea: {fileID: 6006661221591206930}
+  defenderSpawnArea: {fileID: 7460833891393808607}

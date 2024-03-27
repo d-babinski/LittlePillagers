@@ -1,11 +1,9 @@
 using UnityEngine;
-using UnityEngine.Events;
 
 public class SkillUI : MonoBehaviour
 {
     [SerializeField] private PlayerStateVariable playerStateVariable = null;
-    [SerializeField] private PlayerSkillCaster skillCaster = null;
-    [SerializeField] private UnityEvent<Skill> skillUsedActions = null;
+    [SerializeField] private PlayerSkillCaster playerSkillCaster = null;
     [SerializeField] private SkillVariable assignedSkill = null;
     [SerializeField] private ResourcesVariable playerResources = null;
     [SerializeField] private CanvasGroup buttonCanvasGroup = null;
@@ -31,7 +29,7 @@ public class SkillUI : MonoBehaviour
             return;
         }
         
-        skillUsedActions?.Invoke(assignedSkill.Value);
+        playerSkillCaster.CastSkill(assignedSkill.Value);
     }
 
     private void applyVisuals(bool _isInteractable)

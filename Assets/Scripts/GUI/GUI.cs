@@ -16,7 +16,8 @@ public class GUI : MonoBehaviour
     public IslandNameplateSetup IslandNameplateSetup = null;
     [FormerlySerializedAs("ContextButtons")] public IslandContextButtonSetup ContextButtonSetup = null;
     public IslandRuntimeSet IslandRuntimeSet = null;
-
+    [SerializeField] private IslandStageIcon stageIconPrefab = null;
+    
     private Dictionary<Island, IslandContextButton[]> islandContextButtons = new();
 
     public void SpawnGUI()
@@ -24,6 +25,7 @@ public class GUI : MonoBehaviour
         SpawnIslandContextButtons(IslandRuntimeSet.Items);
         SubscribeToContextButtonEvents();
         SpawnIslandNameplates(IslandRuntimeSet.Items);
+        SpawnStageIcons(IslandRuntimeSet.Items);
     }
     
     private void SpawnIslandNameplates(List<Island> _islands)
@@ -65,6 +67,19 @@ public class GUI : MonoBehaviour
         }
     }
 
+    public void SpawnStageIcons(List<Island> _islands)
+    {
+        _islands.ForEach(_island =>
+        {
+            int _iconsToSpawn = _island.TotalStageCount;
+
+            for (int i = 0; i < _iconsToSpawn; i++)
+            {
+                Instantiate(stageIconPrefab).Initialize(_island, i);
+            }
+        });
+    }
+
     public void SpawnIslandContextButtons(List<Island> _islands)
     {
         _islands.ForEach(_island =>
@@ -102,15 +117,15 @@ public class GUI : MonoBehaviour
 
     public void AddPlayerStateDependancyToButton(IslandContextButton _button, PlayerStateVariable _playerState)
     {
-        PlayerStateDependancy _playerStateDependancy = _button.gameObject.AddComponent<PlayerStateDependancy>();
+        PlayerStateDependency _playerStateDependency = _button.gameObject.AddComponent<PlayerStateDependency>();
         PlayerCombatState _combatStateDependancy = PlayerCombatState.Preparation;
         PlayerTargetState _targetStateDependancy = _button.Action == IslandContextAction.Attack ? PlayerTargetState.NotChosen : PlayerTargetState.Chosen;
         
-        _playerStateDependancy.SetStateDependancy(_button.gameObject, _playerState,_combatStateDependancy,_targetStateDependancy);
+        _playerStateDependency.SetStateDependancy(_button.gameObject, _playerState,_combatStateDependancy,_targetStateDependancy);
 
         if (_button.Action == IslandContextAction.CancelAttack)
         {
-            _playerStateDependancy.SetTargetRequirement(true,_button.GetContext());
+            _playerStateDependency.SetTargetRequirement(true,_button.GetContext());
         }
     }
 }

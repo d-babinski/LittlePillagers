@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9dc6eb7aedb22bf43b434b40b2bff834, type: 3}
+  m_Name: Team_Enemy
+  m_EditorClassIdentifier: 
+  UnitLayer: 7
+  EnemyUnitMask: {fileID: 11400000, guid: a8a44a506385d214f90c5f3f08d41ee7, type: 2}
+  AllyUnitMask: {fileID: 11400000, guid: d848682d9f219284aa0048c9352606d7, type: 2}

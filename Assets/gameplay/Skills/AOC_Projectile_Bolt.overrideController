@@ -9,5 +9,5 @@ AnimatorOverrideController:
   m_Name: AOC_Projectile_Bolt
   m_Controller: {fileID: 9100000, guid: 425765b032d9fcc4fa04c29a7dd70e3b, type: 2}
   m_Clips:
-  - m_OriginalClip: {fileID: 7628303475628476185, guid: 22df144ef29b2c94586c5b45a706e663, type: 3}
-    m_OverrideClip: {fileID: -4342982659947379759, guid: e820b0010f5842342a7691637f61df27, type: 3}
+  - m_OriginalClip: {fileID: -6457636121369470638, guid: 22df144ef29b2c94586c5b45a706e663, type: 3}
+    m_OverrideClip: {fileID: 3964606970007756699, guid: e820b0010f5842342a7691637f61df27, type: 3}

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿
+using UnityEngine;
 
 [CreateAssetMenu(menuName = "Attacks/SimpleMelee")]
 public class MeleeAttack : Attack
@@ -7,7 +8,7 @@ public class MeleeAttack : Attack
     [SerializeField] private float attackDistance = 0.2f;
     [SerializeField] private float attackNormalizedTime = 0.5f;
     
-    public override float MakeAttack(float _normalizedTime, LayerMask _enemyMask, Vector3 _currentPos, Vector3 _target, int _damage)
+    public override float MakeAttack(float _normalizedTime, LayerMask _enemyMask, Vector3 _currentPos, Vector3 _target, int _bonusPower)
     {
         float _newTime = _normalizedTime + Time.deltaTime/duration;
         
@@ -20,7 +21,7 @@ public class MeleeAttack : Attack
             {
                 if (_raycastHit2D.collider.TryGetComponent(out Damageable _damageable))
                 {
-                    _damageable.GetDamaged(_damage);
+                    _damageable.GetDamaged(Power + _bonusPower);
                 }
             }
         }

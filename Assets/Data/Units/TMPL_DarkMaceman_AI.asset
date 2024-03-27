@@ -13,11 +13,9 @@ MonoBehaviour:
   m_Name: TMPL_DarkMaceman_AI
   m_EditorClassIdentifier: 
   PreviewIcon: {fileID: 0}
-  InGameSprite: {fileID: -2939644261533316910, guid: caea308c944094a469aa8d7d4b9ea2f2, type: 3}
+  InGameSprite: {fileID: -477801000945638682, guid: caea308c944094a469aa8d7d4b9ea2f2, type: 3}
   Animator: {fileID: 22100000, guid: d26e1f15fa728fe489a40e4b86b7f826, type: 2}
-  InstanceBuilder: {fileID: 11400000, guid: 473e161c72e397744b5e6f8b0adc81e2, type: 2}
-  UnitName: 
-  TypeOfUnit: {fileID: 11400000, guid: 905ea7be7c388384ca3fd15c5d0ce241, type: 2}
+  UnitName: Dark Macer
   BaseCost:
     Wood: 0
     Wheat: 0
@@ -25,10 +23,5 @@ MonoBehaviour:
     Gold: 0
   Speed: 3
   MaxHp: 35
-  MeleeAttack: {fileID: 11400000, guid: c6c87968d6ee8c247ae762d7a5fee818, type: 2}
-  MeleeDamage: 2
-  RangedAttack: {fileID: 0}
-  RangedDamage: 3
-  SpecialAttack: {fileID: 0}
-  SpecialDamage: 3
-  SpecialAttCooldown: 10
+  Attacks:
+  - {fileID: 11400000, guid: f191bbd5644c02a4890bddb2d8521359, type: 2}

@@ -9,13 +9,7 @@ AnimatorOverrideController:
   m_Name: AOC_DarkSoldier_AI
   m_Controller: {fileID: 9100000, guid: 27e101850b1f0734badfbca0a28d8caa, type: 2}
   m_Clips:
-  - m_OriginalClip: {fileID: -814206915429012191, guid: d1a3a469e68594c4982ff128853b385a, type: 3}
-    m_OverrideClip: {fileID: 896621938153815841, guid: 027312454a149fb4fb2ff7212b48b4f0, type: 3}
-  - m_OriginalClip: {fileID: -4986958480193616432, guid: d1a3a469e68594c4982ff128853b385a, type: 3}
-    m_OverrideClip: {fileID: 8644791933153735727, guid: 027312454a149fb4fb2ff7212b48b4f0, type: 3}
-  - m_OriginalClip: {fileID: -6496188830321227, guid: d1a3a469e68594c4982ff128853b385a, type: 3}
-    m_OverrideClip: {fileID: 8480175844649255585, guid: 027312454a149fb4fb2ff7212b48b4f0, type: 3}
-  - m_OriginalClip: {fileID: -551017566392233136, guid: d1a3a469e68594c4982ff128853b385a, type: 3}
-    m_OverrideClip: {fileID: -4335127972617689760, guid: 027312454a149fb4fb2ff7212b48b4f0, type: 3}
-  - m_OriginalClip: {fileID: 4060801288315299368, guid: d1a3a469e68594c4982ff128853b385a, type: 3}
-    m_OverrideClip: {fileID: 942873223902315925, guid: 027312454a149fb4fb2ff7212b48b4f0, type: 3}
+  - m_OriginalClip: {fileID: 7400000, guid: 02703d3efeef7e1428658ed65b4e2230, type: 2}
+    m_OverrideClip: {fileID: -2242344180645972969, guid: 525ff100a39a7a14a826dbf1c9808e16, type: 3}
+  - m_OriginalClip: {fileID: 5326958714287721145, guid: d1a3a469e68594c4982ff128853b385a, type: 3}
+    m_OverrideClip: {fileID: -2242344180645972969, guid: 525ff100a39a7a14a826dbf1c9808e16, type: 3}

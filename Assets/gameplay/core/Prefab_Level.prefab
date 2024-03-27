@@ -54,6 +54,7 @@ MonoBehaviour:
   IslandNameplateSetup: {fileID: 11400000, guid: fa0cb4b385784fb45a08a4c289ec9445, type: 2}
   ContextButtonSetup: {fileID: 11400000, guid: 687ff6e301f42c44686f81452fb0a682, type: 2}
   IslandRuntimeSet: {fileID: 11400000, guid: 0ce93c0f89a12e440a1e2fda6fb16e0e, type: 2}
+  stageIconPrefab: {fileID: 1382489870668227961, guid: 6f99613775aabde4888c6b759563a7e8, type: 3}
 --- !u!114 &3954160999623342621
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -134,7 +135,7 @@ MonoBehaviour:
   initialUnits:
   - Type: {fileID: 11400000, guid: 2b97ef2cc8f0e674d8315895dc3cd231, type: 2}
     Count: 1
-  - Type: {fileID: 11400000, guid: 022eb12e455caef41a2e58255897e8c8, type: 2}
+  - Type: {fileID: 11400000, guid: 9cdb9c66c1b7c85499bade3b35333a94, type: 2}
     Count: 1
   - Type: {fileID: 11400000, guid: fbef3ba5db236de43bfa395876895be4, type: 2}
     Count: 1
@@ -264,6 +265,8 @@ MonoBehaviour:
   - {fileID: 1647939782406211560}
   - {fileID: 6349608652749814337}
   zoomStateVariable: {fileID: 11400000, guid: 5fa32c2527fc1104886030a926ad219d, type: 2}
+  unitSpawner: {fileID: 11400000, guid: e2d9008c9695aa444b28533376f5e232, type: 2}
+  islandPathScriptable: {fileID: 11400000, guid: ce511191e3a22b44eb4f0754122c768d, type: 2}
   IslandRuntimeSet: {fileID: 11400000, guid: 0ce93c0f89a12e440a1e2fda6fb16e0e, type: 2}
   IslandPrefab: {fileID: 2477834144564853653, guid: 9d37bd241eabe1c4c9195363e38e962b, type: 3}
   Player: {fileID: 8485389021523399074}
@@ -568,7 +571,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: gui_skill_indicator
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6363348407722395989, guid: 3d3387b5f4c4d1e439e195804e206ed2, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

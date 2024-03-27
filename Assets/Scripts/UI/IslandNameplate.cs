@@ -9,7 +9,7 @@ public class IslandNameplate : MonoBehaviour
     public void SetContext(Island _context)
     {
         trackedIsland = _context;
-        textComponent.text = _context.IslandName;
+        textComponent.text = _context.IslandType.IslandName;
     }
 
     public Island GetContext()

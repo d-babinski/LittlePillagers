@@ -13,11 +13,9 @@ MonoBehaviour:
   m_Name: TMPL_Lizard_AI
   m_EditorClassIdentifier: 
   PreviewIcon: {fileID: 0}
-  InGameSprite: {fileID: -5875709770775173925, guid: 063ee50a4eef6e9468797b3373dde3eb, type: 3}
+  InGameSprite: {fileID: -3456658816382196189, guid: 063ee50a4eef6e9468797b3373dde3eb, type: 3}
   Animator: {fileID: 22100000, guid: ebfe95b348ca48b4b9daaf490d846aad, type: 2}
-  InstanceBuilder: {fileID: 11400000, guid: 473e161c72e397744b5e6f8b0adc81e2, type: 2}
-  UnitName: 
-  TypeOfUnit: {fileID: 11400000, guid: 25cde492ec7a32e47bef2f4c4eb010c3, type: 2}
+  UnitName: Lizard
   BaseCost:
     Wood: 0
     Wheat: 0
@@ -25,10 +23,6 @@ MonoBehaviour:
     Gold: 0
   Speed: 2
   MaxHp: 250
-  MeleeAttack: {fileID: 11400000, guid: 1c1dd928fbaa22a43a8e08e9d74d1544, type: 2}
-  MeleeDamage: 13
-  RangedAttack: {fileID: 0}
-  RangedDamage: 1
-  SpecialAttack: {fileID: 0}
-  SpecialDamage: 3
-  SpecialAttCooldown: 10
+  Attacks:
+  - {fileID: 11400000, guid: 1c1dd928fbaa22a43a8e08e9d74d1544, type: 2}
+  - {fileID: 11400000, guid: ce7a9532ddf8bfa4d90ed41002c008d4, type: 2}

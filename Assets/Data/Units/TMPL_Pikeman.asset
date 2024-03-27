@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: TMPL_Pikeman
   m_EditorClassIdentifier: 
   PreviewIcon: {fileID: -4621868545372977378, guid: 8566fd31f52f23e4a9e7cf1d0f7dc1e2, type: 3}
-  InGameSprite: {fileID: 3390922906441872390, guid: d1a3a469e68594c4982ff128853b385a, type: 3}
+  InGameSprite: {fileID: 6036573367687385950, guid: d1a3a469e68594c4982ff128853b385a, type: 3}
   Animator: {fileID: 9100000, guid: 27e101850b1f0734badfbca0a28d8caa, type: 2}
-  UnitName: 
+  UnitName: Pikeman
   BaseCost:
     Wood: 50
     Wheat: 50

@@ -9,9 +9,9 @@ AnimatorOverrideController:
   m_Name: AOC_Clickable_Wood
   m_Controller: {fileID: 9100000, guid: 636033233fca39842a42f730aad45147, type: 2}
   m_Clips:
-  - m_OriginalClip: {fileID: -1726735736949516794, guid: fdd5071837140f4418ae660508c5feca, type: 3}
-    m_OverrideClip: {fileID: -3664313716687288592, guid: 24f80aad2bb5b514496a370e5f0f383b, type: 3}
-  - m_OriginalClip: {fileID: 8604141484919589136, guid: fdd5071837140f4418ae660508c5feca, type: 3}
-    m_OverrideClip: {fileID: 8130950798157517909, guid: 24f80aad2bb5b514496a370e5f0f383b, type: 3}
-  - m_OriginalClip: {fileID: -7279783630202354407, guid: fdd5071837140f4418ae660508c5feca, type: 3}
-    m_OverrideClip: {fileID: -7962836635795577965, guid: 24f80aad2bb5b514496a370e5f0f383b, type: 3}
+  - m_OriginalClip: {fileID: 2285823759163607970, guid: fdd5071837140f4418ae660508c5feca, type: 3}
+    m_OverrideClip: {fileID: 5303825064032007392, guid: 24f80aad2bb5b514496a370e5f0f383b, type: 3}
+  - m_OriginalClip: {fileID: -4694753034552437821, guid: fdd5071837140f4418ae660508c5feca, type: 3}
+    m_OverrideClip: {fileID: 5400268595284538106, guid: 24f80aad2bb5b514496a370e5f0f383b, type: 3}
+  - m_OriginalClip: {fileID: 7830187059833514812, guid: fdd5071837140f4418ae660508c5feca, type: 3}
+    m_OverrideClip: {fileID: 238636091771302388, guid: 24f80aad2bb5b514496a370e5f0f383b, type: 3}

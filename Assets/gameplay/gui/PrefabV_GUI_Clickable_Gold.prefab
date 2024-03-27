@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 615269868357685049, guid: 18cf7644feca0a04ab6467ccbdccb6fb, type: 3}
       propertyPath: m_Name
-      value: ClickableMetal
+      value: PrefabV_GUI_Clickable_Gold
       objectReference: {fileID: 0}
     - target: {fileID: 1478886811103988043, guid: 18cf7644feca0a04ab6467ccbdccb6fb, type: 3}
       propertyPath: m_RootOrder
@@ -59,7 +59,7 @@ PrefabInstance:
     - target: {fileID: 1946627927850057699, guid: 18cf7644feca0a04ab6467ccbdccb6fb, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 1161638767377313536, guid: ebcac1e139cfc6544820a3eb36f02d53, type: 3}
+      objectReference: {fileID: -7099109828902024079, guid: ebcac1e139cfc6544820a3eb36f02d53, type: 3}
     - target: {fileID: 6196013380986062370, guid: 18cf7644feca0a04ab6467ccbdccb6fb, type: 3}
       propertyPath: m_Controller
       value: 

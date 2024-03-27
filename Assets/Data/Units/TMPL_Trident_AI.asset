@@ -13,11 +13,9 @@ MonoBehaviour:
   m_Name: TMPL_Trident_AI
   m_EditorClassIdentifier: 
   PreviewIcon: {fileID: 0}
-  InGameSprite: {fileID: 3632947229715105102, guid: 09fcfa5243eabb1458367124cdb414ad, type: 3}
+  InGameSprite: {fileID: -8977974401132902575, guid: 09fcfa5243eabb1458367124cdb414ad, type: 3}
   Animator: {fileID: 22100000, guid: 5c4e4b763534c61499e1f5b85938723c, type: 2}
-  InstanceBuilder: {fileID: 11400000, guid: 473e161c72e397744b5e6f8b0adc81e2, type: 2}
-  UnitName: 
-  TypeOfUnit: {fileID: 11400000, guid: 4c60c41a1af5ddd4bb717292cb2154fd, type: 2}
+  UnitName: Trident
   BaseCost:
     Wood: 0
     Wheat: 0
@@ -25,10 +23,5 @@ MonoBehaviour:
     Gold: 0
   Speed: 3
   MaxHp: 40
-  MeleeAttack: {fileID: 11400000, guid: 1d2b0ede37081b44486730c3d85ee582, type: 2}
-  MeleeDamage: 4
-  RangedAttack: {fileID: 0}
-  RangedDamage: 1
-  SpecialAttack: {fileID: 0}
-  SpecialDamage: 3
-  SpecialAttCooldown: 10
+  Attacks:
+  - {fileID: 11400000, guid: f191bbd5644c02a4890bddb2d8521359, type: 2}

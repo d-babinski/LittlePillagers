@@ -8,7 +8,7 @@ public class ShootProjectile : Attack
     [SerializeField] private float attackRadius = 0.2f; 
     [SerializeField] private float spawnProjectileMoment = 0.5f;
     
-    public override float MakeAttack(float _normalizedTime, LayerMask _enemyMask, Vector3 _currentPos, Vector3 _target, int _damage)
+    public override float MakeAttack(float _normalizedTime, LayerMask _enemyMask, Vector3 _currentPos, Vector3 _target, int _bonusPower)
     {
         float _newTime = _normalizedTime + Time.deltaTime/duration;
         
@@ -28,7 +28,7 @@ public class ShootProjectile : Attack
             {
                 if (_collider2D.TryGetComponent(out Damageable _damageable))
                 {
-                    _damageable.GetDamaged(_damage);
+                    _damageable.GetDamaged(Power + _bonusPower);
                 }
             }
         }

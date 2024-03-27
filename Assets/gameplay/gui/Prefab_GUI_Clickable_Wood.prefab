@@ -10,11 +10,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 615269868357685049, guid: 18cf7644feca0a04ab6467ccbdccb6fb, type: 3}
       propertyPath: m_Name
-      value: ClickableWheat Variant
+      value: Prefab_GUI_Clickable_Wood
       objectReference: {fileID: 0}
     - target: {fileID: 1478886811103988043, guid: 18cf7644feca0a04ab6467ccbdccb6fb, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1478886811103988043, guid: 18cf7644feca0a04ab6467ccbdccb6fb, type: 3}
       propertyPath: m_LocalPosition.x
@@ -59,7 +59,7 @@ PrefabInstance:
     - target: {fileID: 1946627927850057699, guid: 18cf7644feca0a04ab6467ccbdccb6fb, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -8126325731808828592, guid: 24f80aad2bb5b514496a370e5f0f383b, type: 3}
+      objectReference: {fileID: -3667091236640750864, guid: 24f80aad2bb5b514496a370e5f0f383b, type: 3}
     - target: {fileID: 6196013380986062370, guid: 18cf7644feca0a04ab6467ccbdccb6fb, type: 3}
       propertyPath: m_Controller
       value: 

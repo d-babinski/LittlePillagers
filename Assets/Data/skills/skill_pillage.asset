@@ -12,11 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30ca4665324d459e8fdca662d640a020, type: 3}
   m_Name: Skill_Pillage
   m_EditorClassIdentifier: 
-  UsableDuringPrepare: 1
-  UsableDuringFight: 0
+  SkillAvailabilityDuringGameplayPhases: 1
+  IsSkillshot: 0
   SkillName: Canny Pillage
   Description: Shoot cannons to loot all islands for third of their next's stage
     rewards.
   GoldCost: 50
+  AreaSize: {x: 1, y: 1}
   effectiveness: 0.33
   availableIslands: {fileID: 11400000, guid: 0ce93c0f89a12e440a1e2fda6fb16e0e, type: 2}
+  clickableResourceSpawner: {fileID: 11400000, guid: c934569842c68c94998f53d6277b4c93, type: 2}

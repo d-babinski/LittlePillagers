@@ -1,119 +1,46 @@
-﻿using UnityEngine;
-using UnityEngine.Events;
+﻿using System;
+using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.Serialization;
+
 
 public class Unit : MonoBehaviour
 {
-    public int Team = 0;
-    public bool IsAlive = true;
-    public bool IsInCombat = true;
+    public event Action<UnitType> OnDeathEvent = null;
+
+    public enum UnitState
+    {
+        Idle = 0,
+        Move = 1,
+        Attack = 2,
+        Dead = 3,
+    }
     
-    public Vector2 MovementTarget = Vector2.zero;
-    public Vector2 ClosestEnemy = Vector2.zero;
-    
-    public Attack[] Attacks = null;
+    public Team UnitTeam = null;
+    public Attack CurrentAttack = null;
+    public float CurrentAttackProgress = 0f;
+    public Unit Target = null;
+    public Dictionary<Attack, float> LastUseOfAttacks = new();
+    public UnitState CurrentState = UnitState.Idle; 
     
     [FormerlySerializedAs("UnitTemplate")] public UnitType UnitType = null;
-    public Unit Target = null;
-    public UnityEvent DeathActions = null;
-    public UnityEvent<UnitType> DeathUnitTypeActions = null;
 
     [SerializeField] private SpriteRenderer spriteRenderer = null;
-    [SerializeField] private Animator animator = null;
-    [FormerlySerializedAs("navigator")][SerializeField] private UnitMove unitMove = null;
-    [SerializeField] private TargetingSystem targetingSystem = null;
+    [SerializeField] Animator animator = null;
     
-    public int DamageBonus = 0;
+    public int SkillBonus = 0;
     private int currentHp = 0;
-    private Attack currentAttack = null;
-    private float currentAttackNormalizedT = 0f;
 
     private void Start()
     {
         currentHp = UnitType.MaxHp;
         spriteRenderer.sprite = UnitType.InGameSprite;
         animator.runtimeAnimatorController = UnitType.Animator;
-    }
-
-    private void Update()
-    {
-        if (currentHp <= 0)
-        {
-            return;
-        }
-
-        if (currentAttack == false && selectNewAttack() == false)
-        {
-            MoveTo(Target.transform.position);
-            return;
-        }
-
-        progressAttack(currentAttack);
-    }
-
-    public void SetAttacks(Attack[] _attacks)
-    {
-        Attacks = new Attack[_attacks.Length];
-
-        for (int i = 0; i < _attacks.Length; i++)
-        {
-            Attacks[i] = (Attack)ScriptableObject.CreateInstance(_attacks[i].GetType());
-        }
-    }
-
-    private void progressAttack(Attack _attackToProgress)
-    {
-        Vector3 _targetPos = Target.transform.position;
-        Vector3 _myPos = transform.position;
         
-        //TODO : Think of a way to establish enemy mask, probably some scriptable describing relations via flags? Maybe custom editor?
-        currentAttackNormalizedT = _attackToProgress.MakeAttack(currentAttackNormalizedT, 512, _myPos, _targetPos, DamageBonus);
-
-        if (currentAttackNormalizedT >= 1f)
+        foreach (Attack _attack in UnitType.Attacks)
         {
-            currentAttack.LastUsed = Time.time;
-            currentAttackNormalizedT = 0f;
-            currentAttack = null;
-            Target = null;
-            animator.SetTrigger("Idle");
+            LastUseOfAttacks[_attack] = Mathf.NegativeInfinity;
         }
-    }
-
-    private bool selectNewAttack()
-    {
-        if (Attacks.Length <= 0)
-        {
-            return false;
-        }
-        
-        int _selectedAttackId = Random.Range(0, Attacks.Length);
-        Attack _selectedAttack = Attacks[_selectedAttackId];
-
-        if (_selectedAttack.IsOffCooldown() == false)
-        {
-            return false;
-        }
-
-        if (IsInRange(_selectedAttack) == false)
-        {
-            return false;
-        }
-
-        currentAttack = _selectedAttack;
-        animator.SetTrigger(_selectedAttack.AnimationName);
-        return true;
-    }
-
-    public bool IsInRange(Attack _attack)
-    {
-        if (Target == false)
-        {
-            return false;
-        }
-
-        float _distanceToTarget = Vector2.Distance(transform.position, Target.transform.position);
-
-        return _distanceToTarget < _attack.MaxRange && _distanceToTarget > _attack.MinRange;
     }
 
     public void GetDamaged(int _damage)
@@ -127,20 +54,65 @@ public class Unit : MonoBehaviour
 
         if (currentHp <= 0)
         {
-            DeathActions?.Invoke();
-            DeathUnitTypeActions?.Invoke(UnitType);
-            animator.SetTrigger("Death");
+            ChangeState(UnitState.Dead);
+            OnDeathEvent?.Invoke(UnitType);
         }
     }
-    
-    public void MoveTo(Vector3 _targetPos)
+
+    public void ChangeState(UnitState _newState)
     {
-        transform.position = unitMove.MoveTowards(_targetPos, UnitType.Speed);
+        if (CurrentState == UnitState.Dead)
+        {
+            return;
+        }
+        
+        switch (_newState)
+        {
+            case UnitState.Idle:
+                animator.SetTrigger("Idle");
+                break;
+            case UnitState.Move:
+                animator.SetTrigger("Run");
+                break;
+            case UnitState.Attack:
+                animator.SetTrigger(CurrentAttack.AnimationName);
+                CurrentAttackProgress = 0f;
+                break;
+            case UnitState.Dead:
+                animator.SetTrigger("Death");
+                break;
+        }
+
+        CurrentState = _newState;
+    }
+
+    public void ProgressCurrentAttack()
+    {
+        if (CurrentAttackProgress >= 1f)
+        {
+            return;
+        }
+
+        Vector3 _targetPos = Target.transform.position;
+        Vector3 _myPos = transform.position;
+        
+        CurrentAttackProgress = CurrentAttack.MakeAttack(CurrentAttackProgress, UnitTeam.EnemyUnitMask.Value, _myPos, _targetPos, SkillBonus);
+
+        if (CurrentAttackProgress >= 1f)
+        {
+            LastUseOfAttacks[CurrentAttack] = Time.time;
+        }
+    }
+
+    public void MoveTo(Vector2 _targetPos)
+    {
+        Vector2 _newPos =  Vector2.MoveTowards(transform.position, _targetPos, UnitType.Speed * 0.05f * Time.deltaTime);
+        transform.position = _newPos;
     }
     
-    public void GetAttackBonus(int _bonus)
+    public void GetAdditionalSkillBonus(int _bonus)
     {
-        DamageBonus += _bonus;
+        SkillBonus += _bonus;
     }
     
     public void Heal(int _healthRestored)

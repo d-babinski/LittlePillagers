@@ -82,7 +82,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: ranged_attack
+  m_Name: Ranged
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -109,7 +109,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: soldier_pikeman_Attack
+  m_Name: Melee
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -123,7 +123,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -814206915429012191, guid: d1a3a469e68594c4982ff128853b385a, type: 3}
+  m_Motion: {fileID: 5326958714287721145, guid: d1a3a469e68594c4982ff128853b385a, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -216,7 +216,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: soldier_pikeman_Idle
+  m_Name: Idle
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -229,7 +229,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -551017566392233136, guid: d1a3a469e68594c4982ff128853b385a, type: 3}
+  m_Motion: {fileID: 3145830833545678191, guid: d1a3a469e68594c4982ff128853b385a, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -242,7 +242,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: soldier_pikeman_Death
+  m_Name: Death
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -256,7 +256,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -6496188830321227, guid: d1a3a469e68594c4982ff128853b385a, type: 3}
+  m_Motion: {fileID: 465046984458701228, guid: d1a3a469e68594c4982ff128853b385a, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -358,7 +358,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: soldier_pikeman_Run
+  m_Name: Run
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -371,7 +371,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 4060801288315299368, guid: d1a3a469e68594c4982ff128853b385a, type: 3}
+  m_Motion: {fileID: 1993103337525637420, guid: d1a3a469e68594c4982ff128853b385a, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -397,7 +397,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -4986958480193616432, guid: d1a3a469e68594c4982ff128853b385a, type: 3}
+  m_Motion: {fileID: 831396129535302704, guid: d1a3a469e68594c4982ff128853b385a, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -460,7 +460,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: special_attack
+  m_Name: Special
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: RV_CurrentResources
   m_EditorClassIdentifier: 
   value:
-    Wood: 0
-    Wheat: 0
-    Metal: 0
-    Gold: 0
+    Wood: 346
+    Wheat: 346
+    Metal: 303
+    Gold: 18

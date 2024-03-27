@@ -54,7 +54,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1770165996325812873, guid: 5dddcc9aa2ca1cb4ab06e8579c3b1a1f, type: 3}
       propertyPath: m_Name
-      value: projectile_bolt
+      value: PrefabV_Projectile_Bolt
       objectReference: {fileID: 0}
     - target: {fileID: 2597872904558405259, guid: 5dddcc9aa2ca1cb4ab06e8579c3b1a1f, type: 3}
       propertyPath: m_Controller
@@ -67,7 +67,11 @@ PrefabInstance:
     - target: {fileID: 8052007359954199547, guid: 5dddcc9aa2ca1cb4ab06e8579c3b1a1f, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -6659447077290792336, guid: e820b0010f5842342a7691637f61df27, type: 3}
+      objectReference: {fileID: 5716788560632015448, guid: e820b0010f5842342a7691637f61df27, type: 3}
+    - target: {fileID: 8052007359954199547, guid: 5dddcc9aa2ca1cb4ab06e8579c3b1a1f, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

@@ -5,7 +5,8 @@ public class Pillage : Skill
 {
     [SerializeField] private float effectiveness = 0.33f;
     [SerializeField] private IslandRuntimeSet availableIslands = null;
-    
+    [SerializeField] private ClickableResourceSpawner clickableResourceSpawner = null;
+
     public override void UseSkill(Vector2 _target)
     {
         availableIslands.Items.ForEach(_island =>
@@ -17,7 +18,7 @@ public class Pillage : Skill
                 return;
             }
 
-            _island.DropResources(_currentStage.Rewards * effectiveness);
+            clickableResourceSpawner.SpawnResources(_currentStage.Rewards*effectiveness, _island.transform.position);
         });
     }
 }

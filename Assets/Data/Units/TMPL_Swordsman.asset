@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: TMPL_Swordsman
   m_EditorClassIdentifier: 
   PreviewIcon: {fileID: 7593276573760461799, guid: 8566fd31f52f23e4a9e7cf1d0f7dc1e2, type: 3}
-  InGameSprite: {fileID: 2719801948774682061, guid: 3bfd70255fc938a458aa6696880ab821, type: 3}
+  InGameSprite: {fileID: 536090517896728236, guid: 3bfd70255fc938a458aa6696880ab821, type: 3}
   Animator: {fileID: 22100000, guid: ce838f1a4f4d5cf42b6d47cd1c43b8e0, type: 2}
-  UnitName: 
+  UnitName: Swordsman
   BaseCost:
     Wood: 35
     Wheat: 35
@@ -23,4 +23,5 @@ MonoBehaviour:
     Gold: 0
   Speed: 3
   MaxHp: 25
-  Attacks: []
+  Attacks:
+  - {fileID: 11400000, guid: 1d2b0ede37081b44486730c3d85ee582, type: 2}

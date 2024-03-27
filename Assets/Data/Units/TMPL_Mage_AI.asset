@@ -13,11 +13,9 @@ MonoBehaviour:
   m_Name: TMPL_Mage_AI
   m_EditorClassIdentifier: 
   PreviewIcon: {fileID: 0}
-  InGameSprite: {fileID: -8694381617879824482, guid: bd17818672b1c4a49995a2be22aeca00, type: 3}
+  InGameSprite: {fileID: 4043727422171924416, guid: bd17818672b1c4a49995a2be22aeca00, type: 3}
   Animator: {fileID: 22100000, guid: 695737c8bc1cbe848b46bf71fd29e742, type: 2}
-  InstanceBuilder: {fileID: 11400000, guid: 473e161c72e397744b5e6f8b0adc81e2, type: 2}
-  UnitName: 
-  TypeOfUnit: {fileID: 11400000, guid: 214449ee709c3a1449d6e7a92505741e, type: 2}
+  UnitName: Mage
   BaseCost:
     Wood: 0
     Wheat: 0
@@ -25,10 +23,5 @@ MonoBehaviour:
     Gold: 0
   Speed: 3
   MaxHp: 8
-  MeleeAttack: {fileID: 0}
-  MeleeDamage: 3
-  RangedAttack: {fileID: 11400000, guid: ce7a9532ddf8bfa4d90ed41002c008d4, type: 2}
-  RangedDamage: 2
-  SpecialAttack: {fileID: 0}
-  SpecialDamage: 3
-  SpecialAttCooldown: 10
+  Attacks:
+  - {fileID: 11400000, guid: ce7a9532ddf8bfa4d90ed41002c008d4, type: 2}

@@ -1,99 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &3541817521724533809
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1086575168773547190}
-  - component: {fileID: 1545065253919776021}
-  - component: {fileID: 1639365564907499912}
-  m_Layer: 0
-  m_Name: ReturnUnitsToShip
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1086575168773547190
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3541817521724533809}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1455313451216558196}
-  m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1545065253919776021
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3541817521724533809}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b32d5a3272657fe4ab2a667d7c16820d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  controlledUnits: {fileID: 11400000, guid: a1ac99d9c54429943b8dd074c9a06c16, type: 2}
-  distanceToDisable: 0.1
-  targetTransform: {fileID: 8735848258827317338}
-  allUnitsPackedActions:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 11400000, guid: 12812244808b8c3468cdb0eade322def, type: 2}
-        m_TargetAssemblyTypeName: CHARK.ScriptableEvents.Events.SimpleScriptableEvent,
-          CHARK.ScriptableEvents
-        m_MethodName: Raise
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &1639365564907499912
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3541817521724533809}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2300d56ac22446e59de6de2fb87235d1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  scriptableEvent: {fileID: 0}
-  scriptableEvents:
-  - {fileID: 11400000, guid: dec8d77fea5e2354ea99e83076853b8b, type: 2}
-  onRaised:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1545065253919776021}
-        m_TargetAssemblyTypeName: MoveUnitsThenDisable, Assembly-CSharp
-        m_MethodName: MoveUnitsToDestination
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!1 &4093113484866750873
 GameObject:
   m_ObjectHideFlags: 0
@@ -106,7 +12,6 @@ GameObject:
   - component: {fileID: 7233342774023361148}
   - component: {fileID: 3629065911484261452}
   - component: {fileID: 444684877486488079}
-  - component: {fileID: 7938060898926300424}
   - component: {fileID: 2484150895242573293}
   - component: {fileID: 5498539457790021321}
   - component: {fileID: 8900410036557154236}
@@ -124,15 +29,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4093113484866750873}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8735848258827317338}
-  - {fileID: 2892889384424495871}
-  - {fileID: 1086575168773547190}
-  - {fileID: 5524624222885219447}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -151,9 +53,16 @@ MonoBehaviour:
   targetChosenEvent: {fileID: 11400000, guid: 8cc25200603bc2841ab93eb2bbb65f7b, type: 2}
   targetCanceledEvent: {fileID: 11400000, guid: c90fc3163ae8d764384c0813c939763d, type: 2}
   onEmbarkEvent: {fileID: 11400000, guid: 355c6b6060477914cb0fa0c0b8a7aef7, type: 2}
+  playerSkillCaster: {fileID: 11400000, guid: 3ac254ea8fa3dd54aaec2a5a441b2b5c, type: 2}
   playerStateVariable: {fileID: 11400000, guid: 7ba7d5f2c832ecb46b9a57906b5c571b, type: 2}
   playerResources: {fileID: 11400000, guid: 81d6fbafbe935e34d9c00ce382606d25, type: 2}
   army: {fileID: 11400000, guid: 3c639a55ef76dd6408deba32718a496a, type: 2}
+  pathsToIslands: {fileID: 11400000, guid: ce511191e3a22b44eb4f0754122c768d, type: 2}
+  ship: {fileID: 5258514498731598313}
+  battleCreator: {fileID: 11400000, guid: 81ee9ea1cc653b34185e2c619489886f, type: 2}
+  playerTeam: {fileID: 11400000, guid: f585956cfd038154d922f4457acfc9cf, type: 2}
+  enemyTeam: {fileID: 11400000, guid: acf690eee67fd0145b96b1715d8a1af3, type: 2}
+  unitAI: {fileID: 11400000, guid: 0463e56628004c74dbe2e2e1dcdfaf15, type: 2}
 --- !u!114 &3629065911484261452
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -214,36 +123,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &7938060898926300424
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4093113484866750873}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 228590b111a85af4f9390a5a4d4fb383, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  scriptableEvent: {fileID: 0}
-  scriptableEvents:
-  - {fileID: 11400000, guid: ae7ac3f201fc3664c9be451bb83da868, type: 2}
-  onRaised:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 7233342774023361148}
-        m_TargetAssemblyTypeName: Player, Assembly-CSharp
-        m_MethodName: OnUnitDied
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &2484150895242573293
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -264,7 +143,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 7233342774023361148}
         m_TargetAssemblyTypeName: Player, Assembly-CSharp
-        m_MethodName: TryChoosingNewTarget
+        m_MethodName: OnTargetChoice
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -294,7 +173,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 7233342774023361148}
         m_TargetAssemblyTypeName: Player, Assembly-CSharp
-        m_MethodName: TryCancelingCurrentTarget
+        m_MethodName: OnTargetCancel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -326,304 +205,6 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: Player, Assembly-CSharp
         m_MethodName: OnEmbarkPressed
         m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!1 &5928058781282198766
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2892889384424495871}
-  - component: {fileID: 7732699598410446349}
-  - component: {fileID: 2674038487839669746}
-  m_Layer: 0
-  m_Name: BattleTracker
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2892889384424495871
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5928058781282198766}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1455313451216558196}
-  m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7732699598410446349
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5928058781282198766}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd9b44d1df9f93a48bde04155bf83b94, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PlayerWonActions:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 11400000, guid: dec8d77fea5e2354ea99e83076853b8b, type: 2}
-        m_TargetAssemblyTypeName: CHARK.ScriptableEvents.Events.SimpleScriptableEvent,
-          CHARK.ScriptableEvents
-        m_MethodName: Raise
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  PlayerLostActions:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 11400000, guid: 9eeb4f4cd126d934aae78fbff72d665a, type: 2}
-        m_TargetAssemblyTypeName: CHARK.ScriptableEvents.Events.SimpleScriptableEvent,
-          CHARK.ScriptableEvents
-        m_MethodName: Raise
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  playerUnits: {fileID: 11400000, guid: a1ac99d9c54429943b8dd074c9a06c16, type: 2}
-  aiUnits: {fileID: 11400000, guid: ac84314217b31d64f8253aa11ec73e3c, type: 2}
-  TrackBattle: 0
---- !u!114 &2674038487839669746
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5928058781282198766}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2300d56ac22446e59de6de2fb87235d1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  scriptableEvent: {fileID: 0}
-  scriptableEvents:
-  - {fileID: 11400000, guid: 6e84473b547264242ab512fbad60b07c, type: 2}
-  onRaised:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 7732699598410446349}
-        m_TargetAssemblyTypeName: BattleTracker, Assembly-CSharp
-        m_MethodName: TrackCurrentBattle
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!1 &8129041692262142232
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 5524624222885219447}
-  - component: {fileID: 4573489703003132471}
-  - component: {fileID: 2693104174639023766}
-  - component: {fileID: 7172080266579165512}
-  - component: {fileID: 8648550574778934931}
-  m_Layer: 0
-  m_Name: SkillCaster
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &5524624222885219447
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8129041692262142232}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1455313451216558196}
-  m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4573489703003132471
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8129041692262142232}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4104d177625454b42a9c0b93d7d366fe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  OnPrepareSkillshot:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 11400000, guid: 38dd50ff3dffeb446ba71e1a066cb2c7, type: 2}
-        m_TargetAssemblyTypeName: CHARK.ScriptableEvents.ScriptableEvent`1[[UnityEngine.Vector2,
-          UnityEngine
-        m_MethodName: Raise
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  OnSkillConfirmed:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 11400000, guid: e8c4b9a2d68c86c4daff87f136d01832, type: 2}
-        m_TargetAssemblyTypeName: CHARK.ScriptableEvents.Events.SimpleScriptableEvent,
-          CHARK.ScriptableEvents
-        m_MethodName: Raise
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  OnSkillCanceled:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 11400000, guid: e8c4b9a2d68c86c4daff87f136d01832, type: 2}
-        m_TargetAssemblyTypeName: CHARK.ScriptableEvents.Events.SimpleScriptableEvent,
-          CHARK.ScriptableEvents
-        m_MethodName: Raise
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  playerResources: {fileID: 11400000, guid: 81d6fbafbe935e34d9c00ce382606d25, type: 2}
---- !u!114 &2693104174639023766
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8129041692262142232}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2300d56ac22446e59de6de2fb87235d1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  scriptableEvent: {fileID: 0}
-  scriptableEvents:
-  - {fileID: 11400000, guid: a628f58ce8be8df41ba2bdcb10173efd, type: 2}
-  - {fileID: 11400000, guid: b1fbfeb83195ab040b6466663bd87e45, type: 2}
-  - {fileID: 11400000, guid: 6bda54a286cae764794eebb649ecfeea, type: 2}
-  onRaised:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 4573489703003132471}
-        m_TargetAssemblyTypeName: SkillCaster, Assembly-CSharp
-        m_MethodName: CancelSkill
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &7172080266579165512
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8129041692262142232}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2300d56ac22446e59de6de2fb87235d1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  scriptableEvent: {fileID: 0}
-  scriptableEvents:
-  - {fileID: 11400000, guid: 163b7569a0f8d7941b5abd61aa3c850e, type: 2}
-  onRaised:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 4573489703003132471}
-        m_TargetAssemblyTypeName: SkillCaster, Assembly-CSharp
-        m_MethodName: ConfirmUsingSkill
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &8648550574778934931
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8129041692262142232}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af2e100a5c257fe4281e9ad4561121ab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  scriptableEvent: {fileID: 0}
-  scriptableEvents:
-  - {fileID: 11400000, guid: 75afddd56d863284c8580f7405e1a5d5, type: 2}
-  onRaised:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 4573489703003132471}
-        m_TargetAssemblyTypeName: SkillCaster, Assembly-CSharp
-        m_MethodName: TryUsingSkill
-        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -833,7 +414,7 @@ MonoBehaviour:
     _offset: {x: 0, y: 0}
     _rotationOffset: {x: 0, y: 0, z: 0}
     _baseScale: {x: 1, y: 1, z: 1}
-    _2dMode: 0
+    _2dMode: 1
     velocityHandleMode: 0
     applyPositionX: 1
     applyPositionY: 1
@@ -844,7 +425,7 @@ MonoBehaviour:
     applyRotationX: 1
     applyRotationY: 1
     applyRotationZ: 1
-    applyRotation2D: 1
+    applyRotation2D: 0
     retainLocalRotation: 0
     applyScaleX: 0
     applyScaleY: 0

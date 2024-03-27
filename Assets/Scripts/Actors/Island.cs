@@ -1,66 +1,49 @@
 using System;
 using UnityEngine;
-using UnityEngine.Events;
+using UnityEngine.Serialization;
 
 public class Island : MonoBehaviour
 {
-    public BoxCollider2D PlayerSpawnArea = null;
-    public BoxCollider2D AISpawnArea = null;
+    public event Action<int> OnStageChange = null;
+    public event Action OnIslandDestroyed = null;
+    public int CurrentStageNumber => currentStageNumber;
+    public int TotalStageCount => IslandType.Stages.Length;
+    public Stage GetStageSetup(int _number) => IslandType.Stages[_number];
+    public Stage GetCurrentStage() => IslandType.Stages[CurrentStageNumber];
+    public IslandType IslandType => typeOfIsland;
 
+    [FormerlySerializedAs("IslandSprite")][FormerlySerializedAs("IslandVisuals")][SerializeField] private SpriteRenderer islandSpriteRenderer = null;
 
-    public string IslandName = "";
-    public SpriteRenderer IslandVisuals = null;
-    
-    [SerializeField] private Stage[] stages = Array.Empty<Stage>();
-    
-    [Header("Events")]
-    public UnityEvent<Resources> ResourcesLooted = null;
-    public UnityEvent<int> StageBeatenActions = null;
-    public UnityEvent OnAllStagesBeatenActions = null;
+    private int currentStageNumber = 0;
+    private IslandType typeOfIsland = null;
 
-    private int currentStage = 0;
-
-    public void SetIslandVisuals(Sprite _sprite)
+    public void SetIslandType(IslandType _newIslandType)
     {
-        IslandVisuals.sprite = _sprite;
+        typeOfIsland = _newIslandType;
+        islandSpriteRenderer.sprite = _newIslandType.IslandSprite;
+        OnStageChange?.Invoke(currentStageNumber);
+    }
+
+    public void SetStage(int _newStage)
+    {
+        currentStageNumber = _newStage;
+        OnStageChange?.Invoke(currentStageNumber);
     }
     
-    public void SetStages(Stage[] _newStages)
+    public void BeatStage()
     {
-        stages = new Stage[_newStages.Length];
-        
-        for (int i = 0; i < _newStages.Length; i++)
+        currentStageNumber++;
+        OnStageChange?.Invoke(currentStageNumber);
+
+        if (AreAllStagesBeaten() == true)
         {
-            stages[i] = Instantiate(_newStages[i]);
+            OnIslandDestroyed?.Invoke();
         }
     }
 
-    public void DropResources(Resources _resourcesToDrop)
-    {
-        ResourcesLooted?.Invoke(_resourcesToDrop);
-    }
-    
-    public void BeatCurrentStage()
-    {
-        stages[currentStage].IsBeaten = true;
-        StageBeatenActions?.Invoke(currentStage);
-        ResourcesLooted?.Invoke(stages[currentStage].Rewards);
-        currentStage++;
-
-        if (currentStage >= stages.Length)
-        {
-            OnAllStagesBeatenActions?.Invoke();
-        }
-    }
-    
-    public Stage GetCurrentStage()
-    {
-        return currentStage >= stages.Length ? null : stages[currentStage];
-    }
-    
     public bool AreAllStagesBeaten()
     {
-        return currentStage >= stages.Length;
+        return currentStageNumber >= typeOfIsland.Stages.Length;
     }
 }
 

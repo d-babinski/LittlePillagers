@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 76ac0ab58d4547e9b41a414e26cb7d10, type: 3}
-  m_Name: Stage_Green_2
+  m_Name: stage_green_2
   m_EditorClassIdentifier: 
   UnitsInStage:
-  - UnitType: {fileID: 11400000, guid: eb5a365725ee66243ad2b00bfc7f3922, type: 2}
+  - UnitType: {fileID: 11400000, guid: 7e1010ef8df54ee4e8ee3e94bcb5a283, type: 2}
     Count: 2
-  - UnitType: {fileID: 11400000, guid: dd931e96c64b81e498dbf2d0a146c3d5, type: 2}
+  - UnitType: {fileID: 11400000, guid: 8dc12ea8478c5754cb349112a437bb5b, type: 2}
     Count: 2
-  - UnitType: {fileID: 11400000, guid: 5d51779d86e50b54f8745eae6f4115c2, type: 2}
+  - UnitType: {fileID: 11400000, guid: 3eb7ea9f1851eb64ab985a136172a225, type: 2}
     Count: 3
   Rewards:
     Wood: 50

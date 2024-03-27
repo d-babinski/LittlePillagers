@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Island_toxic
   m_EditorClassIdentifier: 
   IslandName: Toxiborg
-  IslandSprite: {fileID: 7411695100171036017, guid: 2ceb93a0601610a488d07657173195a0, type: 3}
+  IslandSprite: {fileID: -2831722636159654588, guid: ac563da1bda3b104390eba611461c6a0, type: 3}
   Stages:
   - {fileID: 11400000, guid: a815e1eea4adc61428a8e9cc2d7427fb, type: 2}
   - {fileID: 11400000, guid: 0f47de929c0ed574b95a44ed066d6fb5, type: 2}

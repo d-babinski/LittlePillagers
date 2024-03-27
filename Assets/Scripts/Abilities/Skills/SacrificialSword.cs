@@ -24,7 +24,7 @@ public class SacrificialSword : MonoBehaviour
         if (timeExisting >= DamageDelay)
         {
             int _bonus = damageAllies();
-            Allies.Items.ForEach(_ally => _ally.GetAttackBonus(_bonus));
+            Allies.Items.ForEach(_ally => _ally.GetAdditionalSkillBonus(_bonus));
             hasDealtDamage = true;
         }
 

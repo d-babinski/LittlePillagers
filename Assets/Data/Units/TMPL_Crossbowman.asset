@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TMPL_Crossbowman
   m_EditorClassIdentifier: 
   PreviewIcon: {fileID: 8746291535485927661, guid: 8566fd31f52f23e4a9e7cf1d0f7dc1e2, type: 3}
-  InGameSprite: {fileID: 8180000995478924834, guid: b8c289ff9ae4c4042a46f1337c119627, type: 3}
+  InGameSprite: {fileID: -7843980588558424393, guid: b8c289ff9ae4c4042a46f1337c119627, type: 3}
   Animator: {fileID: 22100000, guid: 78882e542a33bfd4b94ed7bc0e4b3828, type: 2}
   UnitName: Crossbowman
   BaseCost:
@@ -23,4 +23,5 @@ MonoBehaviour:
     Gold: 0
   Speed: 10
   MaxHp: 15
-  Attacks: []
+  Attacks:
+  - {fileID: 11400000, guid: 28b6cd0622c53334199685775eb42092, type: 2}

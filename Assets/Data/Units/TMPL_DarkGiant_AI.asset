@@ -13,11 +13,9 @@ MonoBehaviour:
   m_Name: TMPL_DarkGiant_AI
   m_EditorClassIdentifier: 
   PreviewIcon: {fileID: 0}
-  InGameSprite: {fileID: -6814551444691806330, guid: f78aad2b65a3abf4eb028358c10ca5f2, type: 3}
+  InGameSprite: {fileID: -8456672080400619189, guid: f78aad2b65a3abf4eb028358c10ca5f2, type: 3}
   Animator: {fileID: 22100000, guid: 7ba15b896e507ea46adbb83975cba7ff, type: 2}
-  InstanceBuilder: {fileID: 11400000, guid: 473e161c72e397744b5e6f8b0adc81e2, type: 2}
-  UnitName: 
-  TypeOfUnit: {fileID: 11400000, guid: 0abf53cf7ea3afc428965a7791ec1d7e, type: 2}
+  UnitName: Dark Giant
   BaseCost:
     Wood: 0
     Wheat: 0
@@ -25,10 +23,6 @@ MonoBehaviour:
     Gold: 0
   Speed: 3
   MaxHp: 100
-  MeleeAttack: {fileID: 11400000, guid: c6c87968d6ee8c247ae762d7a5fee818, type: 2}
-  MeleeDamage: 10
-  RangedAttack: {fileID: 0}
-  RangedDamage: 3
-  SpecialAttack: {fileID: 11400000, guid: f15c3e68ca6c2de40a69379b2d1fb6e5, type: 2}
-  SpecialDamage: 15
-  SpecialAttCooldown: 3.5
+  Attacks:
+  - {fileID: 11400000, guid: a1e1789918e0d75469606fac7c3d104f, type: 2}
+  - {fileID: 11400000, guid: f15c3e68ca6c2de40a69379b2d1fb6e5, type: 2}

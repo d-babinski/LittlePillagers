@@ -13,11 +13,9 @@ MonoBehaviour:
   m_Name: TMPL_Axeman_AI
   m_EditorClassIdentifier: 
   PreviewIcon: {fileID: 0}
-  InGameSprite: {fileID: -8213803555321894735, guid: a6c99118a4af69040adb6cafb9e5f8ef, type: 3}
+  InGameSprite: {fileID: 6161699831270185405, guid: a6c99118a4af69040adb6cafb9e5f8ef, type: 3}
   Animator: {fileID: 22100000, guid: 0325d8d3829f2424fa05ed7bfced2db2, type: 2}
-  InstanceBuilder: {fileID: 11400000, guid: 473e161c72e397744b5e6f8b0adc81e2, type: 2}
-  UnitName: 
-  TypeOfUnit: {fileID: 11400000, guid: dd931e96c64b81e498dbf2d0a146c3d5, type: 2}
+  UnitName: Axeman
   BaseCost:
     Wood: 0
     Wheat: 0
@@ -25,10 +23,5 @@ MonoBehaviour:
     Gold: 0
   Speed: 3
   MaxHp: 20
-  MeleeAttack: {fileID: 11400000, guid: 76a5c65ce67595f43b338f696a7fe00f, type: 2}
-  MeleeDamage: 1
-  RangedAttack: {fileID: 0}
-  RangedDamage: 3
-  SpecialAttack: {fileID: 0}
-  SpecialDamage: 3
-  SpecialAttCooldown: 10
+  Attacks:
+  - {fileID: 11400000, guid: 76a5c65ce67595f43b338f696a7fe00f, type: 2}

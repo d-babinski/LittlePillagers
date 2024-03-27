@@ -120,8 +120,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3910143989285132266}
-  - component: {fileID: 3618437570493299662}
-  - component: {fileID: 8991486955539613768}
+  - component: {fileID: 510148913731222688}
   m_Layer: 0
   m_Name: Prefab_GUI_SkillIndicator
   m_TagString: Untagged
@@ -145,7 +144,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3618437570493299662
+--- !u!114 &510148913731222688
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -154,66 +153,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 7651490075017416924}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6f1a7d9da9b9a564184d94ade7b51dc1, type: 3}
+  m_Script: {fileID: 11500000, guid: 4ad7caf3d90ed0c4f92d679535cf2917, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scriptableEvent: {fileID: 0}
-  scriptableEvents:
-  - {fileID: 11400000, guid: 38dd50ff3dffeb446ba71e1a066cb2c7, type: 2}
-  onRaised:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 743456991707276218}
-        m_TargetAssemblyTypeName: UnityEngine.SpriteRenderer, UnityEngine
-        m_MethodName: set_size
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 743456991707276218}
-        m_TargetAssemblyTypeName: UnityEngine.Renderer, UnityEngine
-        m_MethodName: set_enabled
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
---- !u!114 &8991486955539613768
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7651490075017416924}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2300d56ac22446e59de6de2fb87235d1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  scriptableEvent: {fileID: 0}
-  scriptableEvents:
-  - {fileID: 11400000, guid: e8c4b9a2d68c86c4daff87f136d01832, type: 2}
-  onRaised:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 743456991707276218}
-        m_TargetAssemblyTypeName: UnityEngine.Renderer, UnityEngine
-        m_MethodName: set_enabled
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+  trackedCaster: {fileID: 11400000, guid: 3ac254ea8fa3dd54aaec2a5a441b2b5c, type: 2}
+  spriteRenderer: {fileID: 743456991707276218}

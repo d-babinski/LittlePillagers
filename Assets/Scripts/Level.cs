@@ -1,9 +1,12 @@
 using CHARK.ScriptableEvents.Events;
+using DefaultNamespace;
 using Dreamteck.Splines;
 using ScriptableEvents.Events;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Serialization;
 
 public class Level : MonoBehaviour
 {
@@ -17,11 +20,13 @@ public class Level : MonoBehaviour
 
     [SerializeField] private IslandScriptableEvent zoomToIslandEvent = null;
     [SerializeField] private SimpleScriptableEvent unzoomFromIslandEvent = null;
-    
+
     [SerializeField] private Transform[] spawnPoints = null;
     [SerializeField] private ZoomStateVariable zoomStateVariable = null;
+    [SerializeField] private UnitBuilder unitSpawner = null;
 
-    
+    [FormerlySerializedAs("islandPathScriptables")][SerializeField] private IslandPaths islandPathScriptable = null;
+
     [Header("Islands")]
     public IslandRuntimeSet IslandRuntimeSet = null;
     public Island IslandPrefab = null;
@@ -29,19 +34,17 @@ public class Level : MonoBehaviour
     public UnityEvent OnLevelLoaded = null;
     public SplineComputer SplinePrefab = null;
 
-    private Dictionary<Island, IslandPath> islandSplines = new Dictionary<Island, IslandPath>();
     private Island currentTarget = null;
-
 
     public void OnIslandChosenAsTarget(Island _target)
     {
         currentTarget = _target;
-        islandSplines[_target].EnableVisuals();
+        islandPathScriptable.EnableVisualsForIsland(_target);
     }
 
     public void OnAttackTargetCanceled()
     {
-        islandSplines[currentTarget].DisableVisuals();
+        islandPathScriptable.DisableVisualsForIsland(currentTarget);
         currentTarget = null;
     }
 
@@ -66,11 +69,12 @@ public class Level : MonoBehaviour
         zoomStateVariable.ChangeStateToUnzoom();
         unzoomFromIslandEvent.Raise();
     }
-    
+
     public void LoadLevel(LevelSettings _level)
     {
         Island[] _spawnedIslands = spawnIslands(_level.Islands);
-        islandSplines = spawnIslandPaths(SplinePrefab, Player.transform.position, _spawnedIslands);
+        IslandRuntimeSet.Items = _spawnedIslands.ToList();
+        islandPathScriptable.IslandSplines = spawnIslandPaths(SplinePrefab, Player.transform.position, _spawnedIslands);
         VictoryCondition = _level.WinCondition;
         OnLevelLoaded?.Invoke();
     }
@@ -82,28 +86,28 @@ public class Level : MonoBehaviour
         for (int i = 0; i < _islandsToSpawn.Length; i++)
         {
             _spawnedIslands[i] = Instantiate(IslandPrefab);
-            _spawnedIslands[i].SetIslandVisuals(_islandsToSpawn[i].IslandSprite);
+            _spawnedIslands[i].SetIslandType(_islandsToSpawn[i]);
             _spawnedIslands[i].transform.position = spawnPoints[i%_spawnedIslands.Length].position;
-            _spawnedIslands[i].SetStages(_islandsToSpawn[i].Stages);
-            _spawnedIslands[i].IslandName = _islandsToSpawn[i].IslandName;
             IslandRuntimeSet.Add(_spawnedIslands[i]);
         }
 
         return _spawnedIslands;
     }
 
-    private Dictionary<Island, IslandPath> spawnIslandPaths(SplineComputer _splinePrefab, Vector2 _playerPos, Island[] _islands, int _splinePoints = 5)
+    private Dictionary<Island, ShipPath> spawnIslandPaths(SplineComputer _splinePrefab, Vector2 _playerPos, Island[] _islands, int _splinePoints = 5)
     {
-        Dictionary<Island, IslandPath> _islandSplines = new();
+        Dictionary<Island, ShipPath> _islandSplines = new();
 
         foreach (var _island in _islands)
         {
-            _islandSplines[_island] = SplineUtils.CreateCurvySpline(_splinePrefab, _playerPos, _island.transform.position, _splinePoints).GetComponent<IslandPath>();
+            _islandSplines[_island] = SplineUtils.CreateCurvySpline(_splinePrefab, _playerPos, _island.transform.position, _splinePoints).GetComponent<ShipPath>();
             _islandSplines[_island].GetComponent<SplineRenderer>().enabled = false;
         }
 
         return _islandSplines;
     }
+
+    
 
     public bool IsLevelCompleted()
     {
@@ -111,7 +115,7 @@ public class Level : MonoBehaviour
         {
             foreach (var _island in IslandRuntimeSet.Items)
             {
-                if (_island.AreAllStagesBeaten() == false ) 
+                if (_island.AreAllStagesBeaten() == false)
                 {
                     return false;
                 }
