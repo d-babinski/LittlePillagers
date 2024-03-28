@@ -1,31 +1,31 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu]
-public class BattleSpawner : ScriptableObject
+public static class BattleCreator
 {
-    [SerializeField] private UnitBuilder unitBuilder = null;
-
-    public Battle AttackIsland(Army _attackerArmy, Island _island, Team _attackerTeam, Team _defenderTeam)
+    public static Battle CreateIslandAttackBattle(Army _attackerArmy, Island _island, Team _attackerTeam, Team _defenderTeam)
     {
-        List<Unit> _attackerUnits = InstantiateArmy(_attackerArmy, unitBuilder);
+        List<Unit> _attackerUnits = InstantiateArmy(_attackerArmy);
         Army _defenderArmy = CreateCurrentStageIslandArmy(_island);
         
-        List<Unit> _defenderUnits = InstantiateArmy(_defenderArmy, unitBuilder);
+        List<Unit> _defenderUnits = InstantiateArmy(_defenderArmy);
         IslandSpawnAreas _spawnAreas = _island.GetComponent<IslandSpawnAreas>();
         
         PlaceUnitsInArea(_attackerUnits,_spawnAreas.AttackerArea); 
         PlaceUnitsInArea(_defenderUnits, _spawnAreas.DefenderArea);
         AssignTeamToUnits(_attackerUnits, _attackerTeam);
         AssignTeamToUnits(_defenderUnits, _defenderTeam);
+        
+        _attackerUnits.ForEach(_unit => _unit.Face(Unit.FaceDirection.Right));
+        _defenderUnits.ForEach(_unit => _unit.Face(Unit.FaceDirection.Left));
 
         return new Battle(_attackerArmy, _defenderArmy, _attackerUnits, _defenderUnits);
     }
 
-    public static Army CreateCurrentStageIslandArmy(Island _island)
+    private static Army CreateCurrentStageIslandArmy(Island _island)
     {
         Stage _islandsStage = _island.IslandType.Stages[_island.CurrentStageNumber];
-        Army _islandsArmy = CreateInstance<Army>();
+        Army _islandsArmy = ScriptableObject.CreateInstance<Army>();
 
         foreach (Stage.StageUnits _units in _islandsStage.UnitsInStage)
         {
@@ -35,7 +35,7 @@ public class BattleSpawner : ScriptableObject
         return _islandsArmy;
     }
 
-    public static List<Unit> InstantiateArmy(Army _army, UnitBuilder _unitSpawner)
+    private static List<Unit> InstantiateArmy(Army _army)
     {
         (UnitType, int)[] _unitsToSpawn = _army.Database;
         List<Unit> _spawnedUnits = new();
@@ -44,14 +44,14 @@ public class BattleSpawner : ScriptableObject
         {
             for (int j = 0; j < _unitsToSpawn[i].Item2; j++)
             {
-                _spawnedUnits.Add(_unitSpawner.InstantiateUnit(_unitsToSpawn[i].Item1));
+                _spawnedUnits.Add(_unitsToSpawn[i].Item1.InstantiateUnit());
             }
         }
 
         return _spawnedUnits;
     }
 
-    public static void AssignTeamToUnits(List<Unit> _units, Team _team)
+    private static void AssignTeamToUnits(List<Unit> _units, Team _team)
     {
         _units.ForEach(_unit =>
         {
@@ -60,7 +60,7 @@ public class BattleSpawner : ScriptableObject
         });
     }
 
-    public static void PlaceUnitsInArea(List<Unit> _units, BoxCollider2D _area)
+    private static void PlaceUnitsInArea(List<Unit> _units, BoxCollider2D _area)
     {
         _units.ForEach(_unit => _unit.transform.position = _area.GetRandomPointWithinCollider());
     }

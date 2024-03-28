@@ -10,13 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c025cd4c14f1e7b418d507bedd6c67d7, type: 3}
-  m_Name: Skill_Sacrifice
+  m_Name: skill_sacrifice
   m_EditorClassIdentifier: 
   SkillAvailabilityDuringGameplayPhases: 4
   IsSkillshot: 1
   SkillName: Pain motivation
-  Description: Summon a blade from the sky, dealing 2 damage to all allies hit. All
-    your units get damage bonus equal to allies hit.
+  Description: Boost army damage by 1 for each friendly hit
   GoldCost: 25
   AreaSize: {x: 0.35, y: 0.2}
   prefabToSpawn: {fileID: 4863086336798131784, guid: 830fb445a9e8e6c4bafae26b2135a988, type: 3}

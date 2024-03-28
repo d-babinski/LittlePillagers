@@ -59,4 +59,14 @@ public class Army : ScriptableObject
 
         return _size;
     }
+    
+    public void Clear()
+    {
+        UnitCountDictionary = new();
+    }
+    
+    public void SetUnits(UnitType _unitType, int _count)
+    {
+        UnitCountDictionary[_unitType] = _count;
+    }
 }

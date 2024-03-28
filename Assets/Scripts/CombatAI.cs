@@ -2,10 +2,9 @@
 using System.Linq;
 using UnityEngine;
 
-[CreateAssetMenu]
-public class UnitsAI : ScriptableObject
+public static class CombatAI
 {
-    public void UpdateUnitCombatAI(List<Unit> _allUnits)
+    public static void UpdateUnitCombatAI(List<Unit> _allUnits)
     {
         _allUnits.ForEach(_unit =>
         {
@@ -25,6 +24,7 @@ public class UnitsAI : ScriptableObject
 
                     if (_unit.CurrentAttack.IsInRange(_unitPos, _unit.Target.transform.position))
                     {
+                        _unit.Face(_unit.Target.transform.position.x < _unitPos.x ? Unit.FaceDirection.Left : Unit.FaceDirection.Right);
                         _unit.ChangeState(Unit.UnitState.Attack);
                         return;
                     }
@@ -38,12 +38,14 @@ public class UnitsAI : ScriptableObject
                     if (_unit.CurrentAttack.IsTooClose(_unitPos, _targetPos))
                     {
                         Vector2 _destinationAwayFromTarget = (_targetPos - _unitPos).normalized * _unit.CurrentAttack.MinRange;
+                        _unit.Face(_destinationAwayFromTarget.x < _unitPos.x ? Unit.FaceDirection.Left : Unit.FaceDirection.Right);
                         _unit.MoveTo(_destinationAwayFromTarget);
                         return;
                     }
 
                     if (_unit.CurrentAttack.IsTooFar(_unitPos, _targetPos))
                     {
+                        _unit.Face(_targetPos.x < _unitPos.x ? Unit.FaceDirection.Left : Unit.FaceDirection.Right);
                         _unit.MoveTo(_targetPos);
                         return;
                     }   
@@ -67,12 +69,12 @@ public class UnitsAI : ScriptableObject
         });
     }
 
-    private Unit getBestTargetForAttack(Unit _unit, Attack _attack, List<Unit> _allUnits)
+    private static Unit getBestTargetForAttack(Unit _unit, Attack _attack, List<Unit> _allUnits)
     {
         return _attack.GetTarget(_unit, _allUnits);
     }
 
-    private Attack selectNewAttack(Unit _unit, List<Unit> _allUnits)
+    private static Attack selectNewAttack(Unit _unit, List<Unit> _allUnits)
     {
         UnitType _unitType = _unit.UnitType;
         System.Random _rng = new System.Random();

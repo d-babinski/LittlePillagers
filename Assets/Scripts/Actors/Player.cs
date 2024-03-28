@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
     [SerializeField] private IslandScriptableEvent targetChosenEvent = null;
     [SerializeField] private SimpleScriptableEvent targetCanceledEvent = null;
     [SerializeField] private SimpleScriptableEvent onEmbarkEvent = null;
+    [SerializeField] private SimpleScriptableEvent playerLostEvent = null;
 
     [SerializeField] private PlayerSkillCaster playerSkillCaster = null;
     [SerializeField] private PlayerStateVariable playerStateVariable = null;
@@ -15,13 +16,12 @@ public class Player : MonoBehaviour
     [SerializeField] private Army army = null;
     [SerializeField] private IslandPaths pathsToIslands = null;
     [SerializeField] private PlayerShip ship = null;
-
-    [SerializeField] private BattleSpawner battleCreator = null;
+    [SerializeField] private ClickableResourceSpawner resourceSpawner = null;
     
     [SerializeField] private Team playerTeam = null;
     [SerializeField] private Team enemyTeam = null;
-    [SerializeField] private UnitsAI unitAI = null;
 
+    private bool waitingForReturnToShip = false;
     private Battle currentBattle = null;
     
     private void OnEnable()
@@ -38,40 +38,52 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
+        if (waitingForReturnToShip == true)
+        {
+            if (MoveToShipAI.MoveAliveUnitsToPointAndDestroy(currentBattle.AttackerUnits, ship.transform.position) == MoveToShipAI.State.AllUnitsMoved)
+            {
+                resourceSpawner.SpawnResources(playerStateVariable.CurrentTarget.GetCurrentStage().Rewards, playerStateVariable.CurrentTarget.transform.position);   
+                ship.MoveBackwardsAPath(pathsToIslands.IslandSplines[playerStateVariable.CurrentTarget]);
+                playerStateVariable.CurrentTarget.BeatStage();
+                waitingForReturnToShip = false;
+            }
+            
+            return;
+        }
+
         if (currentBattle == null || currentBattle.BattleState != Battle.State.InProgress)
         {
             return;
         }
 
-        if (currentBattle.ProgressBattle(unitAI) != Battle.State.InProgress)
+        if (currentBattle.ProgressBattle() != Battle.State.InProgress)
         {
             if (currentBattle.BattleState == Battle.State.AttackerWon)
             {
-                ship.MoveBackwardsAPath(pathsToIslands.IslandSplines[playerStateVariable.CurrentTarget]);
-                playerStateVariable.CurrentTarget.BeatStage();
+                waitingForReturnToShip = true;
                 return;
             }
 
             if (currentBattle.BattleState == Battle.State.DefenderWon)
             {
-                //TODO: Player Lost Screen
-                return;
+                playerLostEvent.Raise();
             }
         }
     }
 
     private void onShipArrival()
     {
-        if (ship.IsAtBeggining())
+        if (ship.IsAtEnd())
         {
-            currentBattle = battleCreator.AttackIsland(army, playerStateVariable.CurrentTarget, playerTeam, enemyTeam);
+            currentBattle = BattleCreator.CreateIslandAttackBattle(army, playerStateVariable.CurrentTarget, playerTeam, enemyTeam);
             return;
         }
 
-        if (ship.IsAtEnd())
+        if (ship.IsAtBeggining())
         {
             playerStateVariable.ChangeCombatState(PlayerCombatState.Preparation);
-            playerStateVariable.ChangeTarget(null);
+            playerStateVariable.ChangeTarget(null); 
+            targetCanceledEvent.Raise();
         }
     }
 

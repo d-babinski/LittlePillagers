@@ -15,7 +15,7 @@ MonoBehaviour:
   SkillAvailabilityDuringGameplayPhases: 4
   IsSkillshot: 1
   SkillName: Healing aura
-  Description: Place a healing aura healing all units inside for 2 health per second.
+  Description: Heals all your units for 2 health/sec
   GoldCost: 25
   AreaSize: {x: 0.75, y: 0.3125}
   prefabToSpawn: {fileID: 3125620262053713202, guid: e677e38680f32604ab9309062a59d4ed, type: 3}

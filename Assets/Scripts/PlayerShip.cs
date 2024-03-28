@@ -27,12 +27,12 @@ public class PlayerShip : MonoBehaviour
 
     public bool IsAtBeggining()
     {
-        return splineFollower.GetPercent() <= 1f;
+       return splineFollower.GetPercent() <= 0.01;
     }
 
     public bool IsAtEnd()
     {
-        return splineFollower.GetPercent() >= 99f;
+        return splineFollower.GetPercent() >= 0.99;
     }
 
     public void MoveForwardAPath(ShipPath _path)
@@ -46,7 +46,7 @@ public class PlayerShip : MonoBehaviour
     {
         splineFollower.spline = _path.Spline;
         splineFollower.direction = Spline.Direction.Backward;
-        splineFollower.SetPercent(100.0);
+        splineFollower.SetPercent(1.0);
     }
 }
  

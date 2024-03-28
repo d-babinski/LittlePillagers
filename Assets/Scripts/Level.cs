@@ -23,7 +23,7 @@ public class Level : MonoBehaviour
 
     [SerializeField] private Transform[] spawnPoints = null;
     [SerializeField] private ZoomStateVariable zoomStateVariable = null;
-    [SerializeField] private UnitBuilder unitSpawner = null;
+    [SerializeField] private PlayerStateVariable playerState = null;
 
     [FormerlySerializedAs("islandPathScriptables")][SerializeField] private IslandPaths islandPathScriptable = null;
 
@@ -106,8 +106,6 @@ public class Level : MonoBehaviour
 
         return _islandSplines;
     }
-
-    
 
     public bool IsLevelCompleted()
     {

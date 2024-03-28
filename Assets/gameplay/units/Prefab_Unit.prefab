@@ -10,13 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 6528941099642882810}
   - component: {fileID: 1269951511792484511}
-  - component: {fileID: 4839612657024850405}
   - component: {fileID: 6555333966923239359}
   - component: {fileID: 2715938408342101968}
   - component: {fileID: 1721041779680939620}
-  - component: {fileID: 7273464378407072356}
   m_Layer: 6
-  m_Name: Prefab_Soldier
+  m_Name: Prefab_Unit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -50,57 +48,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8cf66ee5c71443bab0b51f5807767c38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UnitTemplate: {fileID: 0}
+  UnitTeam: {fileID: 0}
+  CurrentAttack: {fileID: 0}
+  CurrentAttackProgress: 0
   Target: {fileID: 0}
-  EnemyMask: {fileID: 11400000, guid: d848682d9f219284aa0048c9352606d7, type: 2}
-  DeathActions:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 11400000, guid: a1ac99d9c54429943b8dd074c9a06c16, type: 2}
-        m_TargetAssemblyTypeName: RuntimeSet`1[[Unit, Assembly-CSharp
-        m_MethodName: Remove
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 1269951511792484511}
-          m_ObjectArgumentAssemblyTypeName: Unit, Assembly-CSharp
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  DeathUnitTypeActions:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 11400000, guid: ae7ac3f201fc3664c9be451bb83da868, type: 2}
-        m_TargetAssemblyTypeName: CHARK.ScriptableEvents.ScriptableEvent`1[[UnitType,
-          Assembly-CSharp
-        m_MethodName: Raise
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  aliveEnemies: {fileID: 11400000, guid: ac84314217b31d64f8253aa11ec73e3c, type: 2}
+  CurrentState: 0
+  UnitType: {fileID: 0}
   spriteRenderer: {fileID: 1651906370306692102}
   animator: {fileID: 6198104439889296940}
-  navigator: {fileID: 4839612657024850405}
-  targetingSystem: {fileID: 11400000, guid: 76ce8ff6d6bfefc469f5192c7e5c9488, type: 2}
---- !u!114 &4839612657024850405
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1269951511792484510}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9af5abba0c8a9ec49a64372125e96fbc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  SkillBonus: 0
 --- !u!61 &6555333966923239359
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -186,20 +142,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RuntimeSet: {fileID: 11400000, guid: a1ac99d9c54429943b8dd074c9a06c16, type: 2}
---- !u!114 &7273464378407072356
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1269951511792484510}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 90adc45aa8a41b148a63c028166168d2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  resetOnNoMovement: 0
-  spriteRenderer: {fileID: 1651906370306692102}
 --- !u!1 &7500842664174096920
 GameObject:
   m_ObjectHideFlags: 0
@@ -303,6 +245,6 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0

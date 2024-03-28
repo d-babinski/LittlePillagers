@@ -8,9 +8,10 @@ public class Battle
         AttackerWon = 1,
         DefenderWon = 2,
     }
-
-    public State BattleState => currentBattleState;
     
+    public State BattleState => currentBattleState;
+
+    public List<Unit> AttackerUnits => attackerUnits;
     private Army attackerArmy = null;
     private Army defenderArmy = null;
     private List<Unit> attackerUnits = new();
@@ -32,7 +33,7 @@ public class Battle
         SubscribeToUnitsDeathEventAndRemoveFromArmy(defenderUnits, _defenderArmy);
     }
 
-    public State ProgressBattle(UnitsAI _aiToUse)
+    public State ProgressBattle()
     {
         if (currentBattleState != State.InProgress)
         {
@@ -48,7 +49,7 @@ public class Battle
             return currentBattleState;
         }
 
-        _aiToUse.UpdateUnitCombatAI(allUnits);
+        CombatAI.UpdateUnitCombatAI(allUnits);
         currentBattleState = State.InProgress;
 
         return currentBattleState;

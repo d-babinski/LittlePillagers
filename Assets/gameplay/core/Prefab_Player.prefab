@@ -53,12 +53,14 @@ MonoBehaviour:
   targetChosenEvent: {fileID: 11400000, guid: 8cc25200603bc2841ab93eb2bbb65f7b, type: 2}
   targetCanceledEvent: {fileID: 11400000, guid: c90fc3163ae8d764384c0813c939763d, type: 2}
   onEmbarkEvent: {fileID: 11400000, guid: 355c6b6060477914cb0fa0c0b8a7aef7, type: 2}
+  playerLostEvent: {fileID: 11400000, guid: 9eeb4f4cd126d934aae78fbff72d665a, type: 2}
   playerSkillCaster: {fileID: 11400000, guid: 3ac254ea8fa3dd54aaec2a5a441b2b5c, type: 2}
   playerStateVariable: {fileID: 11400000, guid: 7ba7d5f2c832ecb46b9a57906b5c571b, type: 2}
   playerResources: {fileID: 11400000, guid: 81d6fbafbe935e34d9c00ce382606d25, type: 2}
   army: {fileID: 11400000, guid: 3c639a55ef76dd6408deba32718a496a, type: 2}
   pathsToIslands: {fileID: 11400000, guid: ce511191e3a22b44eb4f0754122c768d, type: 2}
   ship: {fileID: 5258514498731598313}
+  resourceSpawner: {fileID: 11400000, guid: c934569842c68c94998f53d6277b4c93, type: 2}
   battleCreator: {fileID: 11400000, guid: 81ee9ea1cc653b34185e2c619489886f, type: 2}
   playerTeam: {fileID: 11400000, guid: f585956cfd038154d922f4457acfc9cf, type: 2}
   enemyTeam: {fileID: 11400000, guid: acf690eee67fd0145b96b1715d8a1af3, type: 2}

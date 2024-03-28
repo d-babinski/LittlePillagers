@@ -16,7 +16,7 @@ public class GetClosestEnemy : TargetingSystem
         Unit _closestEnemy = null;
         float _distanceToBeat = Mathf.Infinity;
         
-        for (int i = 1; i < _enemies.Count; i++)
+        for (int i = 0; i < _enemies.Count; i++)
         {
             if (_enemies[i].CurrentState == Unit.UnitState.Dead)
             {

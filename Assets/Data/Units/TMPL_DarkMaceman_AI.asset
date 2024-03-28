@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 433a7a309de24c9a8909720dd2d7fa1b, type: 3}
   m_Name: TMPL_DarkMaceman_AI
   m_EditorClassIdentifier: 
+  unitPrefab: {fileID: 1269951511792484511, guid: 9418f9977f9a81a4e8d3ee24cfa2956b, type: 3}
   PreviewIcon: {fileID: 0}
   InGameSprite: {fileID: -477801000945638682, guid: caea308c944094a469aa8d7d4b9ea2f2, type: 3}
   Animator: {fileID: 22100000, guid: d26e1f15fa728fe489a40e4b86b7f826, type: 2}

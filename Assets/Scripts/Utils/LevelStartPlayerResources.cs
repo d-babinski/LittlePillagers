@@ -20,10 +20,11 @@ public class LevelStartPlayerResources : MonoBehaviour
     private void Start()
     {
         resourcesBeingSet.Value = startingResources.Value;
+        playerDatabase.Clear();
         
         initialUnits.ForEach(_soldiersToAdd =>
         {
-            playerDatabase.AddUnits(_soldiersToAdd.Type, _soldiersToAdd.Count); 
+            playerDatabase.SetUnits(_soldiersToAdd.Type, _soldiersToAdd.Count); 
         });
     }
 }

@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 433a7a309de24c9a8909720dd2d7fa1b, type: 3}
   m_Name: TMPL_Pikeman
   m_EditorClassIdentifier: 
+  unitPrefab: {fileID: 1269951511792484511, guid: 9418f9977f9a81a4e8d3ee24cfa2956b, type: 3}
   PreviewIcon: {fileID: -4621868545372977378, guid: 8566fd31f52f23e4a9e7cf1d0f7dc1e2, type: 3}
   InGameSprite: {fileID: 6036573367687385950, guid: d1a3a469e68594c4982ff128853b385a, type: 3}
   Animator: {fileID: 9100000, guid: 27e101850b1f0734badfbca0a28d8caa, type: 2}

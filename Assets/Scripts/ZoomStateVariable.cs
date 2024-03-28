@@ -12,6 +12,12 @@ public class ZoomStateVariable : ScriptableObject
     [NonSerialized] private Vector2 lastZoomTarget = Vector2.zero; 
     [NonSerialized] private bool isZoomedIn = false;
 
+    public void SetDefaultValues()
+    {
+        isZoomedIn = false;
+        lastZoomTarget = Vector2.zero;
+    }
+    
     public void ChangeStateToZoomIn(Vector2 _target)
     {
         isZoomedIn = true;

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-
 public class Unit : MonoBehaviour
 {
     public event Action<UnitType> OnDeathEvent = null;
@@ -14,6 +13,12 @@ public class Unit : MonoBehaviour
         Move = 1,
         Attack = 2,
         Dead = 3,
+    }
+
+    public enum FaceDirection
+    {
+        Left = 0,
+        Right = 1,
     }
     
     public Team UnitTeam = null;
@@ -59,6 +64,11 @@ public class Unit : MonoBehaviour
         }
     }
 
+    public void Face(FaceDirection _direction)
+    {
+        spriteRenderer.flipX = _direction != FaceDirection.Right;
+    }
+    
     public void ChangeState(UnitState _newState)
     {
         if (CurrentState == UnitState.Dead)

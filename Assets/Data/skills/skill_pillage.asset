@@ -15,8 +15,7 @@ MonoBehaviour:
   SkillAvailabilityDuringGameplayPhases: 1
   IsSkillshot: 0
   SkillName: Canny Pillage
-  Description: Shoot cannons to loot all islands for third of their next's stage
-    rewards.
+  Description: Plunder some of islands stage rewards
   GoldCost: 50
   AreaSize: {x: 1, y: 1}
   effectiveness: 0.33

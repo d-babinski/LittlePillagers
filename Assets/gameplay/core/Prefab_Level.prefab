@@ -1,90 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &2903216599441977420
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 8022367197195754922}
-  - component: {fileID: 6650083545807347669}
-  - component: {fileID: 3954160999623342621}
-  m_Layer: 0
-  m_Name: Prefab_GUI
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &8022367197195754922
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2903216599441977420}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 8116886938606460372}
-  m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6650083545807347669
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2903216599441977420}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9fabf3f7ce4caf549ba509c6bf8d35ee, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ChooseAsTargetButtonClicked: {fileID: 11400000, guid: 5a0c96f77d6fea043a6e65facb2f44b3, type: 2}
-  CancelTargetButtonClicked: {fileID: 11400000, guid: e0e08953fd9b1e94095970735cda50c2, type: 2}
-  ZoomToIslandButtonClicked: {fileID: 11400000, guid: 4ca2167ce95d62349a08d0590b4ae746, type: 2}
-  UnzoomButtonClicked: {fileID: 11400000, guid: e29d738a2f8e7eb44b873b136104536b, type: 2}
-  playerStateVariable: {fileID: 11400000, guid: 7ba7d5f2c832ecb46b9a57906b5c571b, type: 2}
-  zoomStateVariable: {fileID: 11400000, guid: 5fa32c2527fc1104886030a926ad219d, type: 2}
-  IslandNameplateSetup: {fileID: 11400000, guid: fa0cb4b385784fb45a08a4c289ec9445, type: 2}
-  ContextButtonSetup: {fileID: 11400000, guid: 687ff6e301f42c44686f81452fb0a682, type: 2}
-  IslandRuntimeSet: {fileID: 11400000, guid: 0ce93c0f89a12e440a1e2fda6fb16e0e, type: 2}
-  stageIconPrefab: {fileID: 1382489870668227961, guid: 6f99613775aabde4888c6b759563a7e8, type: 3}
---- !u!114 &3954160999623342621
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2903216599441977420}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2300d56ac22446e59de6de2fb87235d1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  scriptableEvent: {fileID: 0}
-  scriptableEvents:
-  - {fileID: 11400000, guid: 5fade59caaad8574cbdf53a83beeac10, type: 2}
-  onRaised:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 6650083545807347669}
-        m_TargetAssemblyTypeName: GUI, Assembly-CSharp
-        m_MethodName: SpawnGUI
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!1 &5753583498245252910
 GameObject:
   m_ObjectHideFlags: 0
@@ -134,11 +49,11 @@ MonoBehaviour:
   playerDatabase: {fileID: 11400000, guid: 3c639a55ef76dd6408deba32718a496a, type: 2}
   initialUnits:
   - Type: {fileID: 11400000, guid: 2b97ef2cc8f0e674d8315895dc3cd231, type: 2}
-    Count: 1
+    Count: 50
   - Type: {fileID: 11400000, guid: 9cdb9c66c1b7c85499bade3b35333a94, type: 2}
-    Count: 1
+    Count: 50
   - Type: {fileID: 11400000, guid: fbef3ba5db236de43bfa395876895be4, type: 2}
-    Count: 1
+    Count: 50
 --- !u!1 &6075821831803213349
 GameObject:
   m_ObjectHideFlags: 0
@@ -265,7 +180,7 @@ MonoBehaviour:
   - {fileID: 1647939782406211560}
   - {fileID: 6349608652749814337}
   zoomStateVariable: {fileID: 11400000, guid: 5fa32c2527fc1104886030a926ad219d, type: 2}
-  unitSpawner: {fileID: 11400000, guid: e2d9008c9695aa444b28533376f5e232, type: 2}
+  playerState: {fileID: 0}
   islandPathScriptable: {fileID: 11400000, guid: ce511191e3a22b44eb4f0754122c768d, type: 2}
   IslandRuntimeSet: {fileID: 11400000, guid: 0ce93c0f89a12e440a1e2fda6fb16e0e, type: 2}
   IslandPrefab: {fileID: 2477834144564853653, guid: 9d37bd241eabe1c4c9195363e38e962b, type: 3}
@@ -515,6 +430,72 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c07d84d81f30fdb48902e022be2834c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1001 &2663823458473882087
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 8116886938606460372}
+    m_Modifications:
+    - target: {fileID: 918032079272378795, guid: 20d4b0f700985e6479a1548444112067, type: 3}
+      propertyPath: m_Name
+      value: Prefab_GUI
+      objectReference: {fileID: 0}
+    - target: {fileID: 5450166045084576845, guid: 20d4b0f700985e6479a1548444112067, type: 3}
+      propertyPath: m_RootOrder
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5450166045084576845, guid: 20d4b0f700985e6479a1548444112067, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5450166045084576845, guid: 20d4b0f700985e6479a1548444112067, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5450166045084576845, guid: 20d4b0f700985e6479a1548444112067, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5450166045084576845, guid: 20d4b0f700985e6479a1548444112067, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5450166045084576845, guid: 20d4b0f700985e6479a1548444112067, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5450166045084576845, guid: 20d4b0f700985e6479a1548444112067, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5450166045084576845, guid: 20d4b0f700985e6479a1548444112067, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5450166045084576845, guid: 20d4b0f700985e6479a1548444112067, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5450166045084576845, guid: 20d4b0f700985e6479a1548444112067, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5450166045084576845, guid: 20d4b0f700985e6479a1548444112067, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 20d4b0f700985e6479a1548444112067, type: 3}
+--- !u!4 &8022367197195754922 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5450166045084576845, guid: 20d4b0f700985e6479a1548444112067, type: 3}
+  m_PrefabInstance: {fileID: 2663823458473882087}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6048908736282858398
 PrefabInstance:
   m_ObjectHideFlags: 0

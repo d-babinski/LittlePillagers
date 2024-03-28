@@ -14,6 +14,12 @@ public class PlayerStateVariable : ScriptableObject
     [NonSerialized] private PlayerCombatState combatState = PlayerCombatState.Preparation;
     [NonSerialized] private Island currentTarget = null;
 
+    public void SetDefaultValues()
+    {
+        combatState = PlayerCombatState.Preparation;
+        currentTarget = null;
+    }
+    
     public void ChangeCombatState(PlayerCombatState _newCombatState)
     {
         combatState = _newCombatState;

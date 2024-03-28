@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 433a7a309de24c9a8909720dd2d7fa1b, type: 3}
   m_Name: TMPL_Mage_AI
   m_EditorClassIdentifier: 
+  unitPrefab: {fileID: 1269951511792484511, guid: 9418f9977f9a81a4e8d3ee24cfa2956b, type: 3}
   PreviewIcon: {fileID: 0}
   InGameSprite: {fileID: 4043727422171924416, guid: bd17818672b1c4a49995a2be22aeca00, type: 3}
   Animator: {fileID: 22100000, guid: 695737c8bc1cbe848b46bf71fd29e742, type: 2}
