@@ -1,5 +1,8 @@
+using System;
 using UnityEngine;
+using UnityEngine.UI;
 
+[RequireComponent(typeof(Button))]
 public class SkillUI : MonoBehaviour
 {
     [SerializeField] private PlayerStateVariable playerStateVariable = null;
@@ -9,6 +12,12 @@ public class SkillUI : MonoBehaviour
     [SerializeField] private CanvasGroup buttonCanvasGroup = null;
 
     private bool interactable = true;
+    private Button button = null;
+
+    private void Awake()
+    {
+        button = GetComponent<Button>();
+    }
 
     private void Update()
     {
@@ -18,7 +27,7 @@ public class SkillUI : MonoBehaviour
         if (_shouldBeInteractable != interactable)
         {
             interactable = _shouldBeInteractable;
-            applyVisuals(_shouldBeInteractable);
+            button.interactable = interactable;
         }
     }
 

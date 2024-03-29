@@ -1,11 +1,12 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class IslandStageIcon : MonoBehaviour
 {
     [SerializeField] private Vector2 offsetFromIsland = Vector2.up;
     [SerializeField] private Vector2 offsetBetweenIcons = Vector2.right * 0.25f;
     [SerializeField] private Animator animator = null;
-    [SerializeField] private SpriteRenderer spriteRenderer = null;
+    [SerializeField] private Image spriteRenderer = null;
 
     private int trackedStageNumber = 0;
     private Island trackedIsland = null;

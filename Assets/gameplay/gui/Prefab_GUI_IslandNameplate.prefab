@@ -313,4 +313,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   trackedIsland: {fileID: 0}
   textComponent: {fileID: 6206046423788474089}
-  tweenTime: {fileID: 11400000, guid: 60279b321de8fea4aa43269fd6db5c66, type: 2}

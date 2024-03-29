@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 792866be43850264192b37a31bd2c1a4, type: 3}
   m_Name: GUI_IslandNameplateSetup
   m_EditorClassIdentifier: 
-  nameplatePrefab: {fileID: 6478402460721239628, guid: c4f901534ef60dd48971fe936d31b19c, type: 3}
+  nameplatePrefab: {fileID: -8573792643606472075, guid: 55035c1da0126494aadd665a538440cb, type: 3}
   offset: {x: 1.61, y: -0.5}

@@ -1,5 +1,6 @@
 using CHARK.ScriptableEvents.Events;
 using ScriptableEvents.Events;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -12,7 +13,8 @@ public class GUI : MonoBehaviour
     [SerializeField] private SimpleScriptableEvent UnzoomButtonClicked = null;
     [SerializeField] private PlayerStateVariable playerStateVariable = null;
     [SerializeField] private ZoomStateVariable zoomStateVariable = null;
-
+    [SerializeField] private Canvas guiCanvas = null;
+    
     public IslandNameplateSetup IslandNameplateSetup = null;
     [FormerlySerializedAs("ContextButtons")] public IslandContextButtonSetup ContextButtonSetup = null;
     public IslandRuntimeSet IslandRuntimeSet = null;
@@ -22,6 +24,7 @@ public class GUI : MonoBehaviour
 
     public void SpawnGUI()
     {
+        guiCanvas.worldCamera = Camera.main;
         SpawnIslandContextButtons(IslandRuntimeSet.Items);
         SubscribeToContextButtonEvents();
         SpawnIslandNameplates(IslandRuntimeSet.Items);
@@ -32,7 +35,7 @@ public class GUI : MonoBehaviour
     {
         _islands.ForEach(_island =>
         {
-              IslandNameplateSetup.CreateNameplateForIsland(_island);
+              IslandNameplateSetup.CreateNameplateForIsland(_island, transform);
         });
     }
 
@@ -47,7 +50,6 @@ public class GUI : MonoBehaviour
         });
     }
     
-    //TODO : Simplify action enum path
     private void handleContextButtonClicked(IslandContextAction _contextAction, Island _context)
     {
         switch (_contextAction)
@@ -75,7 +77,7 @@ public class GUI : MonoBehaviour
 
             for (int i = 0; i < _iconsToSpawn; i++)
             {
-                Instantiate(stageIconPrefab).Initialize(_island, i);
+                Instantiate(stageIconPrefab, transform).Initialize(_island, i);
             }
         });
     }
@@ -84,48 +86,39 @@ public class GUI : MonoBehaviour
     {
         _islands.ForEach(_island =>
         {
-            IslandContextButton[] _islandButtons = ContextButtonSetup.CreateContextButtonsForIsland(_island);
+            IslandContextButton[] _islandButtons = ContextButtonSetup.CreateContextButtonsForIsland(_island, transform);
 
             islandContextButtons[_island] = _islandButtons;
 
             for (int i = 0; i < _islandButtons.Length; i++)
             {
-                if (_islandButtons[i].Action == IslandContextAction.Zoom || _islandButtons[i].Action == IslandContextAction.Unzoom)
-                {
-                    AddZoomStateDependencyToButton(_islandButtons[i], zoomStateVariable);
-                    continue;
-                }
+                PredicateBasedActions _predicateActions = _islandButtons[i].gameObject.AddComponent<PredicateBasedActions>();
+                IslandContextButton _button = _islandButtons[i];
 
-                if (_islandButtons[i].Action == IslandContextAction.None)
-                {
-                    continue;
-                }
+                _predicateActions.OnAllPredicatesFulfilledEvent.AddListener(() => _button.gameObject.SetActive(true));
+                _predicateActions.OnAnyPredicateFailedEvent.AddListener( () => _button.gameObject.SetActive(false));
                 
-                AddPlayerStateDependancyToButton(_islandButtons[i], playerStateVariable);
+                
+                switch (_button.Action)
+                {
+                    case IslandContextAction.Attack:
+                        _predicateActions.AddPredicate(new PlayerCombatStatePredicate(playerStateVariable, PlayerCombatState.Preparation));
+                        _predicateActions.AddPredicate(new PlayerTargetStatePredicate(playerStateVariable, PlayerTargetState.NotChosen));
+                        _predicateActions.AddPredicate(new IslandBeatenPredicate(_button.GetContext(), false));
+                        break;
+                    case IslandContextAction.CancelAttack:
+                        _predicateActions.AddPredicate(new PlayerCombatStatePredicate(playerStateVariable, PlayerCombatState.Preparation));
+                        _predicateActions.AddPredicate(new PlayerTargetStatePredicate(playerStateVariable, PlayerTargetState.Chosen));
+                        _predicateActions.AddPredicate(new IslandPredicate(playerStateVariable, _button.GetContext()));
+                        break;
+                    case IslandContextAction.Zoom:
+                        _predicateActions.AddPredicate(new ZoomStatePredicate(zoomStateVariable, false));
+                        break;
+                    case IslandContextAction.Unzoom:
+                        _predicateActions.AddPredicate(new ZoomStatePredicate(zoomStateVariable, true));
+                        break;
+                }
             }
         });
-    }
-    
-    private void AddZoomStateDependencyToButton(IslandContextButton _button, ZoomStateVariable _zoomStateVariable)
-    {
-        ZoomStateDependency _zoomStateDependency = _button.gameObject.AddComponent<ZoomStateDependency>();
-        bool _requiresZoomIn = _button.Action == IslandContextAction.Unzoom ? true : false;
-        
-        _zoomStateDependency.SetStateDependancy(_button.gameObject, _zoomStateVariable, _requiresZoomIn);
-        
-    }
-
-    public void AddPlayerStateDependancyToButton(IslandContextButton _button, PlayerStateVariable _playerState)
-    {
-        PlayerStateDependency _playerStateDependency = _button.gameObject.AddComponent<PlayerStateDependency>();
-        PlayerCombatState _combatStateDependancy = PlayerCombatState.Preparation;
-        PlayerTargetState _targetStateDependancy = _button.Action == IslandContextAction.Attack ? PlayerTargetState.NotChosen : PlayerTargetState.Chosen;
-        
-        _playerStateDependency.SetStateDependancy(_button.gameObject, _playerState,_combatStateDependancy,_targetStateDependancy);
-
-        if (_button.Action == IslandContextAction.CancelAttack)
-        {
-            _playerStateDependency.SetTargetRequirement(true,_button.GetContext());
-        }
     }
 }

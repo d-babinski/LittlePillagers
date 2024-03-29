@@ -4,7 +4,7 @@ using UnityEngine;
 public class IslandNameplate : MonoBehaviour
 {
     [SerializeField] private Island trackedIsland = null;
-    [SerializeField] private TextMeshPro textComponent = null;
+    [SerializeField] private TextMeshProUGUI textComponent = null;
 
     public void SetContext(Island _context)
     {

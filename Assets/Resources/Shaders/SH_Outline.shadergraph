@@ -2141,7 +2141,7 @@
     "m_Group": {
         "m_Id": ""
     },
-    "m_Name": "Outline",
+    "m_Name": "SSH_Outline",
     "m_DrawState": {
         "m_Expanded": true,
         "m_Position": {
@@ -3832,7 +3832,7 @@
     "m_Group": {
         "m_Id": ""
     },
-    "m_Name": "Outline",
+    "m_Name": "SSH_Outline",
     "m_DrawState": {
         "m_Expanded": true,
         "m_Position": {
@@ -4183,7 +4183,7 @@
     "m_Group": {
         "m_Id": ""
     },
-    "m_Name": "Outline",
+    "m_Name": "SSH_Outline",
     "m_DrawState": {
         "m_Expanded": true,
         "m_Position": {
@@ -4256,7 +4256,7 @@
     "m_Group": {
         "m_Id": ""
     },
-    "m_Name": "Outline",
+    "m_Name": "SSH_Outline",
     "m_DrawState": {
         "m_Expanded": true,
         "m_Position": {
@@ -4948,7 +4948,7 @@
     "m_Group": {
         "m_Id": ""
     },
-    "m_Name": "Outline",
+    "m_Name": "SSH_Outline",
     "m_DrawState": {
         "m_Expanded": true,
         "m_Position": {
@@ -5037,7 +5037,7 @@
     "m_Group": {
         "m_Id": ""
     },
-    "m_Name": "Outline",
+    "m_Name": "SSH_Outline",
     "m_DrawState": {
         "m_Expanded": true,
         "m_Position": {
@@ -5224,7 +5224,7 @@
     "m_Group": {
         "m_Id": ""
     },
-    "m_Name": "Outline",
+    "m_Name": "SSH_Outline",
     "m_DrawState": {
         "m_Expanded": true,
         "m_Position": {
@@ -5470,7 +5470,7 @@
     "overrideHLSLDeclaration": false,
     "hlslDeclarationOverride": 2,
     "m_Hidden": false,
-    "m_Value": 1.0,
+    "m_Value": 0.0,
     "m_FloatType": 0,
     "m_RangeValues": {
         "x": 0.0,
@@ -5593,7 +5593,7 @@
     "m_Group": {
         "m_Id": ""
     },
-    "m_Name": "Outline",
+    "m_Name": "SSH_Outline",
     "m_DrawState": {
         "m_Expanded": true,
         "m_Position": {

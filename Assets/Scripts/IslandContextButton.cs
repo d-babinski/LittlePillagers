@@ -1,21 +1,20 @@
- using ScriptableEvents.Events;
 using System;
 using UnityEngine;
- using UnityEngine.Serialization;
+using UnityEngine.UI;
 
- [RequireComponent(typeof(PointerEvents))]
+[RequireComponent(typeof(Button))]
 public class IslandContextButton : MonoBehaviour
 {
     public event Action<IslandContextAction, Island> OnActionClicked = null;
     public IslandContextAction Action = IslandContextAction.None;
-    
+
     [SerializeField] private Island trackedIsland = null;
-    
-    private PointerEvents trackedButton = null;
+
+    private Button trackedButton = null;
 
     private void Awake()
     {
-        trackedButton = GetComponent<PointerEvents>();
+        trackedButton = GetComponent<Button>();
     }
 
     public void SetContext(Island _trackedIsland)
@@ -27,17 +26,17 @@ public class IslandContextButton : MonoBehaviour
     {
         return trackedIsland;
     }
-    
+
     private void OnEnable()
     {
-        trackedButton.MouseClickEvent.AddListener(sendEvent);
+        trackedButton.onClick.AddListener(sendEvent);
     }
 
     private void OnDisable()
     {
-        trackedButton.MouseClickEvent.RemoveListener(sendEvent);
+        trackedButton.onClick.RemoveListener(sendEvent);
     }
-    
+
     private void sendEvent()
     {
         OnActionClicked?.Invoke(Action, trackedIsland);

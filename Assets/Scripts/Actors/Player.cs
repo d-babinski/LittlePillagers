@@ -124,7 +124,7 @@ public class Player : MonoBehaviour
 
     public void OnTargetChoice(Island _target)
     {
-        if (playerStateVariable.CurrentTarget != null)
+        if (playerStateVariable.CurrentTarget != null || _target.AreAllStagesBeaten() == true)
         {
             return;
         }
