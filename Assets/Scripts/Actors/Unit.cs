@@ -64,7 +64,7 @@ public class Unit : MonoBehaviour
         }
     }
 
-    public void Face(FaceDirection _direction)
+    public void Face (FaceDirection _direction)
     {
         spriteRenderer.flipX = _direction != FaceDirection.Right;
     }

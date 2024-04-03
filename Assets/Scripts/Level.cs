@@ -11,7 +11,6 @@ using UnityEngine.Serialization;
 
 public class Level : MonoBehaviour
 {
-    //TODO: Make scriptable for win conditions if checking will get complicated
     public enum WinCondition
     {
         BeatAllStages = 0,
@@ -36,6 +35,15 @@ public class Level : MonoBehaviour
     public Player Player = null;
     public UnityEvent OnLevelLoaded = null;
     public SplineComputer SplinePrefab = null;
+    
+    public void LoadLevel(LevelSettings _level)
+    {
+        Island[] _spawnedIslands = spawnIslands(_level.Islands);
+        IslandRuntimeSet.Items = _spawnedIslands.ToList();
+        islandPathScriptable.IslandSplines = spawnIslandPaths(SplinePrefab, Player.transform.position, _spawnedIslands);
+        VictoryCondition = _level.WinCondition;
+        OnLevelLoaded?.Invoke();
+    }
 
     public void TryZoomingToisland(Island _target)
     {
@@ -57,15 +65,6 @@ public class Level : MonoBehaviour
 
         zoomStateVariable.ChangeStateToUnzoom();
         unzoomFromIslandEvent.Raise();
-    }
-
-    public void LoadLevel(LevelSettings _level)
-    {
-        Island[] _spawnedIslands = spawnIslands(_level.Islands);
-        IslandRuntimeSet.Items = _spawnedIslands.ToList();
-        islandPathScriptable.IslandSplines = spawnIslandPaths(SplinePrefab, Player.transform.position, _spawnedIslands);
-        VictoryCondition = _level.WinCondition;
-        OnLevelLoaded?.Invoke();
     }
 
     private Island[] spawnIslands(IslandType[] _islandsToSpawn)

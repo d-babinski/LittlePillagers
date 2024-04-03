@@ -1,7 +1,4 @@
-﻿
-
-
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEditor;
 
 internal sealed class SpriteImportRule : AssetPostprocessor
@@ -9,9 +6,6 @@ internal sealed class SpriteImportRule : AssetPostprocessor
 
     #region Methods
 
-    //-------------Pre Processors
-
-    // This event is raised when a texture asset is imported
     private void OnPreprocessTexture()
     {
         var fileNameIndex = assetPath.LastIndexOf('/');

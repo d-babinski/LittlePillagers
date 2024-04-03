@@ -23,7 +23,7 @@ public abstract class Attack : ScriptableObject
         return targetingSystem.ChooseTarget(_unit, _allUnits);
     }
     
-    public abstract float  MakeAttack(float _normalizedTime, LayerMask _enemyMask, Vector3 _currentPos,  Vector3 _target, int _bonusPower);
+    public abstract float MakeAttack(float _normalizedTime, LayerMask _enemyMask, Vector3 _currentPos,  Vector3 _target, int _bonusPower);
 
     public bool IsTooClose(Vector2 _from, Vector2 _target)
     {

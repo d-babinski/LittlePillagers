@@ -80,7 +80,7 @@ public class Player : MonoBehaviour
 
             if (_currentMission == PlayerIslandAttackSequence.SequenceState.Success)
             {
-                completeMission();
+                succesfullyCompleteMission();
                 stageBeatenEvent.Raise();
                 return;
             }
@@ -109,7 +109,7 @@ public class Player : MonoBehaviour
         playerStateVariable.ChangeCombatState(PlayerCombatState.Combat);
     }
 
-    private void completeMission()
+    private void succesfullyCompleteMission()
     {
         resourceSpawner.SpawnResources(playerStateVariable.CurrentTarget.GetCurrentStage().Rewards, playerStateVariable.CurrentTarget.transform.position);
         playerStateVariable.CurrentTarget.BeatStage();

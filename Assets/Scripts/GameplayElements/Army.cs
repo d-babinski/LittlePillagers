@@ -44,7 +44,6 @@ public class Army : ScriptableObject
             _unitList.Add((_keyValuePair.Key, _keyValuePair.Value));
         }
         
-        //TODO: Think of more efficient way to do this
         return _unitList.ToArray();
     }
 
