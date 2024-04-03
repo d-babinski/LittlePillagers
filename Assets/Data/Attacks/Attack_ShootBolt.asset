@@ -18,7 +18,7 @@ MonoBehaviour:
   Power: 1
   Cooldown: 0
   targetingSystem: {fileID: 11400000, guid: 76ce8ff6d6bfefc469f5192c7e5c9488, type: 2}
-  duration: 1.2
+  duration: 0.75
   movingProjectileToSpawn: {fileID: 7322196757884627887, guid: 614ea016118df9e439318ae5179b3011, type: 3}
   attackRadius: 0.03125
   spawnProjectileMoment: 0.1

@@ -286,6 +286,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d8b6c7338010b848b9415ceeb2a30c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IslandTeam: {fileID: 11400000, guid: acf690eee67fd0145b96b1715d8a1af3, type: 2}
   islandSpriteRenderer: {fileID: 4611154372667569073}
 --- !u!114 &3572361735306650077
 MonoBehaviour:

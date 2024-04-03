@@ -9,9 +9,10 @@ public class Player : MonoBehaviour
     [SerializeField] private SimpleScriptableEvent targetCanceledEvent = null;
     [SerializeField] private SimpleScriptableEvent onEmbarkEvent = null;
     [SerializeField] private SimpleScriptableEvent playerLostEvent = null;
+    [SerializeField] private SimpleScriptableEvent stageBeatenEvent = null;
 
     [SerializeField] private InputManager input = null;
-    
+
     [SerializeField] private PlayerSkillCaster playerSkillCaster = null;
     [SerializeField] private PlayerStateVariable playerStateVariable = null;
     [SerializeField] private ResourcesVariable playerResources = null;
@@ -19,23 +20,20 @@ public class Player : MonoBehaviour
     [SerializeField] private IslandPaths pathsToIslands = null;
     [SerializeField] private PlayerShip ship = null;
     [SerializeField] private ClickableResourceSpawner resourceSpawner = null;
-    
-    [SerializeField] private Team playerTeam = null;
-    [SerializeField] private Team enemyTeam = null;
 
-    private bool waitingForReturnToShip = false;
-    private Battle currentBattle = null;
-    
+    [SerializeField] private Team playerTeam = null;
+
+    private PlayerIslandAttackSequence currentMission = null;
+
+
     private void OnEnable()
     {
         playerSkillCaster.OnSkillCastEvent += removeSpellCost;
-        ship.OnArrival += onShipArrival;
     }
 
     private void OnDisable()
     {
         playerSkillCaster.OnSkillCastEvent -= removeSpellCost;
-        ship.OnArrival -= onShipArrival;
     }
 
     private void Update()
@@ -52,55 +50,44 @@ public class Player : MonoBehaviour
                 playerSkillCaster.CancelCast();
             }
 
-            if (input.FirstSkillPressed())
-            {
-                UseSkill(playerSkillCaster.PlayerSkills[0]);
-            }
-            
-            if (input.SecondSkillPressed())
-            {
-                UseSkill(playerSkillCaster.PlayerSkills[1]);
-            }
-            
-            if (input.ThirdSkillPressed())
-            {
-                UseSkill(playerSkillCaster.PlayerSkills[2]);
-            }
+        }
+
+        if (input.FirstSkillPressed())
+        {
+            UseSkill(playerSkillCaster.PlayerSkills[0]);
+        }
+
+        if (input.SecondSkillPressed())
+        {
+            UseSkill(playerSkillCaster.PlayerSkills[1]);
+        }
+
+        if (input.ThirdSkillPressed())
+        {
+            UseSkill(playerSkillCaster.PlayerSkills[2]);
         }
         
-        if (waitingForReturnToShip == true)
+        if (currentMission != null)
         {
-            if (MoveToShipAI.MoveAliveUnitsToPointAndDestroy(currentBattle.AttackerUnits, ship.transform.position) == MoveToShipAI.State.AllUnitsMoved)
-            {
-                resourceSpawner.SpawnResources(playerStateVariable.CurrentTarget.GetCurrentStage().Rewards, playerStateVariable.CurrentTarget.transform.position);   
-                ship.MoveBackwardsAPath(pathsToIslands.IslandSplines[playerStateVariable.CurrentTarget]);
-                playerStateVariable.CurrentTarget.BeatStage();
-                waitingForReturnToShip = false;
-            }
-            
-            return;
-        }
+            PlayerIslandAttackSequence.SequenceState _currentMission = currentMission.UpdateSequence();
 
-        if (currentBattle == null || currentBattle.BattleState != Battle.State.InProgress)
-        {
-            return;
-        }
-
-        if (currentBattle.ProgressBattle() != Battle.State.InProgress)
-        {
-            if (currentBattle.BattleState == Battle.State.AttackerWon)
+            if (_currentMission == PlayerIslandAttackSequence.SequenceState.Failure)
             {
-                waitingForReturnToShip = true;
+                playerLostEvent.Raise();
+                currentMission = null;
                 return;
             }
 
-            if (currentBattle.BattleState == Battle.State.DefenderWon)
+            if (_currentMission == PlayerIslandAttackSequence.SequenceState.Success)
             {
-                playerLostEvent.Raise();
+                completeMission();
+                stageBeatenEvent.Raise();
+                return;
             }
+
         }
     }
-    
+
     public void UseSkill(SkillVariable _playerSkill)
     {
         if (_playerSkill.Value.IsUsableDuringPhase(playerStateVariable.CombatState) == false)
@@ -112,24 +99,24 @@ public class Player : MonoBehaviour
         {
             return;
         }
-        
+
         playerSkillCaster.CastSkill(_playerSkill.Value);
     }
 
-    private void onShipArrival()
+    private void startMission()
     {
-        if (ship.IsAtEnd())
-        {
-            currentBattle = BattleCreator.CreateIslandAttackBattle(army, playerStateVariable.CurrentTarget, playerTeam, enemyTeam);
-            return;
-        }
+        currentMission = new PlayerIslandAttackSequence(playerStateVariable.CurrentTarget, ship, army, pathsToIslands, playerTeam);
+        playerStateVariable.ChangeCombatState(PlayerCombatState.Combat);
+    }
 
-        if (ship.IsAtBeggining())
-        {
-            playerStateVariable.ChangeCombatState(PlayerCombatState.Preparation);
-            playerStateVariable.ChangeTarget(null); 
-            targetCanceledEvent.Raise();
-        }
+    private void completeMission()
+    {
+        resourceSpawner.SpawnResources(playerStateVariable.CurrentTarget.GetCurrentStage().Rewards, playerStateVariable.CurrentTarget.transform.position);
+        playerStateVariable.CurrentTarget.BeatStage();
+        currentMission = null;
+        playerStateVariable.ChangeCombatState(PlayerCombatState.Preparation);
+        playerStateVariable.ChangeTarget(null);
+        targetCanceledEvent.Raise();
     }
 
     private void removeSpellCost(Skill _skillCast)
@@ -162,8 +149,7 @@ public class Player : MonoBehaviour
             return;
         }
 
-        playerStateVariable.ChangeCombatState(PlayerCombatState.Combat);
-        ship.MoveForwardAPath(pathsToIslands.IslandSplines[playerStateVariable.CurrentTarget]);
+        startMission();
         onEmbarkEvent.Raise();
     }
 

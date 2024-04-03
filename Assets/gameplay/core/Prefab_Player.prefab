@@ -57,6 +57,7 @@ MonoBehaviour:
   targetCanceledEvent: {fileID: 11400000, guid: c90fc3163ae8d764384c0813c939763d, type: 2}
   onEmbarkEvent: {fileID: 11400000, guid: 355c6b6060477914cb0fa0c0b8a7aef7, type: 2}
   playerLostEvent: {fileID: 11400000, guid: 9eeb4f4cd126d934aae78fbff72d665a, type: 2}
+  stageBeatenEvent: {fileID: 11400000, guid: 49b07c2299a9211428664de2d7dec4c3, type: 2}
   input: {fileID: 11400000, guid: 5934cc2803e7839419593cebd36cab39, type: 2}
   playerSkillCaster: {fileID: 11400000, guid: 3ac254ea8fa3dd54aaec2a5a441b2b5c, type: 2}
   playerStateVariable: {fileID: 11400000, guid: 7ba7d5f2c832ecb46b9a57906b5c571b, type: 2}
@@ -66,7 +67,6 @@ MonoBehaviour:
   ship: {fileID: 5258514498731598313}
   resourceSpawner: {fileID: 11400000, guid: c934569842c68c94998f53d6277b4c93, type: 2}
   playerTeam: {fileID: 11400000, guid: f585956cfd038154d922f4457acfc9cf, type: 2}
-  enemyTeam: {fileID: 11400000, guid: acf690eee67fd0145b96b1715d8a1af3, type: 2}
 --- !u!114 &3629065911484261452
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -548,7 +548,7 @@ MonoBehaviour:
   _follow: 1
   _startPosition: 0
   preserveUniformSpeedWithOffset: 0
-  _followSpeed: 1
+  _followSpeed: 3
   _followDuration: 1
   _speedModifier:
     blend: 1

@@ -4,12 +4,13 @@ using UnityEngine.Serialization;
 
 public class Island : MonoBehaviour
 {
+    public Team IslandTeam = null;
     public event Action<int> OnStageChange = null;
     public event Action OnIslandDestroyed = null;
     public int CurrentStageNumber => currentStageNumber;
     public int TotalStageCount => IslandType.Stages.Length;
     public Stage GetStageSetup(int _number) => IslandType.Stages[_number];
-    public Stage GetCurrentStage() => IslandType.Stages[CurrentStageNumber];
+    public Stage GetCurrentStage() => CurrentStageNumber >= IslandType.Stages.Length ? null : IslandType.Stages[CurrentStageNumber];
     public IslandType IslandType => typeOfIsland;
 
     [FormerlySerializedAs("IslandSprite")][FormerlySerializedAs("IslandVisuals")][SerializeField] private SpriteRenderer islandSpriteRenderer = null;

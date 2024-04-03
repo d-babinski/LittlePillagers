@@ -2,6 +2,7 @@ using CHARK.ScriptableEvents.Events;
 using DefaultNamespace;
 using Dreamteck.Splines;
 using ScriptableEvents.Events;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -17,13 +18,15 @@ public class Level : MonoBehaviour
     }
 
     public WinCondition VictoryCondition = WinCondition.BeatAllStages;
+    public bool IsBeaten = false;
 
     [SerializeField] private IslandScriptableEvent zoomToIslandEvent = null;
     [SerializeField] private SimpleScriptableEvent unzoomFromIslandEvent = null;
-
+    [SerializeField] private SimpleScriptableEvent levelBeatenEvent = null;
+    
     [SerializeField] private Transform[] spawnPoints = null;
     [SerializeField] private ZoomStateVariable zoomStateVariable = null;
-    [SerializeField] private PlayerStateVariable playerState = null;
+    [SerializeField] private PlayerStateVariable playerStateVariable = null;
 
     [FormerlySerializedAs("islandPathScriptables")][SerializeField] private IslandPaths islandPathScriptable = null;
 
@@ -33,20 +36,6 @@ public class Level : MonoBehaviour
     public Player Player = null;
     public UnityEvent OnLevelLoaded = null;
     public SplineComputer SplinePrefab = null;
-
-    private Island currentTarget = null;
-
-    public void OnIslandChosenAsTarget(Island _target)
-    {
-        currentTarget = _target;
-        islandPathScriptable.EnableVisualsForIsland(_target);
-    }
-
-    public void OnAttackTargetCanceled()
-    {
-        islandPathScriptable.DisableVisualsForIsland(currentTarget);
-        currentTarget = null;
-    }
 
     public void TryZoomingToisland(Island _target)
     {
@@ -100,13 +89,36 @@ public class Level : MonoBehaviour
 
         foreach (var _island in _islands)
         {
-            _islandSplines[_island] = SplineUtils.CreateCurvySpline(_splinePrefab, _playerPos, _island.transform.position, _splinePoints).GetComponent<ShipPath>();
-            _islandSplines[_island].GetComponent<SplineRenderer>().enabled = false;
+            ShipPath _path = _islandSplines[_island] = SplineUtils.CreateCurvySpline(_splinePrefab, _playerPos, _island.transform.position, _splinePoints).GetComponent<ShipPath>();
+            PredicateBasedActions _predicateActions = _islandSplines[_island].gameObject.AddComponent<PredicateBasedActions>();
+            _predicateActions.AddPredicate(new IslandPredicate(playerStateVariable, _island));
+            _predicateActions.AddPredicate(new PlayerTargetStatePredicate(playerStateVariable, PlayerTargetState.Chosen));
+            _predicateActions.OnAllPredicatesFulfilledEvent.AddListener(_path.EnableVisuals);
+            _predicateActions.OnAnyPredicateFailedEvent.AddListener(_path.DisableVisuals);
         }
 
         return _islandSplines;
     }
 
+    public void OnStageBeaten()
+    {
+        if (IsBeaten == true)
+        {
+            return;
+        }
+            
+        if (VictoryCondition != WinCondition.BeatAllStages)
+        {
+            return;
+        }
+
+        if (IsLevelCompleted() == true)
+        {
+            IsBeaten = true;
+            levelBeatenEvent.Raise();
+        }
+    }
+    
     public bool IsLevelCompleted()
     {
         if (VictoryCondition == WinCondition.BeatAllStages)

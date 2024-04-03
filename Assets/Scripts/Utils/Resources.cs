@@ -10,9 +10,9 @@ public struct Resources
     public int Metal;
     public int Gold;
 
-    public static Resources OneWood => new Resources(1, 0, 0, 1);
-    public static Resources OneWheat => new Resources(0, 1, 0, 1);
-    public static Resources OneIron => new Resources(0, 0, 1, 1);
+    public static Resources OneWood => new Resources(1, 0, 0, 0);
+    public static Resources OneWheat => new Resources(0, 1, 0, 0);
+    public static Resources OneIron => new Resources(0, 0, 1, 0);
     public static Resources OneGold => new Resources(0, 0, 0, 1);
     
     public override bool Equals(object _obj) 

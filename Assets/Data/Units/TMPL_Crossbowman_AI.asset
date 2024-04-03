@@ -22,7 +22,7 @@ MonoBehaviour:
     Wheat: 0
     Metal: 0
     Gold: 0
-  Speed: 10
-  MaxHp: 10
+  Speed: 3
+  MaxHp: 15
   Attacks:
   - {fileID: 11400000, guid: 28b6cd0622c53334199685775eb42092, type: 2}

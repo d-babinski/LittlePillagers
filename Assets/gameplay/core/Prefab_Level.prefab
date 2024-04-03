@@ -128,8 +128,7 @@ GameObject:
   - component: {fileID: 1645362445372989943}
   - component: {fileID: 8200389571607000728}
   - component: {fileID: 7956985602381878699}
-  - component: {fileID: 3444333621458640748}
-  - component: {fileID: 7720833770671171509}
+  - component: {fileID: 1376070576379996088}
   m_Layer: 0
   m_Name: Prefab_Level
   m_TagString: Untagged
@@ -173,14 +172,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   VictoryCondition: 0
+  IsBeaten: 0
   zoomToIslandEvent: {fileID: 11400000, guid: 0ec682b9918ce1045afbfc4258e1deae, type: 2}
   unzoomFromIslandEvent: {fileID: 11400000, guid: 492a3ccf62b049840a6045b486a5b808, type: 2}
+  levelBeatenEvent: {fileID: 11400000, guid: 62d8f2b5310e13b42855d5b80e3bb459, type: 2}
   spawnPoints:
   - {fileID: 2746182904660655845}
   - {fileID: 1647939782406211560}
   - {fileID: 6349608652749814337}
   zoomStateVariable: {fileID: 11400000, guid: 5fa32c2527fc1104886030a926ad219d, type: 2}
-  playerState: {fileID: 0}
+  playerStateVariable: {fileID: 11400000, guid: 7ba7d5f2c832ecb46b9a57906b5c571b, type: 2}
   islandPathScriptable: {fileID: 11400000, guid: ce511191e3a22b44eb4f0754122c768d, type: 2}
   IslandRuntimeSet: {fileID: 11400000, guid: 0ce93c0f89a12e440a1e2fda6fb16e0e, type: 2}
   IslandPrefab: {fileID: 2477834144564853653, guid: 9d37bd241eabe1c4c9195363e38e962b, type: 3}
@@ -262,37 +263,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &3444333621458640748
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7661382172989282540}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2792087f1580db44bace202bb754dfb3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  scriptableEvent: {fileID: 0}
-  scriptableEvents:
-  - {fileID: 11400000, guid: 8cc25200603bc2841ab93eb2bbb65f7b, type: 2}
-  onRaised:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1645362445372989943}
-        m_TargetAssemblyTypeName: Level, Assembly-CSharp
-        m_MethodName: OnIslandChosenAsTarget
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &7720833770671171509
+--- !u!114 &1376070576379996088
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -306,13 +277,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scriptableEvent: {fileID: 0}
   scriptableEvents:
-  - {fileID: 11400000, guid: c90fc3163ae8d764384c0813c939763d, type: 2}
+  - {fileID: 11400000, guid: 49b07c2299a9211428664de2d7dec4c3, type: 2}
   onRaised:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1645362445372989943}
         m_TargetAssemblyTypeName: Level, Assembly-CSharp
-        m_MethodName: OnAttackTargetCanceled
+        m_MethodName: OnStageBeaten
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

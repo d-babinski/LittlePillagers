@@ -55,6 +55,7 @@ public class IslandStageIcon : MonoBehaviour
 
         if (isDestroyed == false && _newStage > trackedStageNumber)
         {
+            isDestroyed = true;
             playDestroy();
             return;
         }

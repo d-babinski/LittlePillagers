@@ -11,6 +11,7 @@ public class Pillage : Skill
     {
         availableIslands.Items.ForEach(_island =>
         {
+          
             Stage _currentStage = _island.GetCurrentStage();
 
             if (_currentStage == false)

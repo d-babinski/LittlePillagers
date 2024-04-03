@@ -24,7 +24,7 @@ public class PlayerShip : MonoBehaviour
     {
         OnArrival?.Invoke();
     }
-
+    
     public bool IsAtBeggining()
     {
        return splineFollower.GetPercent() <= 0.01;

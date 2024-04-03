@@ -18,9 +18,9 @@ MonoBehaviour:
   - UnitType: {fileID: 11400000, guid: 0429852ca454d0445830f56a0824d6b3, type: 2}
     Count: 2
   Rewards:
-    Wood: 50
-    Wheat: 50
-    Metal: 50
+    Wood: 70
+    Wheat: 70
+    Metal: 70
     Gold: 15
   StageIcon: {fileID: 9085254225131611698, guid: 1a67157002006df4485267ab1f15075a, type: 3}
   StageIconAnimator: {fileID: 9100000, guid: f84aeca2430c4184383d42032f44322e, type: 2}
