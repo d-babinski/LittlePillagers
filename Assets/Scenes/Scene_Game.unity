@@ -123,52 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &2069347273 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6606282755640038394, guid: 05ec3d74fd70d6b47859a84ee865f11a, type: 3}
-  m_PrefabInstance: {fileID: 7955418257357736515}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &2069347274 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1203533863088956596, guid: 05ec3d74fd70d6b47859a84ee865f11a, type: 3}
-  m_PrefabInstance: {fileID: 7955418257357736515}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2069347273}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b5bc7d4d02148a499531c0907e6d48c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &2069347276
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2069347273}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2300d56ac22446e59de6de2fb87235d1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  scriptableEvent: {fileID: 0}
-  scriptableEvents:
-  - {fileID: 11400000, guid: 4d11a7a948f3ccf47becef8ab163eb0a, type: 2}
-  onRaised:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2069347274}
-        m_TargetAssemblyTypeName: Game, Assembly-CSharp
-        m_MethodName: RestartGame
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!1001 &7955418257357736515
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -270,8 +224,5 @@ PrefabInstance:
     - {fileID: 8242098321473698333, guid: 05ec3d74fd70d6b47859a84ee865f11a, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 6606282755640038394, guid: 05ec3d74fd70d6b47859a84ee865f11a, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2069347276}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 05ec3d74fd70d6b47859a84ee865f11a, type: 3}

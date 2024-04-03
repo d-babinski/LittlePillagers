@@ -88,6 +88,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5277279859385583779}
   - component: {fileID: 1203533863088956596}
+  - component: {fileID: 5396235157497596552}
   m_Layer: 0
   m_Name: Prefab_Game
   m_TagString: Untagged
@@ -127,6 +128,38 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelSetup: {fileID: 11400000, guid: 7c067e8283ffbed479ed5f1646c61e4f, type: 2}
   levelPrefab: {fileID: 1645362445372989943, guid: ae21eaed43991e34dbb4400e51acfd90, type: 3}
+  playerState: {fileID: 0}
+  zoomState: {fileID: 0}
+--- !u!114 &5396235157497596552
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6606282755640038394}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2300d56ac22446e59de6de2fb87235d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scriptableEvent: {fileID: 0}
+  scriptableEvents:
+  - {fileID: 11400000, guid: 4d11a7a948f3ccf47becef8ab163eb0a, type: 2}
+  onRaised:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1203533863088956596}
+        m_TargetAssemblyTypeName: Game, Assembly-CSharp
+        m_MethodName: RestartGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1001 &4167789857823660980
 PrefabInstance:
   m_ObjectHideFlags: 0
