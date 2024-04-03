@@ -51,6 +51,10 @@ PrefabInstance:
       propertyPath: assignedSkill
       value: 
       objectReference: {fileID: 11400000, guid: a88fce4514f4b68419967b23ae715e6a, type: 2}
+    - target: {fileID: 199080121113302395, guid: c409cbdf30c9c284ca9e50b98fa0003d, type: 3}
+      propertyPath: eventToCallOnPress
+      value: 
+      objectReference: {fileID: 11400000, guid: 2997a5cbebce17444952d6cbe12a26e0, type: 2}
     - target: {fileID: 857239944413524800, guid: c409cbdf30c9c284ca9e50b98fa0003d, type: 3}
       propertyPath: m_text
       value: 'E
@@ -199,6 +203,10 @@ PrefabInstance:
       propertyPath: assignedSkill
       value: 
       objectReference: {fileID: 11400000, guid: f87d8284bba565744b6aaac5122534e5, type: 2}
+    - target: {fileID: 199080121113302395, guid: c409cbdf30c9c284ca9e50b98fa0003d, type: 3}
+      propertyPath: eventToCallOnPress
+      value: 
+      objectReference: {fileID: 11400000, guid: 2e411d126a3501841b7854eca7533108, type: 2}
     - target: {fileID: 857239944413524800, guid: c409cbdf30c9c284ca9e50b98fa0003d, type: 3}
       propertyPath: m_text
       value: 'W
@@ -343,6 +351,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5649945786657877545}
     m_Modifications:
+    - target: {fileID: 199080121113302395, guid: c409cbdf30c9c284ca9e50b98fa0003d, type: 3}
+      propertyPath: eventToCallOnPress
+      value: 
+      objectReference: {fileID: 11400000, guid: c22445b8ce1101944adb71669bcaecbb, type: 2}
     - target: {fileID: 1287699062505183389, guid: c409cbdf30c9c284ca9e50b98fa0003d, type: 3}
       propertyPath: m_Name
       value: ui_skill_button_q

@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7582817175078709145, guid: 24f80aad2bb5b514496a370e5f0f383b, type: 3}
+  m_Sprite: {fileID: 4286475597958752297, guid: eef5f70176cecf340af59bca75149e8f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -119,8 +119,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 359bd619993372a4a83cc2debf10fc14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Enemies: {fileID: 11400000, guid: ac84314217b31d64f8253aa11ec73e3c, type: 2}
   Allies: {fileID: 11400000, guid: a1ac99d9c54429943b8dd074c9a06c16, type: 2}
   Range: {x: 0.35, y: 0.2}
   HitMask: {fileID: 11400000, guid: a8a44a506385d214f90c5f3f08d41ee7, type: 2}
+  selfDamage: 2
   DamageDelay: 0.15

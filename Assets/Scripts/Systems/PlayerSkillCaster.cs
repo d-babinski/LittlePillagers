@@ -9,7 +9,8 @@ public class PlayerSkillCaster : ScriptableObject
     public event Action<Skill> OnSkillCastEvent = null;
     
     public bool IsAiming => currentState == CastingState.Aiming;
-
+ 
+    public SkillVariable[] PlayerSkills => playerSkills;
     private enum CastingState
     {
         None = 0,
@@ -17,6 +18,7 @@ public class PlayerSkillCaster : ScriptableObject
     }
     
     [SerializeField] private SkillVariable[] playerSkills = null;
+
 
     private CastingState currentState = CastingState.None;
     

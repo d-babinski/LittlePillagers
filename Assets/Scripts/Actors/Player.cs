@@ -10,6 +10,8 @@ public class Player : MonoBehaviour
     [SerializeField] private SimpleScriptableEvent onEmbarkEvent = null;
     [SerializeField] private SimpleScriptableEvent playerLostEvent = null;
 
+    [SerializeField] private InputManager input = null;
+    
     [SerializeField] private PlayerSkillCaster playerSkillCaster = null;
     [SerializeField] private PlayerStateVariable playerStateVariable = null;
     [SerializeField] private ResourcesVariable playerResources = null;
@@ -38,6 +40,34 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
+        if (playerSkillCaster.IsAiming == true)
+        {
+            if (input.ConfirmSkillshotPressed() == true)
+            {
+                playerSkillCaster.ConfirmSkillshot(input.MouseWorldPosition);
+            }
+
+            if (input.CancelSkillPressed() == true)
+            {
+                playerSkillCaster.CancelCast();
+            }
+
+            if (input.FirstSkillPressed())
+            {
+                UseSkill(playerSkillCaster.PlayerSkills[0]);
+            }
+            
+            if (input.SecondSkillPressed())
+            {
+                UseSkill(playerSkillCaster.PlayerSkills[1]);
+            }
+            
+            if (input.ThirdSkillPressed())
+            {
+                UseSkill(playerSkillCaster.PlayerSkills[2]);
+            }
+        }
+        
         if (waitingForReturnToShip == true)
         {
             if (MoveToShipAI.MoveAliveUnitsToPointAndDestroy(currentBattle.AttackerUnits, ship.transform.position) == MoveToShipAI.State.AllUnitsMoved)
@@ -69,6 +99,21 @@ public class Player : MonoBehaviour
                 playerLostEvent.Raise();
             }
         }
+    }
+    
+    public void UseSkill(SkillVariable _playerSkill)
+    {
+        if (_playerSkill.Value.IsUsableDuringPhase(playerStateVariable.CombatState) == false)
+        {
+            return;
+        }
+
+        if (_playerSkill.Value.GoldCost > playerResources.Value.Gold)
+        {
+            return;
+        }
+        
+        playerSkillCaster.CastSkill(_playerSkill.Value);
     }
 
     private void onShipArrival()

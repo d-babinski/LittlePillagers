@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 4585914339278004715}
   - component: {fileID: 1709930039180137733}
   - component: {fileID: 199080121113302395}
-  - component: {fileID: 4143177700779419141}
   m_Layer: 5
   m_Name: Prefab_UI_Button_Skill
   m_TagString: Untagged
@@ -121,41 +120,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0877c6d9800989b4f92c7c54f1397263, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  eventToCallOnPress: {fileID: 0}
   playerStateVariable: {fileID: 11400000, guid: 7ba7d5f2c832ecb46b9a57906b5c571b, type: 2}
-  playerSkillCaster: {fileID: 11400000, guid: 3ac254ea8fa3dd54aaec2a5a441b2b5c, type: 2}
   assignedSkill: {fileID: 11400000, guid: a5e4a3345fb80a246b237e5eb376b02e, type: 2}
   playerResources: {fileID: 11400000, guid: 81d6fbafbe935e34d9c00ce382606d25, type: 2}
-  buttonCanvasGroup: {fileID: 4585914339278004715}
---- !u!114 &4143177700779419141
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1287699062505183389}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2300d56ac22446e59de6de2fb87235d1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  scriptableEvent: {fileID: 0}
-  scriptableEvents:
-  - {fileID: 11400000, guid: c22445b8ce1101944adb71669bcaecbb, type: 2}
-  onRaised:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 199080121113302395}
-        m_TargetAssemblyTypeName: SkillUI, Assembly-CSharp
-        m_MethodName: UseSkill
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!1 &2805522589180823761
 GameObject:
   m_ObjectHideFlags: 0

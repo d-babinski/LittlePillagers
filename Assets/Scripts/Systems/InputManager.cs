@@ -1,24 +1,29 @@
 using UnityEngine;
-using UnityEngine.Events;
+using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 
-public class InputManager : MonoBehaviour
+[CreateAssetMenu]
+public class InputManager : ScriptableObject
 {
-    public InputActions AvailableActions => availableActions;
+    public Vector2 MouseWorldPosition => Camera.main.ScreenToWorldPoint( Mouse.current.position.ReadValue());
     
     private InputActions availableActions = null;
-
-    public UnityEvent OnCancelSkillClicked = null;
-    public UnityEvent OnPauseClicked = null;
-    public UnityEvent OnSelectClicked = null;
-    public UnityEvent OnFirstSkillPressed = null;
-    public UnityEvent OnSecondSkillPressed = null;
-    public UnityEvent OnThirdSkillPressed = null;
-
-    private void Awake()
+    
+    void OnEnable()
     {
-        availableActions = new InputActions();
+        if (availableActions == null)
+        {
+            availableActions = new InputActions();
+        }
+        
+        availableActions.Enable();
     }
-
+    
+    void OnDisable()
+    {
+        availableActions.Disable();
+    }
+    
     public bool PausePressed()
     {
         return availableActions.Player.Pause.triggered;
@@ -29,6 +34,16 @@ public class InputManager : MonoBehaviour
         return availableActions.Player.Select.triggered;
     }
 
+    public bool ConfirmSkillshotPressed()
+    {
+        if (availableActions.Player.Select.triggered)
+        {
+            return EventSystem.current.IsPointerOverGameObject() == false;
+        }
+        
+        return availableActions.Player.Select.triggered;
+    }
+    
     public bool CancelSkillPressed()
     {
         return availableActions.Player.CancelSkill.triggered;
@@ -47,47 +62,5 @@ public class InputManager : MonoBehaviour
     public bool ThirdSkillPressed()
     {
         return availableActions.Player.ThirdSkill.triggered;
-    }
-    
-    private void Update()
-    {
-        if (availableActions.Player.Pause.triggered)
-        {
-            OnPauseClicked?.Invoke();
-        }
-
-        if (availableActions.Player.Select.triggered)
-        {
-            OnSelectClicked?.Invoke();
-        }
-        
-        if (availableActions.Player.CancelSkill.triggered)
-        {
-            OnCancelSkillClicked?.Invoke();
-        }
-
-        if (availableActions.Player.FirstSkill.triggered)
-        {
-            OnFirstSkillPressed?.Invoke();
-        }
-        
-        if (availableActions.Player.SecondSkill.triggered)
-        {
-            OnSecondSkillPressed?.Invoke();
-        }
-        
-        if (availableActions.Player.ThirdSkill.triggered)
-        {
-            OnThirdSkillPressed?.Invoke();
-        }
-    }
-
-    void OnEnable()
-    {
-        availableActions.Enable();
-    }
-    void OnDisable()
-    {
-        availableActions.Disable();
     }
 }

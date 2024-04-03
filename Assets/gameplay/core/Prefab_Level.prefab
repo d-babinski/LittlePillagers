@@ -49,11 +49,11 @@ MonoBehaviour:
   playerDatabase: {fileID: 11400000, guid: 3c639a55ef76dd6408deba32718a496a, type: 2}
   initialUnits:
   - Type: {fileID: 11400000, guid: 2b97ef2cc8f0e674d8315895dc3cd231, type: 2}
-    Count: 50
+    Count: 2
   - Type: {fileID: 11400000, guid: 9cdb9c66c1b7c85499bade3b35333a94, type: 2}
-    Count: 50
+    Count: 2
   - Type: {fileID: 11400000, guid: fbef3ba5db236de43bfa395876895be4, type: 2}
-    Count: 50
+    Count: 1
 --- !u!1 &6075821831803213349
 GameObject:
   m_ObjectHideFlags: 0
@@ -440,7 +440,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 918032079272378795, guid: 20d4b0f700985e6479a1548444112067, type: 3}
       propertyPath: m_Name
-      value: Prefab_GUI
+      value: Prefab_GUI_Level
       objectReference: {fileID: 0}
     - target: {fileID: 5450166045084576845, guid: 20d4b0f700985e6479a1548444112067, type: 3}
       propertyPath: m_RootOrder
@@ -491,8 +491,8 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 20d4b0f700985e6479a1548444112067, type: 3}
---- !u!4 &8022367197195754922 stripped
-Transform:
+--- !u!224 &8022367197195754922 stripped
+RectTransform:
   m_CorrespondingSourceObject: {fileID: 5450166045084576845, guid: 20d4b0f700985e6479a1548444112067, type: 3}
   m_PrefabInstance: {fileID: 2663823458473882087}
   m_PrefabAsset: {fileID: 0}

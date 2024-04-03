@@ -15,6 +15,9 @@ GameObject:
   - component: {fileID: 2484150895242573293}
   - component: {fileID: 5498539457790021321}
   - component: {fileID: 8900410036557154236}
+  - component: {fileID: 4826009916949518380}
+  - component: {fileID: 2232900910672224723}
+  - component: {fileID: 5426632854909667800}
   m_Layer: 0
   m_Name: Prefab_Player
   m_TagString: Untagged
@@ -54,6 +57,7 @@ MonoBehaviour:
   targetCanceledEvent: {fileID: 11400000, guid: c90fc3163ae8d764384c0813c939763d, type: 2}
   onEmbarkEvent: {fileID: 11400000, guid: 355c6b6060477914cb0fa0c0b8a7aef7, type: 2}
   playerLostEvent: {fileID: 11400000, guid: 9eeb4f4cd126d934aae78fbff72d665a, type: 2}
+  input: {fileID: 11400000, guid: 5934cc2803e7839419593cebd36cab39, type: 2}
   playerSkillCaster: {fileID: 11400000, guid: 3ac254ea8fa3dd54aaec2a5a441b2b5c, type: 2}
   playerStateVariable: {fileID: 11400000, guid: 7ba7d5f2c832ecb46b9a57906b5c571b, type: 2}
   playerResources: {fileID: 11400000, guid: 81d6fbafbe935e34d9c00ce382606d25, type: 2}
@@ -61,10 +65,8 @@ MonoBehaviour:
   pathsToIslands: {fileID: 11400000, guid: ce511191e3a22b44eb4f0754122c768d, type: 2}
   ship: {fileID: 5258514498731598313}
   resourceSpawner: {fileID: 11400000, guid: c934569842c68c94998f53d6277b4c93, type: 2}
-  battleCreator: {fileID: 11400000, guid: 81ee9ea1cc653b34185e2c619489886f, type: 2}
   playerTeam: {fileID: 11400000, guid: f585956cfd038154d922f4457acfc9cf, type: 2}
   enemyTeam: {fileID: 11400000, guid: acf690eee67fd0145b96b1715d8a1af3, type: 2}
-  unitAI: {fileID: 11400000, guid: 0463e56628004c74dbe2e2e1dcdfaf15, type: 2}
 --- !u!114 &3629065911484261452
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -210,6 +212,96 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &4826009916949518380
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4093113484866750873}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2300d56ac22446e59de6de2fb87235d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scriptableEvent: {fileID: 0}
+  scriptableEvents:
+  - {fileID: 11400000, guid: c22445b8ce1101944adb71669bcaecbb, type: 2}
+  onRaised:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7233342774023361148}
+        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+        m_MethodName: UseSkill
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 11400000, guid: a5e4a3345fb80a246b237e5eb376b02e, type: 2}
+          m_ObjectArgumentAssemblyTypeName: SkillVariable, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &2232900910672224723
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4093113484866750873}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2300d56ac22446e59de6de2fb87235d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scriptableEvent: {fileID: 0}
+  scriptableEvents:
+  - {fileID: 11400000, guid: 2e411d126a3501841b7854eca7533108, type: 2}
+  onRaised:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7233342774023361148}
+        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+        m_MethodName: UseSkill
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 11400000, guid: f87d8284bba565744b6aaac5122534e5, type: 2}
+          m_ObjectArgumentAssemblyTypeName: SkillVariable, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &5426632854909667800
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4093113484866750873}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2300d56ac22446e59de6de2fb87235d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scriptableEvent: {fileID: 0}
+  scriptableEvents:
+  - {fileID: 11400000, guid: 2997a5cbebce17444952d6cbe12a26e0, type: 2}
+  onRaised:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7233342774023361148}
+        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+        m_MethodName: UseSkill
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 11400000, guid: a88fce4514f4b68419967b23ae715e6a, type: 2}
+          m_ObjectArgumentAssemblyTypeName: SkillVariable, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
