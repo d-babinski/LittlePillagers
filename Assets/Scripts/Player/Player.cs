@@ -5,26 +5,27 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    [Header("Events")]
     [SerializeField] private IslandScriptableEvent targetChosenEvent = null;
     [SerializeField] private SimpleScriptableEvent targetCanceledEvent = null;
     [SerializeField] private SimpleScriptableEvent onEmbarkEvent = null;
     [SerializeField] private SimpleScriptableEvent playerLostEvent = null;
     [SerializeField] private SimpleScriptableEvent stageBeatenEvent = null;
 
-    [SerializeField] private InputManager input = null;
-
+    [Header("Player State")]
     [SerializeField] private PlayerSkillCaster playerSkillCaster = null;
     [SerializeField] private PlayerStateVariable playerStateVariable = null;
     [SerializeField] private ResourcesVariable playerResources = null;
     [SerializeField] private Army army = null;
+    [SerializeField] private Team playerTeam = null;
+
+    [Header("Other references")]
+    [SerializeField] private InputManager input = null;
     [SerializeField] private IslandPaths pathsToIslands = null;
     [SerializeField] private PlayerShip ship = null;
     [SerializeField] private ClickableResourceSpawner resourceSpawner = null;
 
-    [SerializeField] private Team playerTeam = null;
-
     private PlayerIslandAttackSequence currentMission = null;
-
 
     private void OnEnable()
     {
@@ -49,7 +50,6 @@ public class Player : MonoBehaviour
             {
                 playerSkillCaster.CancelCast();
             }
-
         }
 
         if (input.FirstSkillPressed())
@@ -84,7 +84,6 @@ public class Player : MonoBehaviour
                 stageBeatenEvent.Raise();
                 return;
             }
-
         }
     }
 
@@ -101,27 +100,6 @@ public class Player : MonoBehaviour
         }
 
         playerSkillCaster.CastSkill(_playerSkill.Value);
-    }
-
-    private void startMission()
-    {
-        currentMission = new PlayerIslandAttackSequence(playerStateVariable.CurrentTarget, ship, army, pathsToIslands, playerTeam);
-        playerStateVariable.ChangeCombatState(PlayerCombatState.Combat);
-    }
-
-    private void succesfullyCompleteMission()
-    {
-        resourceSpawner.SpawnResources(playerStateVariable.CurrentTarget.GetCurrentStage().Rewards, playerStateVariable.CurrentTarget.transform.position);
-        playerStateVariable.CurrentTarget.BeatStage();
-        currentMission = null;
-        playerStateVariable.ChangeCombatState(PlayerCombatState.Preparation);
-        playerStateVariable.ChangeTarget(null);
-        targetCanceledEvent.Raise();
-    }
-
-    private void removeSpellCost(Skill _skillCast)
-    {
-        playerResources.Value -= _skillCast.GoldCost*Resources.OneGold;
     }
 
     public void AddResources(Resources _res)
@@ -173,5 +151,26 @@ public class Player : MonoBehaviour
 
         playerStateVariable.ChangeTarget(null);
         targetCanceledEvent.Raise();
+    }
+    
+    private void startMission()
+    {
+        currentMission = new PlayerIslandAttackSequence(playerStateVariable.CurrentTarget, ship, army, pathsToIslands, playerTeam);
+        playerStateVariable.ChangeCombatState(PlayerCombatState.Combat);
+    }
+
+    private void succesfullyCompleteMission()
+    {
+        resourceSpawner.SpawnResources(playerStateVariable.CurrentTarget.GetCurrentStage().Rewards, playerStateVariable.CurrentTarget.transform.position);
+        playerStateVariable.CurrentTarget.BeatStage();
+        currentMission = null;
+        playerStateVariable.ChangeCombatState(PlayerCombatState.Preparation);
+        playerStateVariable.ChangeTarget(null);
+        targetCanceledEvent.Raise();
+    }
+
+    private void removeSpellCost(Skill _skillCast)
+    {
+        playerResources.Value -= _skillCast.GoldCost*Resources.OneGold;
     }
 }

@@ -1,23 +1,26 @@
 using CHARK.ScriptableEvents.Events;
 using ScriptableEvents.Events;
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
 
 public class GUI : MonoBehaviour
 {
-    [SerializeField] private IslandScriptableEvent ChooseAsTargetButtonClicked = null;
-    [SerializeField] private SimpleScriptableEvent CancelTargetButtonClicked = null;
-    [SerializeField] private IslandScriptableEvent ZoomToIslandButtonClicked = null;
-    [SerializeField] private SimpleScriptableEvent UnzoomButtonClicked = null;
+    [Header("GUI Events")]
+    [FormerlySerializedAs("ChooseAsTargetButtonClicked")][SerializeField] private IslandScriptableEvent chooseAsTargetButtonClicked = null;
+    [FormerlySerializedAs("CancelTargetButtonClicked")][SerializeField] private SimpleScriptableEvent cancelTargetButtonClicked = null;
+    [FormerlySerializedAs("ZoomToIslandButtonClicked")][SerializeField] private IslandScriptableEvent zoomToIslandButtonClicked = null;
+    [FormerlySerializedAs("UnzoomButtonClicked")][SerializeField] private SimpleScriptableEvent unzoomButtonClicked = null;
+    
+    [Header("Core References")]
     [SerializeField] private PlayerStateVariable playerStateVariable = null;
     [SerializeField] private ZoomStateVariable zoomStateVariable = null;
     [SerializeField] private Canvas guiCanvas = null;
     
-    public IslandNameplateSetup IslandNameplateSetup = null;
-    [FormerlySerializedAs("ContextButtons")] public IslandContextButtonSetup ContextButtonSetup = null;
-    public IslandRuntimeSet IslandRuntimeSet = null;
+    [Header("Island GUI Related")]
+    [FormerlySerializedAs("IslandNameplateSetup")][SerializeField] private IslandNameplateSetup islandNameplateSetup = null;
+    [FormerlySerializedAs("ContextButtonSetup")][FormerlySerializedAs("ContextButtons")][SerializeField] private IslandContextButtonSetup contextButtonSetup = null;
+    [FormerlySerializedAs("IslandRuntimeSet")][SerializeField] private IslandRuntimeSet islandRuntimeSet = null;
     [SerializeField] private IslandStageIcon stageIconPrefab = null;
     
     private Dictionary<Island, IslandContextButton[]> islandContextButtons = new();
@@ -25,23 +28,23 @@ public class GUI : MonoBehaviour
     public void SpawnGUI()
     {
         guiCanvas.worldCamera = Camera.main;
-        SpawnIslandContextButtons(IslandRuntimeSet.Items);
-        SubscribeToContextButtonEvents();
-        SpawnIslandNameplates(IslandRuntimeSet.Items);
-        SpawnStageIcons(IslandRuntimeSet.Items);
+        spawnIslandContextButtons(islandRuntimeSet.Items);
+        subscribeToContextButtonEvents();
+        spawnIslandNameplates(islandRuntimeSet.Items);
+        spawnStageIcons(islandRuntimeSet.Items);
     }
     
-    private void SpawnIslandNameplates(List<Island> _islands)
+    private void spawnIslandNameplates(List<Island> _islands)
     {
         _islands.ForEach(_island =>
         {
-              IslandNameplateSetup.CreateNameplateForIsland(_island, transform);
+              islandNameplateSetup.CreateNameplateForIsland(_island, transform);
         });
     }
 
-    public void SubscribeToContextButtonEvents()
+    private void subscribeToContextButtonEvents()
     {
-        IslandRuntimeSet.Items.ForEach(_island =>
+        islandRuntimeSet.Items.ForEach(_island =>
         {
             for (int i = 0; i < islandContextButtons[_island].Length; i++)
             {
@@ -55,21 +58,21 @@ public class GUI : MonoBehaviour
         switch (_contextAction)
         {
             case IslandContextAction.Attack:
-                ChooseAsTargetButtonClicked.Raise(_context);
+                chooseAsTargetButtonClicked.Raise(_context);
                 break;
             case IslandContextAction.CancelAttack:
-                CancelTargetButtonClicked.Raise();
+                cancelTargetButtonClicked.Raise();
                 break;
             case IslandContextAction.Zoom:
-                ZoomToIslandButtonClicked.Raise(_context);
+                zoomToIslandButtonClicked.Raise(_context);
                 break;
             case IslandContextAction.Unzoom:
-                UnzoomButtonClicked.Raise();
+                unzoomButtonClicked.Raise();
                 break;
         }
     }
 
-    public void SpawnStageIcons(List<Island> _islands)
+    private void spawnStageIcons(List<Island> _islands)
     {
         _islands.ForEach(_island =>
         {
@@ -82,11 +85,11 @@ public class GUI : MonoBehaviour
         });
     }
 
-    public void SpawnIslandContextButtons(List<Island> _islands)
+    private void spawnIslandContextButtons(List<Island> _islands)
     {
         _islands.ForEach(_island =>
         {
-            IslandContextButton[] _islandButtons = ContextButtonSetup.CreateContextButtonsForIsland(_island, transform);
+            IslandContextButton[] _islandButtons = contextButtonSetup.CreateContextButtonsForIsland(_island, transform);
 
             islandContextButtons[_island] = _islandButtons;
 
